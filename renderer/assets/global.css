@@ -1,0 +1,34 @@
+/* 清除所有元素默认边距和内边距 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 清除body默认边距，确保全屏 */
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 清除Element容器默认边框 */
+/*.el-container, .el-main, .el-aside, .el-header {*/
+/*    border: none !important; !* 强制移除Element默认边框 *!*/
+/*}*/
+
+/* 清除卡片默认阴影（可选，根据视觉需求） */
+/*.el-card {*/
+/*    box-shadow: none !important;*/
+/*    border: none !important;*/
+/*}*/
+
+/* 清除表格默认边框（如需保留表格内边框，可删除此条） */
+/*.el-table, .el-table__header-wrapper, .el-table__body-wrapper {*/
+/*    border: none !important;*/
+/*}*/
+
+/* 确保Vue应用容器全屏 */
+#app {
+    height: 100%;
+    overflow: hidden;
+}
