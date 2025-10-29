@@ -1,0 +1,281 @@
+/* 布局类 */
+.full-height {
+    height: 100vh;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.flex-1 {
+    flex: 1;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+.p-0 {
+    padding: 0;
+}
+.m-0 {
+    margin: 0;
+}
+.box-sizing {
+    box-sizing: border-box;
+}
+
+/* Header样式 */
+.header-bar {
+    height: 80px;
+    background-color: #1890ff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+.header-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+.header-btn {
+    position: absolute;
+    right: 20px;
+}
+.header-btn .el-button {
+    color: white;
+    font-size: 16px;
+}
+
+/* 主页面样式 */
+.main-container {
+    border: none;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+}
+.main-aside {
+    width: 45% !important;
+    background-color: #F5F7FA;
+    padding: 20px;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    height: 100%;
+}
+.main-aside-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 15px;
+}
+.main-tab-span {
+    font-size: 16px;
+}
+.main-main {
+    width: 45%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #F5F7FA;
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+}
+.main-grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+.main-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+}
+.main-card-title {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.main-card-value {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1890ff;
+}
+.main-card-sub {
+    font-size: 14px;
+    color: #999;
+    margin-top: 8px;
+}
+.main-actions {
+    width: 10% !important;
+    background-color: #F5F7FA;
+    padding: 30px 0;
+    box-sizing: border-box !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden !important;
+    height: 100%;
+}
+.action-btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+    flex: 1;
+}
+.action-btn-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.action-btn {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 24px !important;
+    background-color: #1890ff !important;
+    color: #fff !important;
+    border: none !important;
+}
+.action-btn-span {
+    font-size: 14px;
+}
+
+/* 表格样式 */
+.table-container {
+    height: 100%;
+    /*padding-top: 10px;*/
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.table-header {
+    font-size: 16px;
+    font-weight: 500;
+}
+.table-cell {
+    font-size: 15px;
+}
+
+/* 表单页面样式 */
+.form-page {
+    flex: 1;
+    padding: 20px;
+    height: 800px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+.form-card {
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.form-section {
+    height: 600px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.form-section-title {
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    border-bottom: 1px solid #d9d9d9;
+}
+.form-section-content {
+    padding: 15px;
+}
+.form-photo-upload {
+    border: 1px dashed #91c6f2;
+    border-radius: 6px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.form-photo-text {
+    font-size: 12px;
+    color: #1890ff;
+}
+.form-item {
+    margin-bottom: 15px;
+}
+.form-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* 数据中心样式 */
+.stats-card {
+    border: none;
+    box-shadow: none;
+}
+.stats-row {
+    padding: 15px 0px;
+}
+.stats-item {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.stats-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.stats-item-title {
+    font-size: 18px;
+    color: #666;
+}
+.stats-item-value {
+    font-size: 24px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.data-table-container {
+    height: calc(100% - 340px);
+    min-height: 550px;
+    overflow: hidden;
+    position: relative;
+}
+.table-filter {
+    padding: 15px;
+}
+.table-pagination {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* 设置页面样式 */
+.settings-container {
+    height: 100vh;
+    padding: 15px;
+}
+.settings-content {
+    padding: 0;
+    background-color: #fff;
+}
+.settings-form {
+    padding: 20px;
+}
+.settings-card {
+    margin: 20px;
+}

@@ -3,21 +3,19 @@ import { HeaderBar } from '../components/HeaderBar.js';
 export const MainPage = {
     components: { HeaderBar },
     template: `
-      <div style="height: 100vh; overflow: hidden; margin: 0; padding: 0; box-sizing: border-box; display: flex; flex-direction: column;">
+      <div class="full-height overflow-hidden m-0 p-0 box-sizing flex-column">
         <!-- 顶部Header栏 -->
         <HeaderBar :isMainPage=true />
 
         <!-- 主体内容区 -->
-        <el-container style="flex: 1; display: flex; border: none; height: 750px;">
+        <el-container class="flex-1 d-flex main-container">
           <!-- 左侧：45%宽度（默认打开未离开访客+表格高度拉满） -->
-          <el-aside
-              style="width: 45%; background-color: #F5F7FA; padding: 20px; box-sizing: border-box; overflow: hidden; height: 100%;"
-          >
+          <el-aside class="main-aside">
             <!-- 外层卡片：高度100%，确保内部内容可拉满 -->
             <el-card 
                 shadow="always"
                 :body-style="{ padding: '0', height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }"
-                style="height: 100%; display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; font-size: 15px;"
+                class="main-aside-card flex-column"
             >
               <!-- 标签栏：type修正为border-card，绑定默认选中项 -->
               <el-tabs
@@ -25,161 +23,157 @@ export const MainPage = {
                   type="border-card"
                   style="flex-shrink: 0; border-bottom: 1px solid #e6e6e6; height: calc(100% - 0px);"
               >
-              <!-- 未离开访客：默认选中 -->
-              <el-tab-pane  
+                <!-- 未离开访客：默认选中 -->
+                <el-tab-pane  
                   name="active" 
-                  style="height: 100%;"
+                  class="full-height"
                   :content-style="{ height: '100%', padding: '0', overflow: 'hidden' }"
-              >
-                <template #label>
-                  <span style="font-size: 16px">未离开访客</span>
-                </template>
-                <div style="height: 100%; padding-top: 10px; box-sizing: border-box; overflow: hidden;">
-                  <el-table
+                >
+                  <template #label>
+                    <span class="main-tab-span">未离开访客</span>
+                  </template>
+                  <div class="table-container">
+                    <el-table
                       :data="activeVisitors"
                       border
                       size="small"
-                      style="width: 100%; height: 100%;"
+                      style="height: 80%;"
                       :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
                       :cell-style="{fontSize: '15px'}"
-                  >
-                  <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-                  <el-table-column prop="visitTime" label="来访时间" min-width="180"></el-table-column>
-                  <el-table-column prop="interviewee" label="受访人" min-width="120"></el-table-column>
-                  </el-table>
-                </div>
-              </el-tab-pane>
+                    >
+                      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
+                      <el-table-column prop="visitTime" label="来访时间" min-width="180"></el-table-column>
+                      <el-table-column prop="interviewee" label="受访人" min-width="120"></el-table-column>
+                    </el-table>
+                  </div>
+                </el-tab-pane>
 
-              <!-- 进出流水 -->
-              <el-tab-pane 
-                  name="logs" 
-                  style="height: 100%;"
+                <!-- 进出流水 -->
+                <el-tab-pane 
+                  name="logs"
+                  class="full-height"
                   :content-style="{ height: '100%', padding: '0', overflow: 'hidden' }"
-              >
-                <template #label>
-                  <span style="font-size: 16px">进出流水</span>
-                </template>
-                <div style="height: 100%; padding-top: 10px; box-sizing: border-box; overflow: hidden;">
-                  <el-table
+                >
+                  <template #label>
+                    <span class="main-tab-span">进出流水</span>
+                  </template>
+                  <div class="table-container">
+                    <el-table
                       :data="visitLogs"
                       border
                       size="small"
-                      style="width: 100%; height: 100%;"
+                      style="height: 80%;"
                       :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
                       :cell-style="{fontSize: '15px'}"
-                  >
-                  <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-                  <el-table-column prop="time" label="时间" min-width="180"></el-table-column>
-                  <el-table-column prop="action" label="操作" min-width="120">
-                    <template #default="scope">
-                      <el-tag :type="scope.row.action === '进入' ? 'success' : 'info'" style="font-size: 14px;">{{ scope.row.action }}</el-tag>
-                    </template>
-                  </el-table-column>
-                  
-                  </el-table>
-                </div>
-              </el-tab-pane>
+                    >
+                      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
+                      <el-table-column prop="time" label="时间" min-width="180"></el-table-column>
+                      <el-table-column prop="action" label="操作" min-width="120">
+                        <template #default="scope">
+                          <el-tag :type="scope.row.action === '进入' ? 'success' : 'info'" style="font-size: 14px;">{{ scope.row.action }}</el-tag>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                  </div>
+                </el-tab-pane>
 
-              <!-- 超期名单 -->
-              <el-tab-pane 
-                  name="overdue" 
-                  style="height: 100%;"
+                <!-- 超期名单 -->
+                <el-tab-pane 
+                  name="overdue"
+                  class="full-height"
                   :content-style="{ height: '100%', padding: '0', overflow: 'hidden' }"
-              >
-                <template #label>
-                  <span style="font-size: 16px">超期名单</span>
-                </template>
-                <div style="height: 100%; padding-top: 10px; box-sizing: border-box; overflow: hidden;">
-                  <el-table
+                >
+                  <template #label>
+                    <span class="main-tab-span">超期名单</span>
+                  </template>
+                  <div class="table-container">
+                    <el-table
                       :data="overdueVisitors"
                       border
                       size="small"
-                      style="width: 100%; height: 100%;"
-                  :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
-                  :cell-style="{fontSize: '15px'}"
-                  >
-                  <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-                  <el-table-column prop="visitTime" label="来访时间" min-width="180"></el-table-column>
-                  <el-table-column prop="overdueTime" label="超期时间" min-width="150"></el-table-column>
-                  </el-table>
-                </div>
-              </el-tab-pane>
+                      style="height: 80%;"
+                      :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
+                      :cell-style="{fontSize: '15px'}"
+                    >
+                      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
+                      <el-table-column prop="visitTime" label="来访时间" min-width="180"></el-table-column>
+                      <el-table-column prop="overdueTime" label="超期时间" min-width="150"></el-table-column>
+                    </el-table>
+                  </div>
+                </el-tab-pane>
               </el-tabs>
             </el-card>
           </el-aside>
 
           <!-- 中间板块（保持不变） -->
-          <el-main
-              style="width: 45%; padding: 20px; box-sizing: border-box; background-color: #F5F7FA; overflow: hidden; height: 100%; margin: 0;"
-          >
-            <div style="height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px;">
-              <el-card shadow="always" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; text-align: center;">
-                <div style="font-size: 18px; color: #666; margin-bottom: 10px;">今日累计到访</div>
-                <div style="font-size: 48px; font-weight: bold; color: #1890ff;">28</div>
-                <div style="font-size: 14px; color: #999; margin-top: 8px;">较昨日 +3</div>
+          <el-main class="main-main">
+            <div class="main-grid">
+              <el-card shadow="always" class="main-card">
+                <div class="main-card-title">今日累计到访</div>
+                <div class="main-card-value">28</div>
+                <div class="main-card-sub">较昨日 +3</div>
               </el-card>
-              <el-card shadow="always" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; text-align: center;">
-                <div style="font-size: 18px; color: #666; margin-bottom: 10px;">预约总人数</div>
-                <div style="font-size: 48px; font-weight: bold; color: #1890ff;">35</div>
-                <div style="font-size: 14px; color: #999; margin-top: 8px;">已到访 28人</div>
+              <el-card shadow="always" class="main-card">
+                <div class="main-card-title">预约总人数</div>
+                <div class="main-card-value">35</div>
+                <div class="main-card-sub">已到访 28人</div>
               </el-card>
-              <el-card shadow="always" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; text-align: center;">
-                <div style="font-size: 18px; color: #666; margin-bottom: 10px;">已离开人数</div>
-                <div style="font-size: 48px; font-weight: bold; color: #52c41a;">15</div>
-                <div style="font-size: 14px; color: #999; margin-top: 8px;">未离开 13人</div>
+              <el-card shadow="always" class="main-card">
+                <div class="main-card-title">已离开人数</div>
+                <div class="main-card-value">15</div>
+                <div class="main-card-sub">未离开 13人</div>
               </el-card>
-              <el-card shadow="always" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; text-align: center;">
-                <div style="font-size: 18px; color: #666; margin-bottom: 10px;">超时未离开</div>
-                <div style="font-size: 48px; font-weight: bold; color: #ff4d4f;">3</div>
-                <div style="font-size: 14px; color: #999; margin-top: 8px;">最长超期 2.5小时</div>
+              <el-card shadow="always" class="main-card">
+                <div class="main-card-title">超时未离开</div>
+                <div class="main-card-value">3</div>
+                <div class="main-card-sub">最长超期 2.5小时</div>
               </el-card>
             </div>
           </el-main>
 
           <!-- 右侧板块（保持不变） -->
-          <el-aside
-              style="width: 10%; background-color: #F5F7FA; padding: 30px 0; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; overflow: hidden; height: 100%;"
-          >
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 40px; justify-content: center; flex: 1;">
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <el-aside class="main-actions">
+            <div class="action-btn-group">
+              <div class="action-btn-item">
                 <el-button
                     size="large"
                     circle
-                    style="width: 80px; height: 80px; font-size: 24px; background-color: #1890ff; color: #fff; border: none;"
+                    class="action-btn"
                     @click="$router.push('/register')"
                 ><el-icon><User /></el-icon></el-button>
-                <span style="font-size: 14px;">来访登记</span>
+                <span class="action-btn-span">来访登记</span>
               </div>
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <div class="action-btn-item">
                 <el-button
                     size="large"
                     circle
-                    style="width: 80px; height: 80px; font-size: 24px; background-color: #1890ff; color: #fff; border: none;"
+                    class="action-btn"
                     @click="$router.push('/data-center')"
                 ><el-icon><DataAnalysis /></el-icon></el-button>
-                <span style="font-size: 14px;">数据中心</span>
+                <span class="action-btn-span">数据中心</span>
               </div>
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <div class="action-btn-item">
                 <el-button
                     size="large"
                     circle
-                    style="width: 80px; height: 80px; font-size: 24px; background-color: #1890ff; color: #fff; border: none;"
+                    class="action-btn"
                     @click="$router.push('/settings')"
                 ><el-icon><Setting /></el-icon></el-button>
-                <span style="font-size: 14px;">设置中心</span>
+                <span class="action-btn-span">设置中心</span>
               </div>
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <div class="action-btn-item">
                 <el-button
                     size="large"
                     circle
-                    style="width: 80px; height: 80px; font-size: 24px; background-color: #52c41a; color: #fff; border: none;"
+                    class="action-btn"
+                    style="background-color: #52c41a !important;"
                     @click="showCheckoutDialog = true"
                 >
                   <el-icon :size="24" style="color: #fff;">
                     <i class="fa fa-sign-out"></i>
                   </el-icon>
                 </el-button>
-                <span style="font-size: 14px;">签离</span>
+                <span class="action-btn-span">签离</span>
               </div>
             </div>
           </el-aside>

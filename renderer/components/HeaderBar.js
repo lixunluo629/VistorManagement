@@ -7,14 +7,14 @@ export const HeaderBar = {
         }
     },
     template: `
-    <el-header style="height: 80px; background-color: #1890ff; color: white; display: flex; align-items: center; justify-content: center; padding: 0 20px;">
+    <el-header class="header-bar">
       <!-- 中间：系统名称 -->
       <div style="font-size: 32px; font-weight: bold;">
         访客管理系统
       </div>
       
-      <!-- 右侧：主界面显示关闭按钮，其他界面隐藏 -->
-      <div style="position: absolute; right: 20px;">
+      <!-- 主界面显示关闭按钮，其他界面隐藏 -->
+      <div class="header-btn">
         <el-button 
           v-if="isMainPage"
           type="text" 
@@ -22,8 +22,8 @@ export const HeaderBar = {
           @click="handleClose"
         ><el-icon :size="21"><SwitchButton /></el-icon>&nbsp;关闭</el-button>
       </div>
-      <!-- 左侧：仅非主界面显示返回按钮 -->
-      <div style="position: absolute; right: 20px;">
+      <!-- 仅非主界面显示返回按钮 -->
+      <div class="header-btn">
         <el-button
             v-if="!isMainPage"
             type="text"
