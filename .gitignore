@@ -1,1 +1,9 @@
 node_modules/
+
+# 可选：忽略其他无需上传的文件
+npm-debug.log*
+yarn-debug.log*
+.DS_Store
+.idea/
+.vscode/
+dist/
