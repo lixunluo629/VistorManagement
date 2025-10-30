@@ -165,8 +165,7 @@ export const MainPage = {
                 <el-button
                     size="large"
                     circle
-                    class="action-btn"
-                    style="background-color: #52c41a !important;"
+                    class="action-btn-last"
                     @click="showCheckoutDialog = true"
                 >
                   <el-icon :size="24" style="color: #fff;">

@@ -44,6 +44,29 @@
     color: white;
     font-size: 16px;
 }
+.header-btn .el-button {
+    /* 基础样式增强 */
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease; /* 平滑过渡效果 */
+}
+
+/* 鼠标经过样式 */
+.header-btn .el-button:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;; /* 半透明白色背景 */
+    color: #ffffff; /* 保持白色文字更醒目 */
+}
+
+/* 按压（点击）样式 */
+.header-btn .el-button:active {
+    background-color: rgba(255, 255, 255, 0.25) !important; /* 更深的半透明白色 */
+    transform: scale(0.98); /* 轻微缩小，模拟按压感 */
+}
+
+/* 图标与文字间距优化 */
+.header-btn .el-button .el-icon {
+    margin-right: 6px;
+}
 /*登录页面样式*/
 .login-container {
     /* 使登录页面占满整个窗口 */
@@ -120,7 +143,16 @@
 .login-container{
     background-color: #dff5ff;
 }
+.login-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 30px;
+    -webkit-app-region: drag;
+}
 .login-card {
+    user-select: none;
     width: 300px;
     padding: 30px;
     border: 0 !important;
@@ -242,9 +274,43 @@
     width: 80px !important;
     height: 80px !important;
     font-size: 24px !important;
-    background-color: #1890ff !important;
-    color: #fff !important;
+    background-color: #1890ff !important; /* 基础蓝 */
+    color: #ffffff !important; /* 纯白文字，高对比度 */
     border: none !important;
+    box-shadow: 0 2px 4px rgba(24, 144, 255, 0.3) !important; /* 轻微阴影增强立体感 */
+    transition: all 0.2s ease !important; /* 过渡动画，交互更流畅 */
+}
+
+.action-btn:hover {
+    background-color: #096dd9 !important; /* 加深蓝色，悬停反馈明确 */
+    color: #ffffff !important;
+    box-shadow: 0 4px 8px rgba(24, 144, 255, 0.4) !important; /* 阴影加深，增强层次感 */
+}
+
+.action-btn:active {
+    background-color: #0050b3 !important; /* 点击时进一步加深，模拟按压感 */
+}
+
+/* 特殊按钮（如删除/结束）：红色系，突出重要/危险操作 */
+.action-btn-last {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 24px !important;
+    background-color: #ff4d4f !important; /* 基础红（警示色） */
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 2px 4px rgba(255, 77, 79, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.action-btn-last:hover {
+    background-color: #f5222d !important; /* 加深红色，增强警示感 */
+    color: #ffffff !important;
+    box-shadow: 0 4px 8px rgba(255, 77, 79, 0.4) !important;
+}
+
+.action-btn-last:active {
+    background-color: #d91e18 !important; /* 点击时更深，强化反馈 */
 }
 .action-btn-span {
     font-size: 14px;

@@ -1,6 +1,8 @@
 export const LoginPage = {
     template: `
       <div class="login-container">
+        <div class="login-header">
+        </div>
         <!-- 关闭按钮 -->
         <el-button
             class="login-close-btn"
@@ -8,7 +10,6 @@ export const LoginPage = {
             type="text"
             @click="handleClose"
         ></el-button>
-
         <!-- 登录卡片 -->
         <el-card shadow="never" class="login-card">
           <div class="login-title">访客管理</div>

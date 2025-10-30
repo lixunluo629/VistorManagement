@@ -4,18 +4,29 @@
   "description": "访客管理系统",
   "main": "main/index.js",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-builder"
+    "dev": "electron .",
+    "start": "electron-forge start",
+    "build": "electron-builder",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
   "author": "李讯络",
   "license": "ISC",
   "devDependencies": {
-    "electron": "39.0.0",
-    "electron-builder": "26.0.12"
+    "@electron-forge/cli": "^7.10.2",
+    "@electron-forge/maker-deb": "^7.10.2",
+    "@electron-forge/maker-rpm": "^7.10.2",
+    "@electron-forge/maker-squirrel": "^7.10.2",
+    "@electron-forge/maker-zip": "^7.10.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.10.2",
+    "@electron-forge/plugin-fuses": "^7.10.2",
+    "@electron/fuses": "^1.8.0",
+    "electron": "39.0.0"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
+    "electron-squirrel-startup": "^1.0.1",
     "element-plus": "^2.11.5",
     "jsqr": "^1.4.0",
     "serialport": "^13.0.0",

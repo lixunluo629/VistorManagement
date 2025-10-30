@@ -14,7 +14,8 @@ function createWindow(isLogin = true) {
         movable: true,       // 允许窗口拖动
     } : {
         fullscreen: true, // 主窗口全屏
-        frame: false      // 主窗口隐藏边框（可选）
+        frame: false,      // 主窗口隐藏边框（可选）
+        show: false
     };
 
     mainWindow = new BrowserWindow({
@@ -30,7 +31,7 @@ function createWindow(isLogin = true) {
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
 
     // 开发环境打开调试工具
-    mainWindow.webContents.openDevTools({ mode: 'detach' });
+    // mainWindow.webContents.openDevTools({ mode: 'detach' });
 
     // 窗口关闭事件
     mainWindow.on('closed', () => {
@@ -48,6 +49,9 @@ ipcMain.on('switch-to-main-window', () => {
     mainWin.webContents.on('did-finish-load', () => {
         mainWin.webContents.executeJavaScript(`window.location.hash = '#/main';`);
     });
+    setTimeout(() => {
+        mainWin.show();
+    }, 1000); // 延迟1秒显示
 });
 
 // 关闭应用事件处理
