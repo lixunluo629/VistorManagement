@@ -3,49 +3,64 @@ const path = require('path');
 
 let mainWindow;
 
-function createWindow() {
+function createWindow(isLogin = true) {
+    // 根据是否为登录窗口设置不同尺寸
+    const windowOptions = isLogin ? {
+        // 登录窗口：小尺寸，非全屏
+        width: 400,          // 窗口宽度（类似QQ登录框大小）
+        height: 500,         // 窗口高度
+        frame: false,        // 隐藏系统边框和标题栏
+        resizable: false,    // 禁止窗口缩放
+        movable: true,       // 允许窗口拖动
+    } : {
+        fullscreen: true, // 主窗口全屏
+        frame: false      // 主窗口隐藏边框（可选）
+    };
+
     mainWindow = new BrowserWindow({
-        width: 1400,
-        height: 800,
+        ...windowOptions,
         title: "访客管理系统",
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
-        },
-        // 核心配置：默认全屏
-        fullscreen: true,
-        // 可选：隐藏窗口边框（全屏时更沉浸，按F11可退出全屏）
-        frame: false  // 若需要保留窗口边框，可删除此句
+        }
     });
 
     // 加载应用页面
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
 
-    // 关键配置：让DevTools在独立窗口打开
-    mainWindow.webContents.openDevTools({
-        mode: 'detach'  // 分离模式，在单独窗口显示
-    });
+    // 开发环境打开调试工具
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
 
     // 窗口关闭事件
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+    return mainWindow;
 }
+
+// 监听登录成功事件，切换到主窗口
+ipcMain.on('switch-to-main-window', () => {
+    if (mainWindow) mainWindow.close(); // 关闭登录窗口
+    const mainWin = createWindow(false); // 创建全屏主窗口
+    // 主窗口加载完成后跳转到主界面路由
+    mainWin.webContents.on('did-finish-load', () => {
+        mainWin.webContents.executeJavaScript(`window.location.hash = '#/main';`);
+    });
+});
 
 // 关闭应用事件处理
 ipcMain.on('close-app', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    } else {
-        mainWindow.hide();
-    }
+    if (process.platform !== 'darwin') app.quit();
+    else mainWindow.hide();
 });
 
 // 应用生命周期管理
-app.whenReady().then(createWindow);
+app.whenReady().then(() => createWindow(true));
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });
 app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if (BrowserWindow.getAllWindows().length === 0) createWindow(true);
 });
