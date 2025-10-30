@@ -7,8 +7,8 @@ function createWindow(isLogin = true) {
     // 根据是否为登录窗口设置不同尺寸
     const windowOptions = isLogin ? {
         // 登录窗口：小尺寸，非全屏
-        width: 400,          // 窗口宽度（类似QQ登录框大小）
-        height: 500,         // 窗口高度
+        width: 300,          // 窗口宽度（类似QQ登录框大小）
+        height: 400,         // 窗口高度
         frame: false,        // 隐藏系统边框和标题栏
         resizable: false,    // 禁止窗口缩放
         movable: true,       // 允许窗口拖动

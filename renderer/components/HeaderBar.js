@@ -28,7 +28,7 @@ export const HeaderBar = {
             v-if="!isMainPage"
             type="text"
             style="color: white;font-size: 16px;"
-            @click="$router.push('/')"
+            @click="$router.push('/main')"
         ><el-icon :size="21"><House /></el-icon>&nbsp;主界面</el-button>
       </div>
     </el-header>

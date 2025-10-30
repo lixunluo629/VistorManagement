@@ -44,6 +44,109 @@
     color: white;
     font-size: 16px;
 }
+/*登录页面样式*/
+.login-container {
+    /* 使登录页面占满整个窗口 */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    position: relative; /* 用于关闭按钮的绝对定位 */
+}
+
+/* 关闭按钮样式 */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #333;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #ff4d4f;
+    color: white;
+}
+
+/* 登录卡片样式 */
+.login-container {
+    /* 使登录页面占满整个窗口 */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    position: relative; /* 用于关闭按钮的绝对定位 */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* 关闭按钮样式 - 确保顶在右上角 */
+.login-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #333;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10; /* 确保在其他内容上方 */
+    padding: 0 !important; /* 清除默认内边距 */
+    margin: 0 !important;
+}
+
+/* 修复hover效果不生效的问题 */
+.login-close-btn:hover {
+    background-color: #ff4d4f !important;
+    color: white !important;
+}
+
+/* 登录卡片样式 */
+.login-container{
+    background-color: #dff5ff;
+}
+.login-card {
+    width: 300px;
+    padding: 30px;
+    border: 0 !important;
+    background-color: transparent !important;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1890ff;
+    margin-bottom: 60px;
+}
+
+.login-form {
+    width: 100%;
+}
+
+/* 输入框样式调整 */
+.el-input__wrapper {
+    border-radius: 8px;
+}
+
+.el-form-item {
+    margin-bottom: 20px;
+}
 
 /* 主页面样式 */
 .main-container {
