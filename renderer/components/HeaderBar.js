@@ -10,7 +10,7 @@ export const HeaderBar = {
     <el-header class="header-bar">
       <!-- 中间：系统名称 -->
       <div style="font-size: 32px; font-weight: bold;">
-        访客管理系统
+        访客准入系统
       </div>
       
       <!-- 主界面显示关闭按钮，其他界面隐藏 -->

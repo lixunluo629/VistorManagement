@@ -1,7 +1,7 @@
 {
   "name": "visitor_management",
   "version": "1.0.0",
-  "description": "访客管理系统",
+  "description": "访客准入系统",
   "main": "main/index.js",
   "scripts": {
     "dev": "electron .",

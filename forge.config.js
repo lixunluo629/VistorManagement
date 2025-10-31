@@ -4,12 +4,16 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
+    icon: 'renderer/favicon.ico',
+    productName: "访客准入",
+    name: "visitor-management"
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+      },
     },
     {
       name: '@electron-forge/maker-zip',

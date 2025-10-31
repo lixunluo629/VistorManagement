@@ -1,6 +1,6 @@
-# 访客管理系统（visitor\_management）
+# 访客准入系统（visitor\_management）
 
-一个基于 Electron + Vue 3 + Element Plus 开发的桌面端访客管理应用，支持访客信息登记、二维码识别、串口设备交互及 Excel 数据导出功能。
+一个基于 Electron + Vue 3 + Element Plus 开发的桌面端访客准入应用，支持访客信息登记、二维码识别、串口设备交互及 Excel 数据导出功能。
 
 ## 功能特性
 

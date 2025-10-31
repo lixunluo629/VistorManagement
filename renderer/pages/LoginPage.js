@@ -12,7 +12,7 @@ export const LoginPage = {
         ></el-button>
         <!-- 登录卡片 -->
         <el-card shadow="never" class="login-card">
-          <div class="login-title">访客管理</div>
+          <div class="login-title">访客准入</div>
 
           <el-form :model="loginForm" :rules="rules" ref="loginFormRef" class="login-form">
             <el-form-item>
