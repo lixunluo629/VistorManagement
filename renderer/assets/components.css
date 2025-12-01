@@ -50,24 +50,19 @@
     border-radius: 4px;
     transition: all 0.2s ease; /* 平滑过渡效果 */
 }
-
-/* 鼠标经过样式 */
 .header-btn .el-button:hover {
     background-color: rgba(255, 255, 255, 0.15) !important;; /* 半透明白色背景 */
     color: #ffffff; /* 保持白色文字更醒目 */
 }
-
-/* 按压（点击）样式 */
 .header-btn .el-button:active {
     background-color: rgba(255, 255, 255, 0.25) !important; /* 更深的半透明白色 */
     transform: scale(0.98); /* 轻微缩小，模拟按压感 */
 }
-
-/* 图标与文字间距优化 */
 .header-btn .el-button .el-icon {
     margin-right: 6px;
 }
-/*登录页面样式*/
+
+/* 登录页面样式 */
 .login-container {
     /* 使登录页面占满整个窗口 */
     width: 100vw;
@@ -75,46 +70,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
-    position: relative; /* 用于关闭按钮的绝对定位 */
-}
-
-/* 关闭按钮样式 */
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #333;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.close-btn:hover {
-    background-color: #ff4d4f;
-    color: white;
-}
-
-/* 登录卡片样式 */
-.login-container {
-    /* 使登录页面占满整个窗口 */
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f5f5;
-    position: relative; /* 用于关闭按钮的绝对定位 */
     margin: 0;
     padding: 0;
     overflow: hidden;
+    /* 动态渐变背景 */
+    background: linear-gradient(
+            120deg,
+            #dff5ff 0%,
+            #ECF8FF 50%,
+            #dff5ff 100%
+    );
+    background-size: 200% 200%; /* 扩大渐变范围，用于动画移动 */
+    animation: gradientFlow 10s ease infinite; /* 15秒循环动画 */
 }
 
+/* 渐变流动动画 */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%; /* 起始位置 */
+    }
+    50% {
+        background-position: 100% 50%; /* 中间位置（向右移动） */
+    }
+    100% {
+        background-position: 0% 50%; /* 回到起始位置 */
+    }
+}
 /* 关闭按钮样式 - 确保顶在右上角 */
 .login-close-btn {
     position: absolute;
@@ -132,17 +113,11 @@
     padding: 0 !important; /* 清除默认内边距 */
     margin: 0 !important;
 }
-
-/* 修复hover效果不生效的问题 */
 .login-close-btn:hover {
     background-color: #ff4d4f !important;
     color: white !important;
 }
-
 /* 登录卡片样式 */
-.login-container{
-    background-color: #dff5ff;
-}
 .login-header {
     position: absolute;
     top: 0;
@@ -158,15 +133,15 @@
     border: 0 !important;
     background-color: transparent !important;
 }
-
 .login-title {
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1890ff;
+    font-size: 28px; /* 增大字号，突出层级 */
+    font-weight: 500; /* 加粗，增强醒目度 */
+    color: #007bff; /* 深蓝色，与品牌色呼应 */
+    text-shadow: 0 2px 4px rgba(0, 123, 255, 0.2); /* 轻微阴影，增加立体感 */
+    letter-spacing: 1px; /* 字间距，让标题更舒展 */
     margin-bottom: 60px;
 }
-
 .login-form {
     width: 100%;
 }
@@ -314,6 +289,61 @@
 }
 .action-btn-span {
     font-size: 14px;
+}
+/* 扫码容器样式 */
+.scan-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* 扫码框样式优化 */
+.scan-frame {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #1890ff;
+    position: relative;
+    background-size: cover;
+    background-image: url("img/scan.png");
+    /* 修正遮罩层，避免覆盖提示文字 */
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    /* 确保扫码框内容在遮罩层上方 */
+    z-index: 1;
+}
+
+/* 扫描线样式 */
+.scan-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #1890ff;
+    box-shadow: 0 0 10px 2px rgba(24, 144, 255, 0.8);
+    transition: top 0.1s linear;
+}
+
+/* 扫码提示文字优化 */
+.scan-tip {
+    position: absolute;
+    bottom: -40px; /* 移出扫码框，避免被遮罩覆盖 */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #333; /* 加深文字颜色 */
+    font-size: 14px;
+    white-space: nowrap; /* 禁止文字换行 */
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* 增加白色背景 */
+    border-radius: 4px;
+    z-index: 2; /* 确保在遮罩层上方 */
+}
+
+/* 超时提示文字 */
+.timeout-text {
+    text-align: center;
+    margin-top: 8px;
+    color: #999;
+    font-size: 12px;
 }
 
 /* 表格样式 */

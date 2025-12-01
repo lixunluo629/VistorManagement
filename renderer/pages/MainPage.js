@@ -182,26 +182,36 @@ export const MainPage = {
         <el-dialog
             v-model="showCheckoutDialog"
             title="访客签离"
-            width="400px"
             :close-on-click-modal="false"
-            :show-close="false"
+            :width="600"
+            :before-close="handleDialogClose"
         >
-          <div style="text-align: center; padding: 20px 0;">
-            <div style="width: 200px; height: 200px; margin: 0 auto; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-              <img src="https://picsum.photos/200/200" alt="签离二维码" style="width: 180px; height: 180px;">
+          <!-- 扫码区域 -->
+          <div class="scan-container">
+            <!-- 扫码框 -->
+            <div class="scan-frame">
+              <!-- 扫描线动画 -->
+              <div class="scan-line" :style="{ top: scanProgress + '%' }"></div>
+
+              <!-- 扫码提示 -->
+              <div class="scan-tip">请将二维码对准扫描区域</div>
             </div>
-            <p style="margin-bottom: 10px;">请使用访客凭证上的二维码扫码签离</p>
-            <p style="color: #666; font-size: 14px;">正在等待扫码...</p>
-            <el-progress
-                :percentage="scanProgress"
-                style="width: 80%; margin: 20px auto 0;"
-                v-if="scanProgress > 0 && scanProgress < 100"
-            ></el-progress>
+
+            <!-- 扫描进度 -->
+<!--            <div class="scan-progress">-->
+<!--              <el-progress-->
+<!--                  :percentage="scanProgress"-->
+<!--                  :stroke-width="4"-->
+<!--                  style="margin-top: 20px;"-->
+<!--              ></el-progress>-->
+<!--              <p class="timeout-text">-->
+<!--                {{ Math.ceil((100 - scanProgress) / 10) }}秒后自动关闭-->
+<!--              </p>-->
+<!--            </div>-->
           </div>
+
           <template #footer>
-            <div style="text-align: center;">
-              <el-button @click="showCheckoutDialog = false">取消</el-button>
-            </div>
+            <el-button @click="handleDialogClose">取消</el-button>
           </template>
         </el-dialog>
 
@@ -228,35 +238,66 @@ export const MainPage = {
       </div>
     `,
     setup() {
-        const { ref, onMounted, onUnmounted, nextTick, watch } = Vue;
+        const { ref, onMounted, onUnmounted, nextTick, watch, reactive } = Vue;
+        const { ipcRenderer } = require('electron');
+
         const activeTab = ref('active');
         const showCheckoutDialog = ref(false);
         const showSuccessDialog = ref(false);
         const scanProgress = ref(0);
+        const scanTimer = ref(null);
         const checkedOutVisitor = ref({ name: '', checkoutTime: '' });
+        const serialState = reactive({
+            isConnected: false,
+            portName: 'COM7',
+            baudRate: 9600,
+            error: ''
+        });
+        // 扫码结果
+        const scanResult = ref('');
 
-        // 模拟扫码过程（保持不变）
-        const simulateScan = () => {
-            if (showCheckoutDialog.value) {
-                scanProgress.value = 0;
-                const timer = setInterval(() => {
-                    scanProgress.value += 10;
-                    if (scanProgress.value >= 100) {
-                        clearInterval(timer);
-                        showCheckoutDialog.value = false;
-                        checkedOutVisitor.value = {
-                            name: '张三',
-                            checkoutTime: new Date().toLocaleString()
-                        };
-                        showSuccessDialog.value = true;
-                        removeVisitorFromActiveList(checkedOutVisitor.value.name);
-                    }
-                }, 300);
-            }
+        // 初始化串口
+        const initSerialPort = () => {
+            ipcRenderer.send('init-serial', {
+                portName: serialState.portName,
+                baudRate: serialState.baudRate
+            });
         };
-
+        // 关闭串口
+        const closeSerialPort = () => {
+            ipcRenderer.send('close-serial');
+        };
+        // 关闭弹窗时停止扫描
+        const handleDialogClose = () => {
+            clearInterval(scanTimer.value);
+            showCheckoutDialog.value = false;
+            closeSerialPort();
+        };
+        // 扫描动画计时器
+        const startScanAnimation = () => {
+            if (scanTimer.value) clearInterval(scanTimer.value);
+            scanProgress.value = 0;
+            // 每30ms更新一次扫描线位置（约3秒完成一次扫描）
+            scanTimer.value = setInterval(() => {
+                scanProgress.value += 1;
+                // 扫描线到达底部后重新从顶部开始
+                if (scanProgress.value > 100) {
+                    scanProgress.value = 0;
+                }
+            }, 30);
+        };
+        // 处理扫码结果
+        const handleScanCode = (code) => {
+            handleDialogClose();
+            checkedOutVisitor.value = {
+                name: code,
+                checkoutTime: new Date().toLocaleString()
+            };
+            showSuccessDialog.value = true;
+        };
+        // 点击签离按钮时激活串口读取
         watch(showCheckoutDialog, (newVal) => {
-            if (newVal) simulateScan();
+            if (newVal) startScanAnimation();
             else scanProgress.value = 0;
         });
 
@@ -268,6 +309,7 @@ export const MainPage = {
                 time: new Date().toLocaleString()
             });
         };
+
         // 模拟数据（保持不变）
         // 2. 用for循环批量生成模拟数据
         // —— 未离开访客数据（生成30条，确保超出表格高度）
@@ -335,6 +377,14 @@ export const MainPage = {
             });
         }
 
+        onMounted(()=>{
+            ipcRenderer.on('serial-data-received', (event, code) => {
+                handleScanCode(code);
+            });
+        });
+        onUnmounted(() => {
+            ipcRenderer.removeAllListeners('serial-data-received');
+        });
         return {
             activeTab,
             activeVisitors,
@@ -343,7 +393,9 @@ export const MainPage = {
             showCheckoutDialog,
             showSuccessDialog,
             scanProgress,
-            checkedOutVisitor
+            checkedOutVisitor,
+            serialState,
+            handleDialogClose
         };
     }
 };

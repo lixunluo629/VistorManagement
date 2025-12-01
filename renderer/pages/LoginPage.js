@@ -20,6 +20,7 @@ export const LoginPage = {
                   v-model="loginForm.username"
                   placeholder="请输入用户名"
                   prefix-icon="User"
+                  @keyup.enter.stop="handleLogin"
               ></el-input>
             </el-form-item>
 
@@ -29,6 +30,7 @@ export const LoginPage = {
                   type="password"
                   placeholder="请输入密码"
                   prefix-icon="Lock"
+                  @keyup.enter.stop="handleLogin"
               ></el-input>
             </el-form-item>
 
@@ -46,9 +48,9 @@ export const LoginPage = {
       </div>
     `,
     setup() {
-        const {ref, reactive, onMounted} = Vue;
+        const {ref, reactive, onMounted, onUnmounted} = Vue;
         const router = VueRouter.useRouter();
-        const {ipcRenderer} = require('electron'); // 引入ipcRenderer
+        const {ipcRenderer} = require('electron');
         // 登录表单数据
         const loginForm = reactive({
             username: '',
@@ -77,20 +79,15 @@ export const LoginPage = {
             });
         };
 
-        onMounted(() => {
-            window.addEventListener("keydown", keydown)
-        });
-        const keydown = (e) => {
-            if (e.keyCode == 13){
-                handleLogin()
-            }
-        }
         // 关闭按钮处理
         const handleClose = () => {
             // 可以根据需求修改关闭行为，比如关闭窗口或返回上一页
             ipcRenderer.send('close-app');
         };
-
+        onMounted(() => {
+        });
+        onUnmounted(() => {
+        });
         return {
             loginForm,
             rules,

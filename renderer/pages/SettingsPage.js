@@ -17,7 +17,7 @@ export const SettingsPage = {
           <el-dialog v-model="showPasswordDialog" title="管理员验证" :close-on-click-modal="false">
             <el-form>
               <el-form-item label="管理员密码" required>
-                <el-input type="password" v-model="password" placeholder="请输入管理员密码"></el-input>
+                <el-input type="password" v-model="password" @keydown.enter="verifyPassword" placeholder="请输入管理员密码"></el-input>
               </el-form-item>
             </el-form>
             <template #footer>

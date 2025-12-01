@@ -6,7 +6,10 @@ module.exports = {
     asar: true,
     icon: 'renderer/favicon.ico',
     productName: "访客准入",
-    name: "visitor-management"
+    name: "visitor-management",
+    extraResource: [
+      './script/'
+    ]
   },
   rebuildConfig: {},
   makers: [
