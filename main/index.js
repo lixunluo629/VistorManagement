@@ -12,8 +12,8 @@ let readerProcess = null;
 let serialPortInstance = null;
 const configPath = path.join(app.isPackaged ? process.resourcesPath : app.getAppPath(), 'config.json');
 
-async function createWindow(isLogin = true) {
-    await loadConfig();
+function createWindow(isLogin = true) {
+    loadConfig().then(r => {});
     // 根据是否为登录窗口设置不同尺寸
     const windowOptions = isLogin ? {
         // 登录窗口：小尺寸，非全屏

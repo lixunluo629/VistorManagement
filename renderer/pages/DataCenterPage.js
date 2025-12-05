@@ -1,5 +1,5 @@
 import { HeaderBar } from '../components/HeaderBar.js';
-
+import { visitorAPI } from '../utils/api.js';
 export const DataCenterPage = {
     components: { HeaderBar },
     template: `
@@ -9,7 +9,8 @@ export const DataCenterPage = {
 
         <!-- 主体内容区 -->
         <div style="flex: 1; overflow: auto; padding: 20px; background-color: #fff; box-sizing: border-box; overflow: hidden;">
-          <!-- 1. 统计卡片（今日累计到访/拜访中/已离开/未到访） -->
+          <!-- 1. 统计卡片 -->
+          <!-- 统计卡片 -->
           <el-card style="border: none; box-shadow: none;">
             <el-row :gutter="20" style="padding: 15px 0px;">
               <!-- 今日累计到访 -->
@@ -18,7 +19,7 @@ export const DataCenterPage = {
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                       <p style="font-size: 18px; color: #666;">今日累计到访</p>
-                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">28</p>
+                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">{{ statistic.totalVisit }}</p>
                     </div>
                     <el-icon :size="36" style="color: #1890ff;">
                       <UserFilled />
@@ -33,7 +34,7 @@ export const DataCenterPage = {
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                       <p style="font-size: 18px; color: #666;">拜访中</p>
-                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">13</p>
+                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">{{ statistic.visiting }}</p>
                     </div>
                     <el-icon :size="36" style="color: #faad14;">
                       <Clock />
@@ -48,7 +49,7 @@ export const DataCenterPage = {
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                       <p style="font-size: 18px; color: #666;">已离开</p>
-                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">15</p>
+                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">{{ statistic.left }}</p>
                     </div>
                     <el-icon :size="36" style="color: #52c41a;">
                       <CircleCheck />
@@ -63,7 +64,7 @@ export const DataCenterPage = {
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                       <p style="font-size: 18px; color: #666;">未到访</p>
-                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">7</p>
+                      <p style="font-size: 24px; margin-top: 5px; font-weight: bold;">{{ statistic.noVisit }}</p>
                     </div>
                     <el-icon :size="36" style="color: #666;">
                       <CircleClose />
@@ -74,11 +75,11 @@ export const DataCenterPage = {
             </el-row>
           </el-card>
 
-          <!-- 2. 带筛选带分页的列表（适配筛选类型） -->
+          <!-- 2. 带筛选带分页的列表 -->
           <div style="height: calc(100% - 340px); min-height: 550px; overflow: hidden; position: relative;">
             <el-card style="border-radius: 12px; height: 100%; width: 100%; overflow: hidden; display: flex; flex-direction: column; margin: 0; padding: 0;">
               <el-row :gutter="20" style="padding: 15px;">
-                <!-- 左侧筛选区域（保持不变） -->
+                <!-- 左侧筛选区域 -->
                 <el-col :span="16">
                   <el-row :gutter="20">
                     <el-col :span="6">
@@ -111,7 +112,7 @@ export const DataCenterPage = {
                   </el-row>
                 </el-col>
 
-                <!-- 右侧新增按钮区域 -->
+                <!-- 右侧操作按钮 -->
                 <el-col :span="8" style="display: flex; justify-content: flex-end; gap: 10px;">
                   <el-button
                       type="success"
@@ -130,6 +131,8 @@ export const DataCenterPage = {
                   </el-button>
                 </el-col>
               </el-row>
+
+              <!-- 表格内容 -->
               <el-table
                   :data="filteredData"
                   border
@@ -140,59 +143,64 @@ export const DataCenterPage = {
                   :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
                   :cell-style="{fontSize: '15px'}"
               >
-              <el-table-column
-                  type="selection"
-                  width="55"
-                  align="center"
-              ></el-table-column>
-              <el-table-column prop="id" label="序号" width="80"></el-table-column>
-              <el-table-column prop="name" label="姓名" min-width="100" show-overflow-tooltip></el-table-column>
-              <el-table-column prop="visitTime" label="预约到访时间" min-width="180"></el-table-column>
-              <el-table-column prop="actualVisitTime" label="实际到访时间" min-width="180" show-overflow-tooltip>
-                <template #default="scope">
-                  <span v-if="scope.row.actualVisitTime">{{ scope.row.actualVisitTime }}</span>
-                  <span v-else style="color: #ff4d4f;">未到访</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="leaveTime" label="离开时间" min-width="180" show-overflow-tooltip>
-                <template #default="scope">
-                  <span v-if="scope.row.leaveTime">{{ scope.row.leaveTime }}</span>
-                  <span v-else-if="scope.row.actualVisitTime" style="color: #faad14;">拜访中</span>
-                  <span v-else style="color: #666;">-</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="interviewee" label="受访人" min-width="120" show-overflow-tooltip></el-table-column>
-              <el-table-column prop="status" label="状态" width="100">
-                <template #default="scope">
-                  <el-tag
-                      :type="scope.row.status === 'active' ? 'warning' : 
+                <el-table-column
+                    type="selection"
+                    width="55"
+                    align="center"
+                ></el-table-column>
+                <el-table-column label="序号" width="80" align="center">
+                  <template #default="scope">
+                    <!-- 计算逻辑：(当前页码-1)*每页条数 + 索引 + 1 -->
+                    {{ (currentPage - 1) * pageSize + scope.$index + 1 }}
+                  </template>
+                </el-table-column>
+                <el-table-column prop="name" label="姓名" min-width="100" show-overflow-tooltip></el-table-column>
+                <el-table-column prop="visitTime" label="预约到访时间" min-width="180"></el-table-column>
+                <el-table-column prop="actualVisitTime" label="实际到访时间" min-width="180" show-overflow-tooltip>
+                  <template #default="scope">
+                    <span v-if="scope.row.actualVisitTime">{{ scope.row.actualVisitTime }}</span>
+                    <span v-else style="color: #ff4d4f;">未到访</span>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="leaveTime" label="离开时间" min-width="180" show-overflow-tooltip>
+                  <template #default="scope">
+                    <span v-if="scope.row.leaveTime">{{ scope.row.leaveTime }}</span>
+                    <span v-else-if="scope.row.actualVisitTime" style="color: #faad14;">拜访中</span>
+                    <span v-else style="color: #666;">-</span>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="interviewee" label="受访人" min-width="120" show-overflow-tooltip></el-table-column>
+                <el-table-column prop="status" label="状态" width="100">
+                  <template #default="scope">
+                    <el-tag
+                        :type="scope.row.status === 'active' ? 'warning' : 
                          scope.row.status === 'left' ? 'success' : 
                          scope.row.status === 'noShow' ? 'info' : 'danger'"
-                  >
-                    {{ scope.row.status === 'active' ? '拜访中' :
-                      scope.row.status === 'left' ? '已离开' :
-                          scope.row.status === 'noShow' ? '未到访' : '异常' }}
-                  </el-tag>
-                </template>
-              </el-table-column>
-            </el-table>
+                    >
+                      {{ scope.row.status === 'active' ? '拜访中' :
+                        scope.row.status === 'left' ? '已离开' :
+                            scope.row.status === 'noShow' ? '未到访' : '异常' }}
+                    </el-tag>
+                  </template>
+                </el-table-column>
+              </el-table>
 
-              <!-- 分页控件（保持不变） -->
+              <!-- 分页控件 -->
               <div style="margin-top: 15px; display: flex; justify-content: flex-end; align-items: center;">
-                  <el-pagination
-                      @size-change="handleSizeChange"
-                      @current-change="handleCurrentChange"
-                      :current-page="currentPage"
-                      :page-sizes="[10, 20, 50, 100]"
-                      :page-size="pageSize"
-                      layout="total, sizes, prev, pager, next, jumper"
-                      :total="totalCount"
-                  ></el-pagination>
-                </div>
+                <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[10, 20, 50, 100]"
+                    :page-size="pageSize"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="totalCount"
+                ></el-pagination>
+              </div>
             </el-card>
           </div>
         </div>
-        
+
         <!-- 删除确认弹窗 -->
         <el-dialog
             v-model="showDeleteDialog"
@@ -201,182 +209,205 @@ export const DataCenterPage = {
             :close-on-click-modal="false"
         >
           <p>确定要删除选中的 {{ deleteCount }} 条记录吗？</p>
-          <p style="color: #ff4d4f; font-size: 12px;">提示：删除后数据将无法恢复，请谨慎操作</p>
           <template #footer>
             <el-button @click="showDeleteDialog = false">取消</el-button>
-            <el-button type="danger" @click="confirmDelete">确认删除</el-button>
+            <el-button type="danger" @click="showDeleteDialog = false">确认删除</el-button>
           </template>
         </el-dialog>
-     
       </div>
     `,
     setup() {
-        const { ref, computed, nextTick, onMounted } = Vue;
+        const { ref, onMounted, reactive, toRefs } = Vue;
+        const { ElMessage, ElLoading } = ElementPlus;
+        // 状态管理
+        const state = reactive({
+            // 统计卡片
+            statistic: {
+                totalVisit: 0,  // 今日累计到访
+                visiting: 0,    // 拜访中
+                left: 0,        // 已离开
+                noVisit: 0      // 未到访
+            },
 
-        // 1. 筛选条件（适配新状态：拜访中/已离开/未到访）
-        const filterType = ref('all');
-        const dateRange = ref([]);
-        const keyword = ref('');
+            // 表格数据
+            tableData: [],
+            filteredData: [], // 过滤后的数据
+            totalCount: 0,    // 总条数
 
-        // 2. 分页参数（保持不变）
-        const currentPage = ref(1);
-        const pageSize = ref(10);
-        const totalCount = ref(0);
+            // 分页参数
+            currentPage: 1,
+            pageSize: 10,
 
-        // 3. 选中的记录ID（用于批量删除）
-        const selectedIds = ref([]);
-        // 删除相关弹窗控制
-        const showDeleteDialog = ref(false);
-        const deleteCount = ref(0);
-        const deleteIds = ref([]); // 待删除的ID集合
+            // 筛选条件
+            filterType: 'all',
+            dateRange: null,
+            keyword: '',
 
-        // 4. 导出成功提示
-        const showExportSuccess = ref(false);
+            // 选择项
+            selectedIds: [],
+            showDeleteDialog: false,
+            deleteCount: 0,
+        });
 
-        // 5. 原始数据（新增「实际到访时间」和「未到访」状态，匹配统计卡片）
-        const allData = ref([]);
-        for (let i = 1; i <= 138; i++) {
-            // 状态分配：30%拜访中，40%已离开，25%未到访，5%异常
-            let status, actualVisitTime, leaveTime;
-            if (i % 20 === 0) {
-                status = 'abnormal';
-                actualVisitTime = `2023-10-${i % 30 + 1} ${i % 24}:${i % 60 < 10 ? '0' + i % 60 : i % 60}`;
-                leaveTime = '';
-            } else if (i % 4 === 0) {
-                status = 'noShow'; // 未到访
-                actualVisitTime = '';
-                leaveTime = '';
-            } else if (i % 3 === 0) {
-                status = 'left'; // 已离开
-                actualVisitTime = `2023-10-${i % 30 + 1} ${i % 24}:${i % 60 < 10 ? '0' + i % 60 : i % 60}`;
-                leaveTime = `2023-10-${i % 30 + 1} ${(i % 24) + 1}:${i % 60 < 10 ? '0' + i % 60 : i % 60}`;
-            } else {
-                status = 'active'; // 拜访中
-                actualVisitTime = `2023-10-${i % 30 + 1} ${i % 24}:${i % 60 < 10 ? '0' + i % 60 : i % 60}`;
-                leaveTime = '';
+        const getTodayTimeRange = () => {
+            const today = new Date();
+            const start = new Date(today.setHours(0, 0, 0, 0)).toISOString().replace('T', ' ').slice(0, 19);
+            const end = new Date(today.setHours(23, 59, 59, 999)).toISOString().replace('T', ' ').slice(0, 19);
+            return { start_time: start, end_time: end };
+        };
+
+        // 获取统计数据
+        const fetchStatistic = async () => {
+            try {
+                // 传递今日时间范围参数
+                const params = getTodayTimeRange();
+                const data = await visitorAPI.getStatistic(params);
+
+                if (data) {
+                    state.statistic = {
+                        totalVisit: data.total_visit || 0,
+                        visiting: data.visiting || 0,
+                        left: data.left || 0,
+                        noVisit: data.no_visit || 0
+                    };
+                }
+            } catch (error) {
+                console.error('获取统计数据失败:', error);
+                ElMessage.error('统计数据加载失败');
             }
+        };
 
-            allData.value.push({
-                id: i,
-                name: `访客${i}`,
-                visitTime: `2023-10-${i % 30 + 1} ${i % 24}:${i % 60 < 10 ? '0' + i % 60 : i % 60}`, // 预约时间
-                actualVisitTime: actualVisitTime, // 实际到访时间
-                leaveTime: leaveTime, // 离开时间
-                interviewee: `受访人${i % 10 + 1}`,
-                reason: i % 4 === 0 ? '业务洽谈' : i % 4 === 1 ? '技术支持' : i % 4 === 2 ? '面试' : '参观考察',
-                status: status
+        const fetchVisitorList = async () => {
+            const loading = ElLoading.service({
+                lock: true,
+                text: '加载中...',
+                background: 'rgba(0, 0, 0, 0.7)'
             });
-        }
-        totalCount.value = allData.value.length;
 
-        // 6. 筛选逻辑（适配新状态）
-        const filteredData = computed(() => {
-            let result = allData.value.filter(item => {
-                // 状态筛选（匹配统计卡片的「拜访中/已离开/未到访」）
-                if (filterType.value !== 'all') {
-                    if (filterType.value === 'active' && item.status !== 'active') return false;
-                    if (filterType.value === 'left' && item.status !== 'left') return false;
-                    if (filterType.value === 'noShow' && item.status !== 'noShow') return false;
+            try {
+                // 发送POST请求
+                const data = await visitorAPI.getList({
+                    page: state.currentPage,
+                    page_size: state.pageSize
+                });
+                console.log(data)
+
+                // 处理接口响应
+                if (data) {
+                    const { total, list } = data;
+                    state.tableData = list.map(item => ({
+                        // 映射接口字段到表格需要的格式
+                        id: item.id,
+                        name: item.visitor_name,
+                        visitTime: item.time_visit ? new Date(item.time_visit).toLocaleString() : '',
+                        actualVisitTime: item.visiting_status === 'visited' ? item.time_visit : '',
+                        leaveTime: item.time_leave ? new Date(item.time_leave).toLocaleString() : '',
+                        interviewee: item.host_name,
+                        status: mapStatus(item.visiting_status),
+                        applicationNo: item.application_no,
+                        company: item.visitor_company
+                    }));
+                    state.totalCount = total;
+                    state.filteredData = [...state.tableData];
+                } else {
+                    ElMessage.error(result.result?.msg || '获取数据失败');
                 }
-                // 日期筛选（按预约时间筛选）
-                if (dateRange.value.length) {
+            } catch (error) {
+                console.error('请求错误:', error);
+                ElMessage.error('网络错误，无法获取数据');
+            } finally {
+                loading.close();
+            }
+        };
+
+        // 状态映射（接口状态转显示状态）
+        const mapStatus = (visitingStatus) => {
+            const statusMap = {
+                'no_visit': 'noShow',    // 未到访
+                'visited': 'active',     // 拜访中
+                'left': 'left',          // 已离开
+                'pending': 'pending'     // 待审批
+            };
+            return statusMap[visitingStatus] || 'active';
+        };
+
+        // 页面加载时获取数据
+        onMounted(() => {
+            fetchVisitorList();
+            fetchStatistic();
+        });
+
+        // 搜索处理
+        const handleSearch = () => {
+            state.currentPage = 1; // 重置到第一页
+            // 这里可以根据筛选条件再次请求接口
+            // 简单前端过滤示例：
+            state.filteredData = state.tableData.filter(item => {
+                // 状态筛选
+                if (state.filterType !== 'all' && item.status !== state.filterType) {
+                    return false;
+                }
+                // 关键词筛选
+                if (state.keyword && !item.name.includes(state.keyword) && !item.interviewee.includes(state.keyword)) {
+                    return false;
+                }
+                // 日期范围筛选
+                if (state.dateRange) {
                     const visitDate = new Date(item.visitTime).toDateString();
-                    const startDate = new Date(dateRange.value[0]).toDateString();
-                    const endDate = new Date(dateRange.value[1]).toDateString();
-                    if (new Date(visitDate) < new Date(startDate) || new Date(visitDate) > new Date(endDate)) return false;
+                    const startDate = new Date(state.dateRange[0]).toDateString();
+                    const endDate = new Date(state.dateRange[1]).toDateString();
+                    if (visitDate < startDate || visitDate > endDate) {
+                        return false;
+                    }
                 }
-                // 关键词筛选（姓名/受访人）
-                if (keyword.value && !item.name.includes(keyword.value) && !item.interviewee.includes(keyword.value)) return false;
                 return true;
             });
-
-            // 分页处理
-            totalCount.value = result.length;
-            const startIndex = (currentPage.value - 1) * pageSize.value;
-            return result.slice(startIndex, startIndex + pageSize.value);
-        });
-
-        // 7. 复选框选择事件
-        const handleSelectionChange = (selection) => {
-            selectedIds.value = selection.map(item => item.id);
         };
 
-        // 8. 批量删除操作
-        const handleBatchDelete = () => {
-            deleteIds.value = [...selectedIds.value];
-            deleteCount.value = selectedIds.value.length;
-            showDeleteDialog.value = true;
-        };
-
-        // 9. 确认删除
-        const confirmDelete = () => {
-            // 过滤掉要删除的记录
-            allData.value = allData.value.filter(item => !deleteIds.value.includes(item.id));
-            // 重置选择状态
-            selectedIds.value = [];
-            // 关闭弹窗
-            showDeleteDialog.value = false;
-            // 刷新列表
-            handleSearch();
-        };
-
-        // 10. 导出Excel
-        const exportToExcel = () => {
-            // 实际项目中需调用后端接口或使用xlsx库前端生成
-            // 这里仅做模拟
-            console.log('导出数据：', filteredData.value);
-            // 显示成功提示
-            ElementPlus.ElNotification({
-                title: '导出成功',
-                message: '数据已成功导出为Excel文件',
-                type: 'success',
-                duration: 3000
-            });
-        };
-
-        // 11. 筛选和分页方法（保持不变）
-        const handleSearch = () => {
-            currentPage.value = 1; // 重置页码
-        };
+        // 重置筛选条件
         const resetFilter = () => {
-            filterType.value = 'all';
-            dateRange.value = [];
-            keyword.value = '';
-            currentPage.value = 1;
-        };
-        const handleSizeChange = (val) => {
-            pageSize.value = val;
-            currentPage.value = 1;
-        };
-        const handleCurrentChange = (val) => {
-            currentPage.value = val;
+            state.filterType = 'all';
+            state.dateRange = null;
+            state.keyword = '';
+            state.filteredData = [...state.tableData];
         };
 
-        // 核心：精确计算表格高度
+        // 分页处理
+        const handleSizeChange = (size) => {
+            state.pageSize = size;
+            fetchVisitorList(); // 重新请求数据
+        };
 
-        // 初始化计算 + 监听窗口变化
-        onMounted(() => {
-        });
+        const handleCurrentChange = (page) => {
+            state.currentPage = page;
+            fetchVisitorList(); // 重新请求数据
+        };
+
+        // 选择项变化
+        const handleSelectionChange = (selection) => {
+            state.selectedIds = selection.map(item => item.id);
+            state.deleteCount = selection.length;
+        };
+
+        // 批量删除
+        const handleBatchDelete = () => {
+            state.showDeleteDialog = true;
+        };
+
+        // 导出Excel
+        const exportToExcel = () => {
+            // 实现导出逻辑
+            ElMessage.success('导出功能开发中');
+        };
 
         return {
-            filterType,
-            dateRange,
-            keyword,
-            currentPage,
-            pageSize,
-            totalCount,
-            filteredData,
+            ...toRefs(state),
             handleSearch,
             resetFilter,
             handleSizeChange,
             handleCurrentChange,
-            selectedIds,
-            showDeleteDialog,
-            deleteCount,
-            showExportSuccess,
             handleSelectionChange,
             handleBatchDelete,
-            confirmDelete,
             exportToExcel
         };
     }

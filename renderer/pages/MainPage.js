@@ -1,4 +1,5 @@
 import { HeaderBar } from '../components/HeaderBar.js';
+import { visitorAPI } from '../utils/api.js';
 
 export const MainPage = {
     components: { HeaderBar },
@@ -24,48 +25,33 @@ export const MainPage = {
                   style="flex-shrink: 0; border-bottom: 1px solid #e6e6e6; height: calc(100% - 0px);"
               >
                 <!-- 未离开访客：默认选中 -->
-                <el-tab-pane  
-                  name="active" 
-                  class="full-height"
-                  :content-style="{ height: '100%', padding: '0', overflow: 'hidden' }"
-                >
-                  <template #label>
-                    <span class="main-tab-span">未离开访客</span>
-                  </template>
+                <el-tab-pane name="active" class="full-height">
+                  <template #label><span class="main-tab-span">未离开访客</span></template>
                   <div class="table-container">
                     <el-table
-                      :data="activeVisitors"
-                      border
-                      size="small"
-                      style="height: 80%;"
-                      :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
-                      :cell-style="{fontSize: '15px'}"
-                    >
-                      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-                      <el-table-column prop="visitTime" label="来访时间" min-width="180"></el-table-column>
-                      <el-table-column prop="interviewee" label="受访人" min-width="120"></el-table-column>
+                        :data="dashboardData.notLeftList"
+                        border
+                        size="small"
+                        style="height: 80%;"
+                        :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
+                        :cell-style="{fontSize: '15px'}">
+                    <el-table-column prop="name" label="姓名" width="120"></el-table-column>
+                    <el-table-column prop="visitTime" label="来访时间" min-width="180"></el-table-column>
+                    <el-table-column prop="interviewee" label="受访人" min-width="120"></el-table-column>
                     </el-table>
                   </div>
                 </el-tab-pane>
 
-                <!-- 进出流水 -->
-                <el-tab-pane 
-                  name="logs"
-                  class="full-height"
-                  :content-style="{ height: '100%', padding: '0', overflow: 'hidden' }"
-                >
-                  <template #label>
-                    <span class="main-tab-span">进出流水</span>
-                  </template>
+                <el-tab-pane name="logs" class="full-height">
+                  <template #label><span class="main-tab-span">进出流水</span></template>
                   <div class="table-container">
                     <el-table
-                      :data="visitLogs"
-                      border
-                      size="small"
-                      style="height: 80%;"
-                      :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
-                      :cell-style="{fontSize: '15px'}"
-                    >
+                        :data="dashboardData.inOutFlowList"
+                        border
+                        size="small"
+                        style="height: 80%;"
+                        :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
+                        :cell-style="{fontSize: '15px'}">
                       <el-table-column prop="name" label="姓名" width="120"></el-table-column>
                       <el-table-column prop="time" label="时间" min-width="180"></el-table-column>
                       <el-table-column prop="action" label="操作" min-width="120">
@@ -77,24 +63,16 @@ export const MainPage = {
                   </div>
                 </el-tab-pane>
 
-                <!-- 超期名单 -->
-                <el-tab-pane 
-                  name="overdue"
-                  class="full-height"
-                  :content-style="{ height: '100%', padding: '0', overflow: 'hidden' }"
-                >
-                  <template #label>
-                    <span class="main-tab-span">超期名单</span>
-                  </template>
+                <el-tab-pane name="overdue" class="full-height">
+                  <template #label><span class="main-tab-span">超期名单</span></template>
                   <div class="table-container">
                     <el-table
-                      :data="overdueVisitors"
-                      border
-                      size="small"
-                      style="height: 80%;"
-                      :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
-                      :cell-style="{fontSize: '15px'}"
-                    >
+                        :data="dashboardData.overtimeList"
+                        border
+                        size="small"
+                        style="height: 80%;"
+                        :header-cell-style="{fontSize: '16px', fontWeight: '500'}"
+                        :cell-style="{fontSize: '15px'}">
                       <el-table-column prop="name" label="姓名" width="120"></el-table-column>
                       <el-table-column prop="visitTime" label="来访时间" min-width="180"></el-table-column>
                       <el-table-column prop="overdueTime" label="超期时间" min-width="150"></el-table-column>
@@ -110,23 +88,23 @@ export const MainPage = {
             <div class="main-grid">
               <el-card shadow="always" class="main-card">
                 <div class="main-card-title">今日累计到访</div>
-                <div class="main-card-value">28</div>
-                <div class="main-card-sub">较昨日 +3</div>
+                <div class="main-card-value">{{ dashboardData.statistics.today_total }}</div>
+                <div class="main-card-sub">较昨日 {{ dashboardData.statistics.compare_yesterday > 0 ? '+' : '' }}{{ dashboardData.statistics.compare_yesterday }}</div>
               </el-card>
               <el-card shadow="always" class="main-card">
                 <div class="main-card-title">预约总人数</div>
-                <div class="main-card-value">35</div>
-                <div class="main-card-sub">已到访 28人</div>
+                <div class="main-card-value">{{ dashboardData.statistics.today_book_total }}</div>
+                <div class="main-card-sub">已到访 {{ dashboardData.statistics.today_visited }}人</div>
               </el-card>
               <el-card shadow="always" class="main-card">
                 <div class="main-card-title">已离开人数</div>
-                <div class="main-card-value">15</div>
-                <div class="main-card-sub">未离开 13人</div>
+                <div class="main-card-value">{{ dashboardData.statistics.today_left }}</div>
+                <div class="main-card-sub">未离开 {{ dashboardData.statistics.today_not_left }}人</div>
               </el-card>
               <el-card shadow="always" class="main-card">
                 <div class="main-card-title">超时未离开</div>
-                <div class="main-card-value">3</div>
-                <div class="main-card-sub">最长超期 2.5小时</div>
+                <div class="main-card-value">{{ dashboardData.statistics.overtime_count }}</div>
+                <div class="main-card-sub">最长超期 {{ dashboardData.statistics.max_overtime_hours }}小时</div>
               </el-card>
             </div>
           </el-main>
@@ -240,13 +218,31 @@ export const MainPage = {
     setup() {
         const { ref, onMounted, onUnmounted, nextTick, watch, reactive } = Vue;
         const { ipcRenderer } = require('electron');
+        const { ElMessage } = ElementPlus;
+
+        const dashboardData = ref({
+            notLeftList: [], // 未离开访客
+            inOutFlowList: [], // 进出流水
+            overtimeList: [], // 超期名单
+            statistics: { // 统计数据
+                today_total: 0,
+                compare_yesterday: 0,
+                today_book_total: 0,
+                today_visited: 0,
+                today_left: 0,
+                today_not_left: 0,
+                overtime_count: 0,
+                max_overtime_hours: 0
+            }
+        });
 
         const activeTab = ref('active');
         const showCheckoutDialog = ref(false);
         const showSuccessDialog = ref(false);
         const scanProgress = ref(0);
-        const scanTimer = ref(null);
         const checkedOutVisitor = ref({ name: '', checkoutTime: '' });
+
+        const scanTimer = ref(null);
         const serialState = reactive({
             isConnected: false,
             portName: 'COM7',
@@ -310,74 +306,49 @@ export const MainPage = {
             });
         };
 
-        // 模拟数据（保持不变）
-        // 2. 用for循环批量生成模拟数据
-        // —— 未离开访客数据（生成30条，确保超出表格高度）
-        const activeVisitors = ref([]);
-        // 循环生成30条不同访客数据
-        for (let i = 1; i <= 30; i++) {
-            // 随机生成来访时间（近2小时内）
-            const randomHour = Math.floor(Math.random() * 2); // 0-1小时
-            const randomMinute = Math.floor(Math.random() * 60); // 0-59分钟
-            const visitTime = new Date();
-            visitTime.setHours(visitTime.getHours() - randomHour);
-            visitTime.setMinutes(visitTime.getMinutes() - randomMinute);
-            // 格式化时间为 "YYYY-MM-DD HH:MM"
-            const formattedTime = `${visitTime.getFullYear()}-${String(visitTime.getMonth() + 1).padStart(2, '0')}-${String(visitTime.getDate()).padStart(2, '0')} ${String(visitTime.getHours()).padStart(2, '0')}:${String(visitTime.getMinutes()).padStart(2, '0')}`;
+        // 请求dashboard数据
+        const fetchDashboardData = async () => {
+            try {
+                // 发送POST请求（使用配置的服务器地址）
+                const data = await visitorAPI.dashboard();
 
-            // 随机分配受访人（3个选项循环）
-            const interviewees = ['李总', '王经理', '赵工'];
-            const randomInterviewee = interviewees[Math.floor(Math.random() * interviewees.length)];
+                if (data) {
+                    const { not_left_list, in_out_flow_list, overtime_list, statistics } = data;
 
-            // 推入数据数组
-            activeVisitors.value.push({
-                name: `访客${i}`, // 姓名按序号递增
-                visitTime: formattedTime,
-                interviewee: randomInterviewee
-            });
-        }
-        const visitLogs = ref([]);
-        for (let i = 1; i <= 50; i++) {
-            // 随机生成时间（近4小时内）
-            const randomHour = Math.floor(Math.random() * 4);
-            const randomMinute = Math.floor(Math.random() * 60);
-            const logTime = new Date();
-            logTime.setHours(logTime.getHours() - randomHour);
-            logTime.setMinutes(logTime.getMinutes() - randomMinute);
-            const formattedLogTime = `${logTime.getFullYear()}-${String(logTime.getMonth() + 1).padStart(2, '0')}-${String(logTime.getDate()).padStart(2, '0')} ${String(logTime.getHours()).padStart(2, '0')}:${String(logTime.getMinutes()).padStart(2, '0')}`;
+                    // 映射数据到状态变量
+                    dashboardData.value = {
+                        notLeftList: not_left_list.map(item => ({
+                            name: item.visitor_name,
+                            visitTime: item.plan_visit_time,
+                            interviewee: item.interviewee
+                        })),
+                        inOutFlowList: in_out_flow_list.map(item => ({
+                            name: item.visitor_name,
+                            time: item.operate_time,
+                            action: item.operate_type
+                        })),
+                        overtimeList: overtime_list.map(item => ({
+                            name: item.visitor_name,
+                            visitTime: item.plan_visit_time,
+                            overdueTime: `${item.overtime_hours}小时`
+                        })),
+                        statistics
+                    };
 
-            // 随机生成"进入"或"离开"操作（概率各50%）
-            const actions = ['进入', '离开'];
-            const randomAction = actions[Math.floor(Math.random() * actions.length)];
-
-            visitLogs.value.push({
-                name: `访客${Math.floor(Math.random() * 30) + 1}`, // 随机复用1-30号访客姓名
-                action: randomAction,
-                time: formattedLogTime
-            });
-        }
-        // —— 超期名单数据（生成5条）
-        const overdueVisitors = ref([]);
-        for (let i = 1; i <= 5; i++) {
-            // 超期时间随机（1-3小时）
-            const overdueHour = Math.floor(Math.random() * 3) + 1;
-            const overdueMinute = Math.floor(Math.random() * 60);
-            const overdueTime = `${overdueHour}小时${overdueMinute}分`;
-
-            // 来访时间为当天早间
-            const morningTime = new Date();
-            morningTime.setHours(9 + Math.floor(Math.random() * 3)); // 9-11点
-            morningTime.setMinutes(Math.floor(Math.random() * 60));
-            const formattedMorningTime = `${morningTime.getFullYear()}-${String(morningTime.getMonth() + 1).padStart(2, '0')}-${String(morningTime.getDate()).padStart(2, '0')} ${String(morningTime.getHours()).padStart(2, '0')}:${String(morningTime.getMinutes()).padStart(2, '0')}`;
-
-            overdueVisitors.value.push({
-                name: `超期访客${i}`,
-                visitTime: formattedMorningTime,
-                overdueTime: overdueTime
-            });
-        }
+                    console.log(dashboardData);
+                } else {
+                    ElMessage.error(result.msg || '获取数据失败');
+                }
+            } catch (error) {
+                console.error('dashboard接口请求失败:', error);
+                ElMessage.error('网络错误，无法获取数据');
+            }
+        };
 
         onMounted(()=>{
+            fetchDashboardData();
+            // 添加定时刷新（如每5分钟）
+            setInterval(fetchDashboardData, 1 * 60 * 1000);
             ipcRenderer.on('serial-data-received', (event, code) => {
                 handleScanCode(code);
             });
@@ -387,9 +358,7 @@ export const MainPage = {
         });
         return {
             activeTab,
-            activeVisitors,
-            visitLogs,
-            overdueVisitors,
+            dashboardData,
             showCheckoutDialog,
             showSuccessDialog,
             scanProgress,

@@ -1,4 +1,5 @@
 import { HeaderBar } from '../components/HeaderBar.js';
+import { visitorAPI } from "../utils/api.js";
 
 export const RegisterPage = {
     components: { HeaderBar },
@@ -67,14 +68,14 @@ export const RegisterPage = {
 
                     <!-- 手机号码 -->
                     <el-form-item label="手机号码" label-width="80px" style="margin-bottom: 12px;">
-                      <el-input v-model="visitorInfo.phone" placeholder="请输入手机号" />
+                      <el-input v-model="visitorInfo.phone" placeholder="请输入手机号" @keyup.enter="handlePhoneQuery"/>
                     </el-form-item>
 
                     <!-- 访客编号 -->
                     <el-form-item label="访客编号" label-width="80px" style="margin-bottom: 12px;">
-                      <el-input v-model="visitorInfo.qrCode" readonly style="background-color: #f0f7ff;" />
+                      <el-input v-model="visitorInfo.applicationNo" readonly style="background-color: #f0f7ff;" />
                       <div slot="help" style="font-size: 12px; color: #666;">
-                        {{ visitorInfo.qrCode ? '已获取预约编号' : '无预约将自动生成' }}
+                        {{ visitorInfo.applicationNo ? '已获取预约编号' : '无预约将自动生成' }}
                       </div>
                     </el-form-item>
                   </div>
@@ -304,7 +305,7 @@ export const RegisterPage = {
             <p v-else>访客 {{ visitorInfo.name }} 登记成功！</p>
 
             <p style="color: #666; margin-top: 10px;" v-if="!printing">
-              访客编号：{{ visitorInfo.qrCode }}
+              访客编号：{{ visitorInfo.applicationNo }}
             </p>
 
             <!-- 打印失败提示（可选） -->
@@ -360,28 +361,30 @@ export const RegisterPage = {
             }
 
             // 监听主进程发送的读卡器数据
-            ipcRenderer.on('card-data', (event, data) => {
+            ipcRenderer.on('card-data', async (event, data) => {
                 console.log('收到的数据:', data)
                 if (data.type === 'success' && data.content?.data) {
-                    const cardInfo = data.content.data; // 提取核心身份证信息
+                    const cardInfo = data.content.data; // 提取身份证信息
                     console.log('解析后的身份证信息:', cardInfo);
 
-                    // 显示最新数据（存储核心信息）
+                    // 1. 显示身份证数据
                     latestCardData.value = cardInfo;
-
-                    // 添加到历史列表（包含完整信息和时间戳）
                     cardDataList.value.unshift({
                         ...cardInfo,
-                        readTime: data.timestamp || new Date().toLocaleString(), // 优先用脚本返回的时间戳
+                        readTime: data.timestamp || new Date().toLocaleString(),
                         message: data.content.message
                     });
 
-                    // 自动填充表单（对应提取的字段）
-                    visitorInfo.value.name = cardInfo.name || '';
-                    visitorInfo.value.idCard = cardInfo.idNumber || '';
+                    // 2. 自动查询访客申请（核心修改）
+                    if (cardInfo.idNumber) { // 确保身份证号存在
+                        const queryResult = await queryVisitorApplication(cardInfo.idNumber);
+                        if (queryResult.success) {
+                            fillVisitorForm(queryResult.data);
+                        }
+                    }
                 } else {
-                    console.warn('无效的读卡器数据或读取失败:', data);
-                    ElMessage.warning(data.content?.message || '身份证读取失败，请重试');
+                    console.warn('无效的读卡器数据:', data);
+                    ElMessage.warning(data.content?.message || '身份证读取失败');
                 }
             });
         });
@@ -401,7 +404,7 @@ export const RegisterPage = {
             name: '',
             idCard: '',
             phone: '',
-            qrCode: '',
+            applicationNo: '',
             idCardPhoto: '',
             livePhoto: ''
         });
@@ -427,6 +430,38 @@ export const RegisterPage = {
         // 4. 弹窗控制
         const showCameraDialog = ref(false); // 摄像头弹窗
         const showSuccessDialog = ref(false);
+
+        // 手机号输入框回车查询拜访申请
+        const handlePhoneQuery = async () => {
+            if (!visitorInfo.value.phone) {
+                ElMessage.warning('请输入手机号');
+                return;
+            }
+            // 调用查询接口（仅传手机号）
+            const queryResult = await queryVisitorApplication(null, visitorInfo.value.phone);
+            if (queryResult.success) {
+                fillVisitorForm(queryResult.data); // 复用表单填充逻辑
+            }
+        };
+        // 新增：表单填充复用函数（提取原身份证查询中的填充逻辑）
+        const fillVisitorForm = (appData) => {
+            visitorInfo.value.name = appData.visitor_name || '';
+            visitorInfo.value.idCard = appData.visitor_idcard || '';
+            visitorInfo.value.phone = appData.visitor_phone || '';
+
+            supplementInfo.value.company = appData.visitor_company || '';
+            supplementInfo.value.reason = appData.reason || '';
+
+            visitInfo.value.interviewee = {
+                name: appData.interviewee || '',
+                department: appData.host_department || '',
+                phone: appData.host_mobile || ''
+            };
+            visitInfo.value.validTime = new Date(appData.plan_leave_time).toISOString();
+
+            // 存储申请单号（用于后续记录进出）
+            visitorInfo.value.applicationNo = appData.application_no;
+        };
 
         // 5. 照片上传/拍摄
         // const livePhoto = ref(''); // 存储拍摄的照片（base64格式）
@@ -502,7 +537,7 @@ export const RegisterPage = {
 
         // 7. 清空表单
         const resetForm = () => {
-            visitorInfo.value = { status: '已预约', name: '', idCard: '', phone: '', qrCode: '', idCardPhoto: '', livePhoto: '' };
+            visitorInfo.value = { status: '已预约', name: '', idCard: '', phone: '', applicationNo: '', idCardPhoto: '', livePhoto: '' };
             supplementInfo.value = { reason: '', licensePlate: '', company: '', type: '', remark: '' };
             visitInfo.value = { searchKeyword: '', interviewee: { name: '', department: '', phone: '' }, items: '', validTime: new Date(new Date().getTime() + 3600000 * 2).toISOString(), cardAuth: '' };
         };
@@ -516,30 +551,83 @@ export const RegisterPage = {
             return `VIS-${timestamp}-${random}`;
         };
         const handleRegister = async () => {
-            // 1. 表单校验
+            // 1. 表单校验（原有逻辑）
             if (!visitorInfo.value.name || !visitorInfo.value.idCard) {
                 ElMessage.warning('请完善访客姓名和身份证信息');
                 return;
             }
+            if (!visitorInfo.value.applicationNo) {
+                ElMessage.warning('未查询到对应访客申请，无法登记');
+                return;
+            }
 
-            // 2. 登记成功后生成访客编码，打开弹窗并开始打印
-            visitorInfo.value.qrCode = generateVisitorCode();
+            // 2. 生成访客编码并显示弹窗（原有逻辑）
             showSuccessDialog.value = true;
             printing.value = true;
-            printError.value = ''; // 清空之前的错误
+            printError.value = '';
 
             try {
-                // 3. 调用主进程打印函数（传递访客编号）
-                await ipcRenderer.invoke('print-visitor-code', visitorInfo.value.qrCode);
-                // 4. 打印成功：更新状态
+                // 3. 打印访客凭证（原有逻辑）
+                await ipcRenderer.invoke('print-visitor-code', visitorInfo.value.applicationNo);
+
+                // 4. 记录进入状态（新增逻辑）
+                const recordResult = await recordVisitorEntry(
+                    visitorInfo.value.applicationNo,
+                    'enter', // 进入类型
+                    '前台登记进入' // 备注
+                );
+                if (recordResult.success) {
+                    ElMessage.success('登记成功并记录进入状态');
+                }
+
                 printing.value = false;
             } catch (error) {
-                // 5. 打印失败：显示错误信息
                 printing.value = false;
-                printError.value = `打印失败：${error.message || '请检查打印机'}`;
+                printError.value = `操作失败：${error.message || '请重试'}`;
             }
         };
 
+        // 查询访客申请接口
+        const queryVisitorApplication = async (idcard, phone) => {
+            if (!idcard && !phone) {
+                ElMessage.warning('请提供身份证号或手机号');
+                return { success: false };
+            }
+            try {
+                const requestData = {};
+                if (idcard) requestData.idcard = idcard;
+                if (phone) requestData.phone = phone;
+                const data = await visitorAPI.query(requestData);
+                if (data) {
+                    return { success: true, data: data };
+                } else {
+                    ElMessage.warning(result.msg || '未查询到访客申请');
+                    return { success: false };
+                }
+            } catch (error) {
+                console.error('查询访客申请失败:', error);
+                ElMessage.error('查询接口异常，请重试');
+                return { success: false };
+            }
+        };
+
+        // 记录进出记录接口
+        const recordVisitorEntry = async (applicationNo, type, remark) => {
+            try {
+                const data = await visitorAPI.record(
+                    { application_no: applicationNo, type, remark }
+                );
+                if (data) {
+                    return { success: true };
+                } else {
+                    return { success: false };
+                }
+            } catch (error) {
+                console.error('记录进出状态失败:', error);
+                ElMessage.error('记录接口异常，请重试');
+                return { success: false };
+            }
+        };
         // 关闭弹窗
         const handleDialogClose = () => {
             showSuccessDialog.value = false;
@@ -551,7 +639,7 @@ export const RegisterPage = {
             printing.value = true;
             printError.value = '';
             try {
-                await ipcRenderer.invoke('print-visitor-code', visitorInfo.value.qrCode);
+                await ipcRenderer.invoke('print-visitor-code', visitorInfo.value.applicationNo);
                 printing.value = false;
             } catch (error) {
                 printing.value = false;
@@ -577,7 +665,9 @@ export const RegisterPage = {
             printing,
             printError,
             handleDialogClose,
-            retryPrint
+            retryPrint,
+            handlePhoneQuery,
+            fillVisitorForm
         };
     }
 };

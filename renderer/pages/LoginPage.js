@@ -1,3 +1,4 @@
+import { authAPI } from '../utils/api.js';
 export const LoginPage = {
     template: `
       <div class="login-container">
@@ -51,6 +52,7 @@ export const LoginPage = {
         const {ref, reactive, onMounted, onUnmounted} = Vue;
         const router = VueRouter.useRouter();
         const {ipcRenderer} = require('electron');
+        const { ElMessage } = ElementPlus;
         // 登录表单数据
         const loginForm = reactive({
             username: '',
@@ -64,16 +66,38 @@ export const LoginPage = {
         });
 
         const loginFormRef = ref(null);
+        const loading = ref(false); // 添加加载状态
 
         // 登录处理
-        const handleLogin = () => {
-            loginFormRef.value.validate((valid) => {
+        const handleLogin = async () => {
+            loginFormRef.value.validate(async (valid) => {
                 if (valid) {
-                    if (loginForm.username === 'admin' && loginForm.password === '123456') {
-                        ElementPlus.ElMessage.success('登录成功');
-                        ipcRenderer.send('switch-to-main-window');
-                    } else {
-                        ElementPlus.ElMessage.error('用户名或密码错误');
+                    loading.value = true;
+                    try {
+                        // 1. 对密码进行MD5加密（示例中密码已加密，这里保持一致）
+                        const md5Password = CryptoJS.MD5(loginForm.password).toString();
+
+                        // 2. 调用登录接口
+                        const data = await authAPI.login(
+                            loginForm.username,
+                            md5Password
+                        );
+
+                        if (data) {
+                            // 3. 存储token及用户信息
+                            localStorage.setItem('token', data.token);
+                            localStorage.setItem('expireTime', data.expire_time);
+                            localStorage.setItem('userInfo', JSON.stringify(data.user_info));
+
+                            // 4. 登录成功处理
+                            ElMessage.success('登录成功');
+                            ipcRenderer.send('switch-to-main-window');
+                        }
+                    } catch (error) {
+                        console.error('登录失败', error);
+                        ElMessage.error('登录失败，请检查用户名或密码');
+                    } finally {
+                        loading.value = false;
                     }
                 }
             });
@@ -94,6 +118,7 @@ export const LoginPage = {
             loginFormRef,
             handleLogin,
             handleClose,
+            loading
         };
     }
 };
