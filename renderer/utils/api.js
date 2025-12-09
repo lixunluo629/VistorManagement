@@ -61,7 +61,7 @@ const request = async (url, method = 'GET', data = null) => {
 
         // 适配新的返回格式：{ jsonrpc, id, result: { code, msg, data } }
         if (result.result?.code !== 0) {
-            ElMessage.error(result.result?.msg || '请求失败');
+            ElMessage.warning(result.result?.msg || '请求失败');
             return null;
         }
 

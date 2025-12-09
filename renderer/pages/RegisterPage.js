@@ -318,7 +318,7 @@ export const RegisterPage = {
             <!-- 打印中不显示按钮，完成/失败后显示 -->
             <el-button
                 type="primary"
-                @click="handleDialogClose"
+                @click="handleDialogClose;$router.push('/main')"
                 v-if="!printing"
             >
               确认
@@ -567,9 +567,6 @@ export const RegisterPage = {
             printError.value = '';
 
             try {
-                // 3. 打印访客凭证（原有逻辑）
-                await ipcRenderer.invoke('print-visitor-code', visitorInfo.value.applicationNo);
-
                 // 4. 记录进入状态（新增逻辑）
                 const recordResult = await recordVisitorEntry(
                     visitorInfo.value.applicationNo,
@@ -579,6 +576,9 @@ export const RegisterPage = {
                 if (recordResult.success) {
                     ElMessage.success('登记成功并记录进入状态');
                 }
+
+                // 3. 打印访客凭证（原有逻辑）
+                await ipcRenderer.invoke('print-visitor-code', visitorInfo.value.applicationNo);
 
                 printing.value = false;
             } catch (error) {
@@ -601,7 +601,7 @@ export const RegisterPage = {
                 if (data) {
                     return { success: true, data: data };
                 } else {
-                    ElMessage.warning(result.msg || '未查询到访客申请');
+                    // ElMessage.warning('未查询到访客申请');
                     return { success: false };
                 }
             } catch (error) {
