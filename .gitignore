@@ -5,6 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 .DS_Store
 favicon.ico
+config.json
 .idea/
 .vscode/
 dist/

@@ -91,6 +91,9 @@ export const visitorAPI = {
     query: (data) => {
         return request('/visitor/application/query', 'POST', data);
     },
+    update: (data) => {
+        return request('/visitor/application/update', 'POST', data);
+    },
     record: (data) => {
         return request('/visitor/record', 'POST', data);
     },

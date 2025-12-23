@@ -83,6 +83,12 @@
     background-size: 200% 200%; /* 扩大渐变范围，用于动画移动 */
     animation: gradientFlow 10s ease infinite; /* 15秒循环动画 */
 }
+.login-checkbox-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
 
 /* 渐变流动动画 */
 @keyframes gradientFlow {

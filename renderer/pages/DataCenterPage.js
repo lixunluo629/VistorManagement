@@ -1,5 +1,6 @@
 import { HeaderBar } from '../components/HeaderBar.js';
 import { visitorAPI } from '../utils/api.js';
+
 export const DataCenterPage = {
     components: { HeaderBar },
     template: `
@@ -10,7 +11,6 @@ export const DataCenterPage = {
         <!-- 主体内容区 -->
         <div style="flex: 1; overflow: auto; padding: 20px; background-color: #fff; box-sizing: border-box; overflow: hidden;">
           <!-- 1. 统计卡片 -->
-          <!-- 统计卡片 -->
           <el-card style="border: none; box-shadow: none;">
             <el-row :gutter="20" style="padding: 15px 0px;">
               <!-- 今日累计到访 -->
@@ -98,6 +98,7 @@ export const DataCenterPage = {
                           start-placeholder="开始日期"
                           end-placeholder="结束日期"
                           format="YYYY-MM-DD"
+                          value-format="YYYY-MM-DD"
                       ></el-date-picker>
                     </el-col>
                     <el-col :span="6">
@@ -118,17 +119,18 @@ export const DataCenterPage = {
                       type="success"
                       @click="exportToExcel"
                       icon="Download"
-                  >
-                    导出Excel
-                  </el-button>
-                  <el-button
-                      type="danger"
-                      @click="handleBatchDelete"
-                      icon="Delete"
                       :disabled="selectedIds.length === 0"
                   >
-                    批量删除
+                    导出勾选数据
                   </el-button>
+<!--                  <el-button-->
+<!--                      type="danger"-->
+<!--                      @click="handleBatchDelete"-->
+<!--                      icon="Delete"-->
+<!--                      :disabled="selectedIds.length === 0"-->
+<!--                  >-->
+<!--                    批量删除-->
+<!--                  </el-button>-->
                 </el-col>
               </el-row>
 
@@ -150,7 +152,6 @@ export const DataCenterPage = {
                 ></el-table-column>
                 <el-table-column label="序号" width="80" align="center">
                   <template #default="scope">
-                    <!-- 计算逻辑：(当前页码-1)*每页条数 + 索引 + 1 -->
                     {{ (currentPage - 1) * pageSize + scope.$index + 1 }}
                   </template>
                 </el-table-column>
@@ -218,21 +219,23 @@ export const DataCenterPage = {
     `,
     setup() {
         const { ref, onMounted, reactive, toRefs } = Vue;
+        const { ipcRenderer } = require('electron');
         const { ElMessage, ElLoading } = ElementPlus;
+        const XLSX = require('xlsx');
         // 状态管理
         const state = reactive({
             // 统计卡片
             statistic: {
-                totalVisit: 0,  // 今日累计到访
-                visiting: 0,    // 拜访中
-                left: 0,        // 已离开
-                noVisit: 0      // 未到访
+                totalVisit: 0,
+                visiting: 0,
+                left: 0,
+                noVisit: 0
             },
 
             // 表格数据
             tableData: [],
-            filteredData: [], // 过滤后的数据
-            totalCount: 0,    // 总条数
+            filteredData: [],
+            totalCount: 0,
 
             // 分页参数
             currentPage: 1,
@@ -240,7 +243,7 @@ export const DataCenterPage = {
 
             // 筛选条件
             filterType: 'all',
-            dateRange: null,
+            dateRange: ['', ''],
             keyword: '',
 
             // 选择项
@@ -248,6 +251,24 @@ export const DataCenterPage = {
             showDeleteDialog: false,
             deleteCount: 0,
         });
+
+        // 处理日期范围：开始日00:00:00，结束日+1天00:00:00
+        const handleDateRange = (dateRange) => {
+            if (!dateRange || dateRange.length < 2 || !dateRange[0] || !dateRange[1]) {
+                return { startTime: '', endTime: '' };
+            }
+
+            const [startDateStr, endDateStr] = dateRange;
+            const startTime = `${startDateStr} 00:00:00`;
+            const endDate = new Date(endDateStr);
+            endDate.setDate(endDate.getDate() + 1);
+            const year = endDate.getFullYear();
+            const month = String(endDate.getMonth() + 1).padStart(2, '0');
+            const day = String(endDate.getDate()).padStart(2, '0');
+            const endTime = `${year}-${month}-${day} 00:00:00`;
+
+            return { startTime, endTime };
+        };
 
         const getTodayTimeRange = () => {
             const today = new Date();
@@ -259,10 +280,8 @@ export const DataCenterPage = {
         // 获取统计数据
         const fetchStatistic = async () => {
             try {
-                // 传递今日时间范围参数
                 const params = getTodayTimeRange();
                 const data = await visitorAPI.getStatistic(params);
-
                 if (data) {
                     state.statistic = {
                         totalVisit: data.total_visit || 0,
@@ -277,6 +296,7 @@ export const DataCenterPage = {
             }
         };
 
+        // 获取访客列表（带分页）
         const fetchVisitorList = async () => {
             const loading = ElLoading.service({
                 lock: true,
@@ -285,22 +305,24 @@ export const DataCenterPage = {
             });
 
             try {
-                // 发送POST请求
-                const data = await visitorAPI.getList({
+                const { startTime, endTime } = handleDateRange(state.dateRange);
+                const requestParams = {
                     page: state.currentPage,
-                    page_size: state.pageSize
-                });
-                console.log(data)
+                    page_size: state.pageSize,
+                    status: state.filterType === 'all' ? '' : state.filterType,
+                    keyword: state.keyword,
+                    time_visit_start: startTime,
+                    time_visit_end: endTime
+                };
 
-                // 处理接口响应
+                const data = await visitorAPI.getList(requestParams);
                 if (data) {
                     const { total, list } = data;
                     state.tableData = list.map(item => ({
-                        // 映射接口字段到表格需要的格式
                         id: item.id,
                         name: item.visitor_name,
                         visitTime: item.time_visit ? new Date(item.time_visit).toLocaleString() : '',
-                        actualVisitTime: item.visiting_status === 'visited' ? item.time_visit : '',
+                        actualVisitTime: item.visiting_status !== 'no_visit' ? item.time_arrive : '',
                         leaveTime: item.time_leave ? new Date(item.time_leave).toLocaleString() : '',
                         interviewee: item.host_name,
                         status: mapStatus(item.visiting_status),
@@ -310,7 +332,7 @@ export const DataCenterPage = {
                     state.totalCount = total;
                     state.filteredData = [...state.tableData];
                 } else {
-                    ElMessage.error(result.result?.msg || '获取数据失败');
+                    ElMessage.error('获取数据失败');
                 }
             } catch (error) {
                 console.error('请求错误:', error);
@@ -320,15 +342,114 @@ export const DataCenterPage = {
             }
         };
 
-        // 状态映射（接口状态转显示状态）
+        // 状态映射
         const mapStatus = (visitingStatus) => {
             const statusMap = {
-                'no_visit': 'noShow',    // 未到访
-                'visited': 'active',     // 拜访中
-                'left': 'left',          // 已离开
-                'pending': 'pending'     // 待审批
+                'no_visit': 'noShow',
+                'visited': 'active',
+                'left': 'left',
+                'pending': 'pending'
             };
             return statusMap[visitingStatus] || 'active';
+        };
+
+        // 状态文字转换（用于Excel）
+        const getStatusText = (statusKey) => {
+            const statusTextMap = {
+                'noShow': '未到访',
+                'active': '拜访中',
+                'left': '已离开',
+                'pending': '待审批'
+            };
+            return statusTextMap[statusKey] || '异常';
+        };
+
+        // 导出勾选的数据为Excel
+        const exportToExcel = async () => {
+            if (state.selectedIds.length === 0) {
+                ElMessage.warning('请先勾选需要导出的数据');
+                return;
+            }
+
+            const loading = ElLoading.service({
+                lock: true,
+                text: '正在导出勾选数据...',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
+
+            try {
+                const selectedRows = state.tableData.filter(row => state.selectedIds.includes(row.id));
+                if (selectedRows.length === 0) {
+                    ElMessage.warning('勾选的数据不存在，请刷新后重试');
+                    loading.close();
+                    return;
+                }
+
+                // 1. 定义表头和数据映射（方便配置样式和列宽）
+                const headerMap = [
+                    { key: 'serial', label: '序号', width: 8 }, // 列宽：8个字符
+                    { key: 'name', label: '姓名', width: 15 },
+                    { key: 'visitTime', label: '预约到访时间', width: 25 },
+                    { key: 'actualTime', label: '实际到访时间', width: 25 },
+                    { key: 'leaveTime', label: '离开时间', width: 25 },
+                    { key: 'interviewee', label: '受访人', width: 15 },
+                    { key: 'status', label: '状态', width: 10 },
+                    { key: 'applyNo', label: '申请单号', width: 20 },
+                    { key: 'company', label: '访客公司', width: 20 }
+                ];
+
+                // 2. 格式化数据（生成二维数组，包含表头和数据）
+                // 表头行（用于设置样式）
+                const headerRow = headerMap.map(item => item.label);
+                // 数据行
+                const dataRows = selectedRows.map((item, index) => [
+                    index + 1,
+                    item.name || '',
+                    item.visitTime || '',
+                    item.actualVisitTime || '未到访',
+                    item.leaveTime || (item.status === 'active' ? '拜访中' : '-'),
+                    item.interviewee || '',
+                    getStatusText(item.status),
+                    item.applicationNo || '',
+                    item.company || ''
+                ]);
+
+                // 3. 创建工作表并设置样式
+                const ws = XLSX.utils.aoa_to_sheet([headerRow, ...dataRows]);
+
+                // 3.2 设置列宽（!cols属性：每列的宽度，wch为字符数，width为像素）
+                ws['!cols'] = headerMap.map(item => ({ wch: item.width })); // wch：字符宽度
+
+                // 4. 创建工作簿并添加工作表
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, '访客数据');
+
+                // 5. 生成base64字符串（保持之前的传递逻辑）
+                const excelBase64 = XLSX.write(wb, {
+                    bookType: 'xlsx',
+                    type: 'base64',
+                    cellStyles: true // 关键：启用单元格样式（必须添加，否则样式不生效）
+                });
+
+                // 6. 定义默认文件名
+                const today = new Date().toLocaleDateString().replace(/\//g, '-');
+                const defaultFileName = `访客数据_${today}.xlsx`;
+
+                // 7. 调用主进程的保存方法
+                const result = await ipcRenderer.invoke('saveExcelFile', excelBase64, defaultFileName);
+
+                if (result.success) {
+                    ElMessage.success(`Excel保存成功：${result.filePath}`);
+                } else {
+                    ElMessage.warning(result.message);
+                }
+
+            } catch (error) {
+                console.error('导出失败:', error);
+                ElMessage.error('导出失败，请重试');
+            } finally {
+                loading.close();
+            }
         };
 
         // 页面加载时获取数据
@@ -339,48 +460,28 @@ export const DataCenterPage = {
 
         // 搜索处理
         const handleSearch = () => {
-            state.currentPage = 1; // 重置到第一页
-            // 这里可以根据筛选条件再次请求接口
-            // 简单前端过滤示例：
-            state.filteredData = state.tableData.filter(item => {
-                // 状态筛选
-                if (state.filterType !== 'all' && item.status !== state.filterType) {
-                    return false;
-                }
-                // 关键词筛选
-                if (state.keyword && !item.name.includes(state.keyword) && !item.interviewee.includes(state.keyword)) {
-                    return false;
-                }
-                // 日期范围筛选
-                if (state.dateRange) {
-                    const visitDate = new Date(item.visitTime).toDateString();
-                    const startDate = new Date(state.dateRange[0]).toDateString();
-                    const endDate = new Date(state.dateRange[1]).toDateString();
-                    if (visitDate < startDate || visitDate > endDate) {
-                        return false;
-                    }
-                }
-                return true;
-            });
+            state.currentPage = 1;
+            fetchVisitorList();
         };
 
         // 重置筛选条件
         const resetFilter = () => {
+            state.currentPage = 1;
             state.filterType = 'all';
-            state.dateRange = null;
+            state.dateRange = ['', ''];
             state.keyword = '';
-            state.filteredData = [...state.tableData];
+            fetchVisitorList();
         };
 
         // 分页处理
         const handleSizeChange = (size) => {
             state.pageSize = size;
-            fetchVisitorList(); // 重新请求数据
+            fetchVisitorList();
         };
 
         const handleCurrentChange = (page) => {
             state.currentPage = page;
-            fetchVisitorList(); // 重新请求数据
+            fetchVisitorList();
         };
 
         // 选择项变化
@@ -390,15 +491,9 @@ export const DataCenterPage = {
         };
 
         // 批量删除
-        const handleBatchDelete = () => {
-            state.showDeleteDialog = true;
-        };
-
-        // 导出Excel
-        const exportToExcel = () => {
-            // 实现导出逻辑
-            ElMessage.success('导出功能开发中');
-        };
+        // const handleBatchDelete = () => {
+        //     state.showDeleteDialog = true;
+        // };
 
         return {
             ...toRefs(state),
@@ -407,7 +502,7 @@ export const DataCenterPage = {
             handleSizeChange,
             handleCurrentChange,
             handleSelectionChange,
-            handleBatchDelete,
+            // handleBatchDelete,
             exportToExcel
         };
     }

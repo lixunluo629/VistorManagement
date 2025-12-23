@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const { PosPrinter } = require('electron-pos-printer');
+const Store = require('electron-store').default;
 const QRCode = require('qrcode');
 const { spawn } = require('child_process');
 const fs = require('fs').promises;
@@ -151,39 +152,50 @@ async function getPrinters() {
 }
 // 打印访客凭证（含二维码）
 async function printVisitorCode(visitorCode, window) {
-    // 2. 打印内容配置（适配 56mm 热敏打印机）
+    // 新增：先获取系统可用打印机列表，自动匹配热敏打印机（解决名称不匹配问题）
+    let printerName = 'KPOS_58 Printer';
+    try {
+        const printers = await window.webContents.getPrintersAsync();
+        console.log('系统可用打印机：', printers.map(p => p.name));
+        window.webContents.send('main-process-log', {message: `系统可用打印机:${printers.map(p => p.name)}`});
+        // 自动匹配包含「58」「POS」「热敏」的打印机（兼容不同命名）
+        const thermalPrinter = printers.find(p =>
+            p.name.includes('58') || p.name.includes('POS') || p.name.includes('热敏')
+        );
+        if (thermalPrinter) {
+            printerName = thermalPrinter.name;
+            window.webContents.send('main-process-log', {message:`自动匹配到热敏打印机：${printerName}`});
+        }
+    } catch (err) {
+        console.warn('获取打印机列表失败，使用默认名称：', err);
+        window.webContents.send('main-process-log', {message: `获取打印机列表失败，使用默认名称：${err}`});
+    }
+
+    // 打印内容配置（适配 56mm 热敏打印机，优化二维码尺寸）
     const printData = [
         {
             type: 'text',
             value: '=== 访客凭证 ===',
             style: {
                 fontWeight: 'bold',
-                fontSize: '14px', // 字体适中，避免超出宽度
+                fontSize: '14px',
                 textAlign: 'center'
             }
         },
         {
             type: 'qrCode',
             value: visitorCode,
-            width: '56mm',
-            height: '56mm',
+            width: '40mm', // 缩小二维码尺寸，避免超出56mm纸宽
+            height: '40mm',
             position: 'center'
         },
         {
             type: 'text',
-            value: `${visitorCode}`,
+            value: visitorCode, // 新增：打印访客码文本，方便核对
             style: {
                 fontSize: '12px',
-                textAlign: 'center'
-            }
-        },
-        {
-            type: 'text',
-            value: `打印时间：${new Date().toLocaleString()}`,
-            style: {
-                fontSize: '10px',
-                color: '#666',
-                textAlign: 'center'
+                textAlign: 'center',
+                marginTop: '5px'
             }
         },
         {
@@ -191,26 +203,40 @@ async function printVisitorCode(visitorCode, window) {
             value: '----------------',
             style: {
                 fontSize: '12px',
-                textAlign: 'center'
+                textAlign: 'center',
+                marginTop: '5px'
             }
         }
     ];
 
-    // 3. 打印机配置（适配 56mm 热敏纸）
+    // 打印机配置（优化静默打印参数）
     const options = {
         preview: false,
-        width: '56mm', // 强制设置为打印机宽度
-        margin: '0 2mm', // 左右边距 2mm，避免内容贴边
-        // copies: 1,
-        printerName: 'KPOS_58 Printer',
-        silent: false, // 静默打印，不弹对话框
-        timeOutPerLine: 500 // 延长超时时间，确保二维码打印完成
+        width: '56mm', // 强制匹配56mm热敏纸
+        margin: '0 2mm',
+        printerName: printerName, // 使用匹配后的打印机名称
+        silent: true, // 开启静默打印（核心修改）
+        timeOutPerLine: 1000, // 进一步延长超时时间，适配低速打印机
+        pageSize: { // 新增：自定义纸张尺寸（56mm热敏纸，关键！）
+            width: 56 * 96 / 25.4, // 转换为像素（96 DPI，56mm = 2.2047英寸）
+            height: 100 * 96 / 25.4 // 高度可自定义
+        }
     };
 
     return new Promise((resolve, reject) => {
         PosPrinter.print(printData, options, window)
-            .then(() => resolve('打印成功'))
-            .catch((error) => reject(`打印失败：${error.message}`));
+            .then(() => {
+                console.log('打印成功');
+                resolve('打印成功');
+            })
+            .catch((error) => {
+                console.error('打印失败：', error);
+                // 兜底：静默打印失败时，切换为非静默模式重试
+                options.silent = false;
+                PosPrinter.print(printData, options, window)
+                    .then(() => resolve('打印成功（手动模式）'))
+                    .catch((err) => reject(`打印失败：${err.message}`));
+            });
     });
 }
 // 监听渲染进程的打印请求
@@ -276,7 +302,7 @@ ipcMain.handle('stop-reader', () => {
     return { success: false, message: '读卡器未运行' };
 });
 
-// 初始化串口连接
+// 初始化串口连接（对齐 Python 成功参数）
 function initSerialPort(portName, baudRate, win) {
     // 关闭已存在的连接
     if (serialPortInstance) {
@@ -287,27 +313,47 @@ function initSerialPort(portName, baudRate, win) {
         serialPortInstance = new SerialPort({
             path: portName,
             baudRate: baudRate,
-            autoOpen: false
+            autoOpen: false,
+            dataBits: 8,
+            stopBits: 1,
+            parity: 'none',
+            timeout: 1000
         });
 
-        // 创建解析器
-        const parser = serialPortInstance.pipe(new ReadlineParser({ delimiter: '\n' }));
+        // 修正1：先监听原始数据（最底层，确保能捕获任何数据）
+        serialPortInstance.on('data', (rawData) => {
+            // 强制打印到主进程控制台（无视渲染进程）
+            win.webContents.send('send-log', `原始数据(Buffer): ${rawData}`);
+            win.webContents.send('send-log', `原始数据(字符串): ${rawData.toString('utf-8')}`);
 
-        // 监听数据接收
+            // 原始数据手动解析（兜底）
+            const rawCode = rawData.toString('utf-8').trim().replace(/\r|\n/g, '');
+            if (rawCode) {
+                console.log('原始数据解析结果:', rawCode);
+                win?.webContents.send('serial-data-received', rawCode);
+            }
+        });
+
+        // 解析器作为备用（可选）
+        const parser = serialPortInstance.pipe(new ReadlineParser({ delimiter: '\r\n' }));
         parser.on('data', (data) => {
             const code = data.trim();
+            win.webContents.send('send-log', `过滤前:${data}`);
+            win.webContents.send('send-log', `过滤后:${code}`);
+
             if (code) {
                 win.webContents.send('serial-data-received', code);
             }
         });
 
-        // 监听错误事件
+        // 错误事件
         serialPortInstance.on('error', (err) => {
             win.webContents.send('serial-error', `串口错误: ${err.message}`);
         });
 
-        // 监听关闭事件
+        // 关闭事件
         serialPortInstance.on('close', () => {
+            console.log('串口已关闭');
             win.webContents.send('serial-closed', '串口已关闭');
         });
 
@@ -320,6 +366,7 @@ function initSerialPort(portName, baudRate, win) {
             win.webContents.send('serial-connected', `已连接到 ${portName} (${baudRate}bps)`);
         });
     } catch (err) {
+        console.error('串口初始化失败:', err);
         win.webContents.send('serial-error', `初始化失败: ${err.message}`);
     }
 }
@@ -345,4 +392,79 @@ ipcMain.on('close-serial', () => {
 // 主进程响应渲染进程的配置请求（通过IPC）
 ipcMain.handle('get-server-config', () => {
     return appConfig.server; // 返回服务器配置
+});
+
+// 监听渲染进程的保存Excel请求
+ipcMain.handle('saveExcelFile', async (event, excelBase64, defaultFileName) => {
+    try {
+        // 弹出保存对话框
+        const { filePath, canceled } = await dialog.showSaveDialog({
+            title: '保存Excel文件',
+            defaultPath: defaultFileName,
+            filters: [
+                { name: 'Excel Files', extensions: ['xlsx', 'xls'] },
+                { name: 'All Files', extensions: ['*'] }
+            ]
+        });
+
+        if (canceled || !filePath) {
+            return { success: false, message: '用户取消保存' };
+        }
+
+        // 关键：验证base64字符串并转换为Buffer
+        if (typeof excelBase64 !== 'string') {
+            return { success: false, message: '无效的文件数据（非base64字符串）' };
+        }
+
+        // 校验base64格式（简单校验，可选）
+        const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/;
+        if (!base64Regex.test(excelBase64)) {
+            return { success: false, message: '无效的base64字符串格式' };
+        }
+
+        // 将base64转换为Node.js的Buffer
+        const nodeBuffer = Buffer.from(excelBase64, 'base64');
+
+        // 异步写入文件
+        await fs.writeFile(filePath, nodeBuffer);
+
+        return { success: true, message: '保存成功', filePath: filePath };
+    } catch (error) {
+        console.error('保存文件失败:', error);
+        return { success: false, message: `保存失败：${error.message}` };
+    }
+});
+// 初始化 electron-store
+const store = new Store({
+    name: 'app-store', // 存储文件名称
+    defaults: { // 默认数据（可选）
+        user: {
+            username: '',
+            password: '',
+            rememberPwd: false,
+            autoLogin: false
+        }
+    }
+});
+// 注册 IPC 接口：获取存储数据
+ipcMain.handle('store-get', (event, key) => {
+    return store.get(key);
+});
+
+// 注册 IPC 接口：设置存储数据
+ipcMain.handle('store-set', (event, key, value) => {
+    // 新增：如果值为 null/undefined/空字符串，使用 delete() 清空
+    console.log(`${key}: ${value}`);
+    if (value === '' || value === null || value === undefined) {
+        store.delete(key);
+    } else {
+        store.set(key, value);
+    }
+    return 'success';
+});
+
+// 注册 IPC 接口：删除存储数据
+ipcMain.handle('store-delete', (event, key) => {
+    store.delete(key);
+    return 'success';
 });

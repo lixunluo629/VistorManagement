@@ -130,15 +130,15 @@ export const MainPage = {
                 ><el-icon><DataAnalysis /></el-icon></el-button>
                 <span class="action-btn-span">数据中心</span>
               </div>
-              <div class="action-btn-item">
-                <el-button
-                    size="large"
-                    circle
-                    class="action-btn"
-                    @click="$router.push('/settings')"
-                ><el-icon><Setting /></el-icon></el-button>
-                <span class="action-btn-span">设置中心</span>
-              </div>
+<!--              <div class="action-btn-item">-->
+<!--                <el-button-->
+<!--                    size="large"-->
+<!--                    circle-->
+<!--                    class="action-btn"-->
+<!--                    @click="$router.push('/settings')"-->
+<!--                ><el-icon><Setting /></el-icon></el-button>-->
+<!--                <span class="action-btn-span">设置中心</span>-->
+<!--              </div>-->
               <div class="action-btn-item">
                 <el-button
                     size="large"
@@ -218,7 +218,7 @@ export const MainPage = {
     setup() {
         const { ref, onMounted, onUnmounted, nextTick, watch, reactive } = Vue;
         const { ipcRenderer } = require('electron');
-        const { ElMessage } = ElementPlus;
+        const { ElMessage, ElLoading } = ElementPlus;
 
         const dashboardData = ref({
             notLeftList: [], // 未离开访客
@@ -283,20 +283,72 @@ export const MainPage = {
             }, 30);
         };
         // 处理扫码结果
-        const handleScanCode = (code) => {
-            handleDialogClose();
-            checkedOutVisitor.value = {
-                name: code,
-                checkoutTime: new Date().toLocaleString()
-            };
-            showSuccessDialog.value = true;
-        };
-        // 点击签离按钮时激活串口读取
-        watch(showCheckoutDialog, (newVal) => {
-            if (newVal) startScanAnimation();
-            else scanProgress.value = 0;
-        });
+        const handleScanCode = async (code) => {
+            // 显示加载状态
+            const loading = ElLoading.service({
+                lock: true,
+                text: '处理签离中...',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
 
+            try {
+                // 调用签离接口，扫码结果code作为applicationNo，type固定为leave
+                const data = await visitorAPI.record({
+                    application_no: code,
+                    type: 'leave',
+                    remark: '访客自助签离'
+                });
+
+                if (data) {
+                    // 签离成功，更新显示信息
+                    checkedOutVisitor.value = {
+                        name: data.visitor_name || code, // 优先显示访客姓名，无则显示申请号
+                        checkoutTime: new Date().toLocaleString()
+                    };
+                    showSuccessDialog.value = true;
+                    ElMessage.success('签离成功');
+
+                    // 刷新仪表盘数据
+                    fetchDashboardData();
+                } else {
+                    ElMessage.error('签离失败，未找到对应访客信息');
+                }
+            } catch (error) {
+                console.error('签离接口调用失败:', error);
+                ElMessage.error('签离处理失败，请重试');
+            } finally {
+                // 关闭加载状态
+                loading.close();
+            }
+        };
+
+        // 点击签离按钮时激活串口读取
+        // 点击签离按钮时激活串口读取（修复核心）
+        watch(showCheckoutDialog, (newVal) => {
+            if (newVal) {
+                startScanAnimation();
+                // 新增：打开弹窗时初始化串口连接
+                initSerialPort();
+            } else {
+                scanProgress.value = 0;
+                // 关闭弹窗时关闭串口
+                closeSerialPort();
+            }
+        });
+        // 处理串口连接状态反馈
+        const handleSerialConnect = (event, isConnected) => {
+            serialState.isConnected = isConnected;
+            if (isConnected) {
+                ElMessage.success('扫码设备已连接');
+            } else {
+                ElMessage.error('扫码设备连接失败，请检查设置');
+            }
+        };
+        // 处理串口错误信息
+        const handleSerialError = (event, error) => {
+            serialState.error = error;
+            ElMessage.error(`设备错误: ${error}`);
+        };
         const removeVisitorFromActiveList = (name) => {
             activeVisitors.value = activeVisitors.value.filter(v => v.name !== name);
             visitLogs.value.unshift({
@@ -347,14 +399,34 @@ export const MainPage = {
 
         onMounted(()=>{
             fetchDashboardData();
-            // 添加定时刷新（如每5分钟）
             setInterval(fetchDashboardData, 1 * 60 * 1000);
+
+            // 新增：监听串口连接状态
+            ipcRenderer.on('serial-connected', handleSerialConnect);
+            ipcRenderer.on('serial-closed', (event, msg) => {
+                serialState.isConnected = false;
+            });
+            ipcRenderer.on('send-log', (event, msg) =>{
+                console.log(`调试日志:${msg}`);
+            })
+            ipcRenderer.on('serial-error', handleSerialError);
+            // 扫码数据接收
             ipcRenderer.on('serial-data-received', (event, code) => {
-                handleScanCode(code);
+                console.log(`扫码结果${code}`)
+                console.log(showCheckoutDialog.value)
+                // 确保在签离弹窗打开时才处理扫码数据
+                if (showCheckoutDialog.value) {
+                    handleScanCode(code);
+                }
             });
         });
         onUnmounted(() => {
+            // 移除所有监听器，避免内存泄漏
             ipcRenderer.removeAllListeners('serial-data-received');
+            ipcRenderer.removeAllListeners('serial-connected');
+            ipcRenderer.removeAllListeners('serial-error');
+            ipcRenderer.removeAllListeners('serial-closed');
+            closeSerialPort(); // 组件卸载时关闭串口
         });
         return {
             activeTab,
@@ -364,7 +436,8 @@ export const MainPage = {
             scanProgress,
             checkedOutVisitor,
             serialState,
-            handleDialogClose
+            handleDialogClose,
+            initSerialPort,
         };
     }
 };

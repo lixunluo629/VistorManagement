@@ -34,7 +34,11 @@ export const LoginPage = {
                   @keyup.enter.stop="handleLogin"
               ></el-input>
             </el-form-item>
-
+            <!-- 记住密码 + 自动登录复选框 -->
+            <el-form-item class="login-checkbox-group">
+              <el-checkbox v-model="loginForm.rememberPwd">记住密码</el-checkbox>
+<!--              <el-checkbox v-model="loginForm.autoLogin" :disabled="!loginForm.rememberPwd">自动登录</el-checkbox>-->
+            </el-form-item>
             <el-form-item>
               <el-button
                   type="primary"
@@ -56,15 +60,17 @@ export const LoginPage = {
         // 登录表单数据
         const loginForm = reactive({
             username: '',
-            password: ''
+            password: '',
+            rememberPwd: false,
+            // autoLogin: false
         });
 
         // 表单验证规则
         const rules = reactive({
             username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
-            password: [{required: true, message: '请输入密码', trigger: 'blur'}]
+            password: [{required: true, message: '请输入密码', trigger: 'blur'}],
         });
-
+        // 记住密码、自动登录状态
         const loginFormRef = ref(null);
         const loading = ref(false); // 添加加载状态
 
@@ -90,6 +96,9 @@ export const LoginPage = {
                             localStorage.setItem('userInfo', JSON.stringify(data.user_info));
 
                             // 4. 登录成功处理
+                            if (loginForm.rememberPwd){
+                                await saveData();
+                            }
                             ElMessage.success('登录成功');
                             ipcRenderer.send('switch-to-main-window');
                         }
@@ -108,7 +117,30 @@ export const LoginPage = {
             // 可以根据需求修改关闭行为，比如关闭窗口或返回上一页
             ipcRenderer.send('close-app');
         };
+        const getData = async () => {
+            // 调用主进程的 store-get 接口
+            // 修复：去掉 .value，直接赋值给 reactive 对象的属性
+            loginForm.username = await ipcRenderer.invoke('store-get', 'user.username') || '';
+            loginForm.password = await ipcRenderer.invoke('store-get', 'user.password') || '';
+            loginForm.rememberPwd = await ipcRenderer.invoke('store-get', 'user.rememberPwd') || false;
+            // loginForm.autoLogin = await ipcRenderer.invoke('store-get', 'user.autoLogin') || false;
+
+            console.log(loginForm);
+            // 自动登录
+            // if (loginForm.autoLogin && loginForm.username && loginForm.password) {
+            //     await handleLogin();
+            // }
+        };
+        // 保存数据到 electron-store
+        const saveData = async () => {
+            // 调用主进程的 store-set 接口
+            await ipcRenderer.invoke('store-set', 'user.username', loginForm.username);
+            await ipcRenderer.invoke('store-set', 'user.password', loginForm.password);
+            await ipcRenderer.invoke('store-set', 'user.rememberPwd', loginForm.rememberPwd);
+            // await ipcRenderer.invoke('store-set', 'user.autoLogin', loginForm.autoLogin);
+        };
         onMounted(() => {
+            getData().then(r => {});
         });
         onUnmounted(() => {
         });
