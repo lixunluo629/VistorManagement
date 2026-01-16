@@ -31,15 +31,17 @@ export const RegisterPage = {
                     <el-row :gutter="15" style="margin-bottom: 15px;">
                       <el-col :span="12">
                         <div
-                            style="border: 1px dashed #91c6f2; border-radius: 6px; height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-                          <el-icon :size="24" style="color: #1890ff; margin-bottom: 5px;">
-                            <UserFilled/>
-                          </el-icon>
-                          <p style="font-size: 12px; color: #1890ff;">
-                            {{ visitorInfo.idCardPhoto ? '身份证照片' : '身份证照' }}
-                          </p>
+                            style="border: 1px dashed #91c6f2; border-radius: 6px; height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden;">
+                          <!-- 身份证照片展示（自动显示读卡器返回的base64） -->
+                          <div v-if="!visitorInfo.idCardPhoto"
+                               style="width: 100%; height: 100%; display: flex; flex-direction: column;align-items: center;justify-content: center;">
+                            <el-icon :size="24" style="color: #1890ff; margin-bottom: 5px;">
+                              <UserFilled/>
+                            </el-icon>
+                            <p style="font-size: 12px; color: #1890ff;">身份证照</p>
+                          </div>
                           <img v-if="visitorInfo.idCardPhoto" :src="visitorInfo.idCardPhoto"
-                               style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;"/>
+                               style="height: 100%; object-fit: cover; border-radius: 6px;"/>
                         </div>
                       </el-col>
                       <el-col :span="12">
@@ -61,36 +63,50 @@ export const RegisterPage = {
                     </el-row>
 
                     <!-- 来访状态 -->
-                    <el-form-item label="来访状态" label-width="80px" style="margin-bottom: 12px;">
+                    <el-form-item label="来访状态" label-width="90px" style="margin-bottom: 12px;">
                       <el-input v-model="visitorInfo.status" readonly style="background-color: #f0f7ff;"/>
                     </el-form-item>
 
-                    <!-- 访客姓名 -->
-                    <el-form-item label="访客姓名" label-width="80px" style="margin-bottom: 12px;">
+                    <!-- 访客姓名（必填） -->
+                    <el-form-item label="访客姓名" label-width="90px" style="margin-bottom: 12px;">
+                      <template #label>
+                        访客姓名<span style='color: #f56c6c; margin-left: 4px;'>*</span>
+                      </template>
                       <el-input v-model="visitorInfo.name" placeholder="请输入姓名"/>
                     </el-form-item>
 
-                    <!-- 证件号码 -->
-                    <el-form-item label="证件号码" label-width="80px" style="margin-bottom: 12px;">
-                      <el-input v-model="visitorInfo.idCard" placeholder="请输入身份证号"/>
+                    <!-- 证件号码（非必填） -->
+                    <el-form-item label="证件号码" label-width="90px" style="margin-bottom: 12px;">
+                      <el-input v-model="visitorInfo.idCard" placeholder="请输入身份证号（非必填）"/>
                     </el-form-item>
 
-                    <!-- 手机号码 -->
-                    <el-form-item label="手机号码" label-width="80px" style="margin-bottom: 12px;">
-                      <el-input v-model="visitorInfo.phone" placeholder="请输入手机号" @keyup.enter="handlePhoneQuery"/>
+                    <!-- 手机号码（必填） -->
+                    <el-form-item label="手机号码" label-width="90px" style="margin-bottom: 12px;">
+                      <template #label>
+                        手机号码<span style='color: #f56c6c; margin-left: 4px;'>*</span>
+                      </template>
+                      <el-input 
+                          v-model="visitorInfo.phone" 
+                          placeholder="请输入手机号" 
+                          @keyup.enter="handlePhoneQuery"
+                          type="number"/>
                     </el-form-item>
 
-                    <el-form-item label="访客单位" label-width="80px" style="margin-bottom: 12px;">
+                    <!-- 访客单位（必填） -->
+                    <el-form-item label="访客单位" label-width="90px" style="margin-bottom: 12px;">
+                      <template #label>
+                        访客单位<span style='color: #f56c6c; margin-left: 4px;'>*</span>
+                      </template>
                       <el-input v-model="visitorInfo.company" placeholder="请输入访客单位"/>
                     </el-form-item>
-                    
+
                     <!-- 访客编号 -->
-                    <el-form-item label="访客编号" label-width="80px" style="margin-bottom: 12px;">
-                      <el-input v-model="visitorInfo.applicationNo" readonly style="background-color: #f0f7ff;"/>
-                      <div slot="help" style="font-size: 12px; color: #666;">
-                        {{ visitorInfo.applicationNo ? '已获取预约编号' : '无预约将自动生成' }}
-                      </div>
-                    </el-form-item>
+<!--                    <el-form-item label="访客编号" label-width="90px" style="margin-bottom: 12px;">-->
+<!--                      <el-input v-model="visitorInfo.applicationNo" readonly style="background-color: #f0f7ff;"/>-->
+<!--                      <div slot="help" style="font-size: 12px; color: #666;">-->
+<!--                        {{ visitorInfo.applicationNo ? '已获取预约编号' : '无预约将自动生成' }}-->
+<!--                      </div>-->
+<!--                    </el-form-item>-->
                   </div>
                   <div style="margin-top: 20px; border-top: 1px solid #d9d9d9; padding-top: 15px;display: none;">
                     <p style="font-size: 14px; font-weight: 500; margin-bottom: 10px;">读卡器数据</p>
@@ -115,22 +131,28 @@ export const RegisterPage = {
 
                   <!-- 内容区 -->
                   <div style="padding: 15px;">
-                    <!-- 来访事由 -->
+                    <!-- 来访事由（必填） -->
                     <div style="margin-bottom: 15px;">
                       <label
                           style="display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: 500;">
-                        来访事由
+                        来访事由<span style='color: #f56c6c; margin-left: 4px;'>*</span>
                       </label>
-                      <el-select v-model="supplementInfo.reason" placeholder="请选择事由" style="width: 100%;">
-                        <el-option label="业务洽谈" value="business"></el-option>
-                        <el-option label="技术支持" value="tech"></el-option>
-                        <el-option label="面试" value="interview"></el-option>
-                        <el-option label="参观考察" value="visit"></el-option>
-                        <el-option label="其他" value="other"></el-option>
+                      <el-select
+                          v-model="supplementInfo.reason"
+                          placeholder="请选择事由"
+                          style="width: 100%;"
+                          :loading="reasonLoading"
+                      >
+                        <el-option
+                            v-for="item in reasonList"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        ></el-option>
                       </el-select>
                     </div>
 
-                    <!-- 车牌号码（改为动态列表） -->
+                    <!-- 车牌号码（非必填，动态列表） -->
                     <div style="margin-bottom: 15px;">
                       <label
                           style="display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: 500;">
@@ -140,7 +162,7 @@ export const RegisterPage = {
                       <div v-for="(plate, index) in supplementInfo.licensePlate" :key="index" style="margin-bottom: 8px; display: flex; gap: 8px;">
                         <el-input
                             v-model="supplementInfo.licensePlate[index]"
-                            placeholder="如：粤A12345"
+                            placeholder="如：粤A12345（非必填）"
                             style="flex: 1;"
                         />
                         <el-button
@@ -163,16 +185,20 @@ export const RegisterPage = {
                       </el-button>
                     </div>
 
-                    <!-- 来访人数 -->
+                    <!-- 来访人数（必填） -->
                     <div style="margin-bottom: 15px;">
                       <label
                           style="display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: 500;">
-                        来访人数
+                        来访人数<span style='color: #f56c6c; margin-left: 4px;'>*</span>
                       </label>
-                      <el-input v-model="supplementInfo.numVisitor" placeholder="请输入来访人数" style="width: 100%;"/>
+                      <el-input 
+                          v-model="supplementInfo.numVisitor" 
+                          placeholder="请输入来访人数" 
+                          type="number"
+                          style="width: 100%;"/>
                     </div>
 
-                    <!-- 登记备注 -->
+                    <!-- 登记备注（非必填） -->
                     <div style="margin-bottom: 15px;">
                       <label
                           style="display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: 500;">
@@ -197,30 +223,41 @@ export const RegisterPage = {
 
                   <!-- 内容区 -->
                   <div style="padding: 15px;">
-                    <!-- 被访人查询 -->
-<!--                    <div style="margin-bottom: 15px;">-->
-<!--                      <el-input-->
-<!--                          v-model="visitInfo.searchKeyword"-->
-<!--                          placeholder="请输入拜访人姓名/手机号码进行查询"-->
-<!--                          @keyup.enter.stop="searchInterviewee"-->
-<!--                          style="width: 100%;"-->
-<!--                      >-->
-<!--                        <el-button slot="append" icon="Search" @click="searchInterviewee"></el-button>-->
-<!--                      </el-input>-->
-<!--                    </div>-->
+                    <!-- 被访人查询 - 改为下拉选择组件 -->
+                    <div style="margin-bottom: 15px;">
+                      <el-select
+                          v-model="visitInfo.selectedIntervieweeId"
+                          placeholder="请输入被访人姓名进行查询/选择"
+                          filterable
+                          remote
+                          reserve-keyword
+                          :remote-method="searchInterviewee"
+                          :loading="intervieweeLoading"
+                          style="width: 100%;"
+                          @change="handleIntervieweeChange"
+                      >
+                        <el-option
+                            v-for="item in intervieweeList"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        >
+                        </el-option>
+                      </el-select>
+                    </div>
 
-                    <!-- 被访人信息（移除手机号显示） -->
+                    <!-- 被访人信息（移除手机号显示，必填） -->
                     <div
                         style="border: 1px solid #eee; border-radius: 6px; padding: 10px; margin-bottom: 15px; background-color: #fff; min-height: 80px; box-sizing: border-box;">
                       <el-row :gutter="10">
                         <el-col :span="12">
-                          <p style="font-size: 12px; color: #666; margin: 0 0 3px 0;">被访人姓名</p>
+                          <p style="font-size: 12px; color: #666; margin: 0 0 3px 0;">被访人姓名<span style='color: #f56c6c; margin-left: 4px;'>*</span></p>
                           <p style="font-weight: 500; margin: 0 0 8px 0; min-height: 20px;">
                             {{ visitInfo.interviewee.name || '-' }}
                           </p>
                         </el-col>
                         <el-col :span="12">
-                          <p style="font-size: 12px; color: #666; margin: 0 0 3px 0;">所属部门</p>
+                          <p style="font-size: 12px; color: #666; margin: 0 0 3px 0;">所属部门<span style='color: #f56c6c; margin-left: 4px;'>*</span></p>
                           <p style="margin: 0 0 8px 0; min-height: 20px;">
                             {{ visitInfo.interviewee.department || '-' }}
                           </p>
@@ -228,31 +265,63 @@ export const RegisterPage = {
                       </el-row>
                     </div>
 
-                    <!-- 新增：拜访区域 -->
+                    <!-- 拜访区域（必填）- 改为下拉选择框 -->
                     <div style="margin-bottom: 15px;">
                       <label
                           style="display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: 500;">
-                        拜访区域
+                        拜访区域<span style='color: #f56c6c; margin-left: 4px;'>*</span>
                       </label>
-                      <el-input v-model="visitInfo.areaNames" placeholder="拜访区域信息" style="width: 100%;" disabled/>
+                      <el-select
+                          v-model="visitInfo.areaNames"
+                          placeholder="请选择拜访区域"
+                          style="width: 100%;"
+                          @change="handleAreaChange"
+                          multiple
+                          collapse-tags
+                      >
+                        <el-option
+                            v-for="area in areaList"
+                            :key="area.id"
+                            :label="area.name"
+                            :value="area.id"
+                        ></el-option>
+                      </el-select>
                     </div>
 
-                    <!-- 新增：拜访时间 -->
+                    <!-- 拜访时间（必填）- 改为时间选择器 -->
                     <div style="margin-bottom: 15px;">
                       <label
                           style="display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: 500;">
-                        拜访时间
+                        拜访时间<span style='color: #f56c6c; margin-left: 4px;'>*</span>
                       </label>
-                      <el-input v-model="visitInfo.planVisitTime" placeholder="开始时间" style="width: 100%;" disabled/>
+                      <el-date-picker
+                          v-model="visitInfo.planVisitTime"
+                          type="datetime"
+                          placeholder="选择开始时间"
+                          style="width: 100%;"
+                          format="YYYY-MM-DD HH:mm:ss"
+                          value-format="YYYY-MM-DD HH:mm:ss"
+                          placement="left"
+                          editable="false"
+                      ></el-date-picker>
                     </div>
 
-                    <!-- 新增：离开时间 -->
+                    <!-- 离开时间（必填）- 改为时间选择器 -->
                     <div style="margin-bottom: 15px;">
                       <label
                           style="display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: 500;">
-                        离开时间
+                        离开时间<span style='color: #f56c6c; margin-left: 4px;'>*</span>
                       </label>
-                      <el-input v-model="visitInfo.planLeaveTime" placeholder="结束时间" style="width: 100%;" disabled/>
+                      <el-date-picker
+                          v-model="visitInfo.planLeaveTime"
+                          type="datetime"
+                          placeholder="选择结束时间"
+                          style="width: 100%;"
+                          format="YYYY-MM-DD HH:mm:ss"
+                          value-format="YYYY-MM-DD HH:mm:ss"
+                          placement="left"
+                          editable="false"
+                      ></el-date-picker>
                     </div>
                   </div>
                 </div>
@@ -367,27 +436,31 @@ export const RegisterPage = {
         const latestCardData = ref(null); // 最新数据
 
         onMounted(async () => {
-            ipcRenderer.on('main-process-log', (event, data) => {
-                console.log('[主进程]', data.message);
+            ipcRenderer.on('python-log', (event, data) => {
+                // console.log('[主进程]', data);
             });
             // 启动读卡器进程
-            const result = await ipcRenderer.invoke('start-reader');
-            if (result.success) {
-                ElementPlus.ElNotification({
-                    title: '提示',
-                    message: '读卡器已启动，等待刷卡...',
-                    type: 'info'
-                });
-            }
+            ElementPlus.ElNotification({
+                title: '提示',
+                message: '读卡器已启动，等待刷卡...',
+                type: 'info'
+            });
 
             // 监听主进程发送的读卡器数据
             ipcRenderer.on('card-data', async (event, data) => {
                 console.log('收到的数据:', data)
-                if (data.type === 'success' && data.content?.data) {
-                    const cardInfo = data.content.data; // 提取身份证信息
+                if (data.type === 'success' && data.content) {
+                    const cardInfo = data.content; // 提取身份证信息
                     console.log('解析后的身份证信息:', cardInfo);
 
                     // 1. 显示身份证数据
+                    if (cardInfo) {
+                        visitorInfo.value.idCard = cardInfo.idNumber;
+                        visitorInfo.value.name = cardInfo.name;
+                        if (cardInfo.photoBase64) {
+                            visitorInfo.value.idCardPhoto = cardInfo.photoBase64; // 赋值到身份证照片区域
+                        }
+                    }
                     latestCardData.value = cardInfo;
                     cardDataList.value.unshift({
                         ...cardInfo,
@@ -407,11 +480,16 @@ export const RegisterPage = {
                     ElMessage.warning(data.content?.message || '身份证读取失败');
                 }
             });
+            // 加载基础数据：区域 + 事由
+            await Promise.all([
+                loadAreaList(),
+                loadFormReason()
+            ]);
         });
 
         onUnmounted(async () => {
             // 停止读卡器进程
-            await ipcRenderer.invoke('stop-reader');
+            // await ipcRenderer.invoke('stop-reader');
             // 移除事件监听，避免内存泄漏
             ipcRenderer.removeAllListeners('card-data');
             // 移除摄像头监控
@@ -421,7 +499,7 @@ export const RegisterPage = {
         // 1. 访客个人信息
         const originalData = ref(null); // 接口读取访客申请原始数据
         const visitorInfo = ref({
-            status: '已预约',
+            status: '未预约',
             name: '',
             idCard: '',
             phone: '',
@@ -442,16 +520,24 @@ export const RegisterPage = {
         // 3. 拜访信息（卡号授权改为数字输入）
         const visitInfo = ref({
             searchKeyword: '',
+            selectedIntervieweeId: '', // 新增：选中的被访人ID
             interviewee: {      // 拜访人信息
                 name: '',
                 department: ''
             },
-            areaNames: '', // 拜访区域
-            planVisitTime: '', // 拜访时间
-            planLeaveTime: '' // 离开时间
+            areaNames: [], // 拜访区域（存储选中的区域名称）
+            planVisitTime: '', // 拜访时间（datetime格式）
+            planLeaveTime: '' // 离开时间（datetime格式）
         });
+        // 新增：被访人相关响应式数据
+        const intervieweeList = ref([]); // 被访人列表
+        const intervieweeLoading = ref(false); // 被访人查询加载状态
 
-
+        // 新增：拜访区域相关响应式数据
+        const areaList = ref([]); // 拜访区域列表
+        const areaLoading = ref(false); // 区域加载状态
+        const reasonList = ref([]); // 来访事由列表
+        const reasonLoading = ref(false); // 事由加载状态
         // 4. 弹窗控制
         const showCameraDialog = ref(false); // 摄像头弹窗
         const showSuccessDialog = ref(false);
@@ -488,7 +574,7 @@ export const RegisterPage = {
                 name: appData.interviewee || '',
                 department: appData.host_department || ''
             };
-            visitInfo.value.areaNames = appData.area_names || '';
+            visitInfo.value.areaNames = appData.area_ids || [];
             visitInfo.value.planVisitTime = appData.plan_visit_time || '';
             visitInfo.value.planLeaveTime = appData.plan_leave_time || '';
         };
@@ -539,7 +625,6 @@ export const RegisterPage = {
         const updateVisitorInfo = async (submitData) => {
             try {
                 const data = await visitorAPI.update(submitData); // 替换为实际更新接口
-                console.log(data);
                 if (data) {
                     return { success: true };
                 } else {
@@ -622,13 +707,146 @@ export const RegisterPage = {
             }
         });
 
-        // 6. 被访人查询
-        const searchInterviewee = () => {
-            if (!visitInfo.value.searchKeyword) {
-                ElementPlus.ElNotification({title: '提示', message: '请输入查询关键词', type: 'warning'});
+        // 6. 拜访信息区域功能
+        // 新增：加载拜访区域列表（接口获取）
+        const loadAreaList = async () => {
+            try {
+                areaLoading.value = true;
+                const res = await visitorAPI.getAreaList('');
+                console.log(res);
+                if (res) {
+                    areaList.value = res.map(item => ({
+                        id: item.id,
+                        name: item.name
+                    })) || [];
+                }
+            } catch (error) {
+                console.error('加载拜访区域失败:', error);
+                ElMessage.error('加载拜访区域失败，请重试');
+            } finally {
+                areaLoading.value = false;
+            }
+        };
+        // 加载拜访事由（适配getFormReason接口）
+        const loadFormReason = async () => {
+            try {
+                const res = await visitorAPI.getFormReason();
+                if (res) {
+                    // 将接口返回的事由列表赋值给reasonList（需要先定义）
+                    reasonList.value = res.map(item => ({
+                        id: item.id,
+                        name: item.name
+                    })) || [];
+                }
+            } catch (error) {
+                console.error('加载来访事由失败:', error);
+                ElMessage.error('加载来访事由失败，使用默认选项');
+            }
+        };
+        // 改造：被访人远程搜索方法
+        const searchInterviewee = async (keyword) => {
+            if (!keyword) {
+                intervieweeList.value = [];
                 return;
             }
-            visitInfo.value.interviewee = {name: '张经理', department: '技术部', phone: '13800138000'};
+
+            try {
+                intervieweeLoading.value = true;
+                // 调用被访人查询接口，替换为实际接口地址
+                const res = await visitorAPI.searchInterviewee(keyword);
+                if (res) {
+                    intervieweeList.value = res.map(item => ({
+                        id: item.id,
+                        name: item.name + '  ———  ' + item.department,
+                        department: item.department
+                    })) || [];
+                }
+            } catch (error) {
+                console.error('查询被访人失败:', error);
+                ElMessage.error('查询被访人失败，请重试');
+                intervieweeList.value = [];
+            } finally {
+                intervieweeLoading.value = false;
+            }
+        };
+
+        // 新增：监听被访人选择变化
+        const handleIntervieweeChange = (val) => {
+            // 1. 增强调试日志：打印所有关键数据
+            console.log('===== 被访人选择变更 =====');
+            console.log('选中的val值:', val, '类型:', typeof val);
+            console.log('visitInfo.selectedIntervieweeId:', visitInfo.value?.selectedIntervieweeId); // 兼容ref/非ref
+            console.log('当前intervieweeList:', intervieweeList.value);
+            console.log('当前interviewee原值:', visitInfo.value?.interviewee);
+
+            // 2. 空值处理：直接清空
+            if (!val || val === '') {
+                console.log('清空被访人信息');
+                // 确保是响应式更新（兼容ref对象）
+                if (visitInfo.value) { // 如果visitInfo是ref对象
+                    visitInfo.value.interviewee = { name: '', department: '' };
+                } else { // 如果visitInfo是普通对象
+                    visitInfo.interviewee = { name: '', department: '' };
+                }
+                return;
+            }
+
+            try {
+                // 3. 统一ID类型：解决数字/字符串不匹配问题（核心！）
+                const targetId = typeof val === 'string' ? val : Number(val);
+                console.log('统一类型后的目标ID:', targetId, '类型:', typeof targetId);
+
+                // 4. 查找匹配项：兼容ID的数字/字符串类型
+                const selectedItem = intervieweeList.value.find(item => {
+                    // 把item.id也转为和targetId相同的类型再对比
+                    const itemId = typeof targetId === 'string' ? String(item.id) : Number(item.id);
+                    return itemId === targetId;
+                });
+
+                console.log('找到的匹配项:', selectedItem);
+
+                // 5. 更新被访人信息（确保响应式）
+                if (selectedItem) {
+                    const newInterviewee = {
+                        name: selectedItem.name || '未知姓名',
+                        department: selectedItem.department || '无部门'
+                    };
+                    console.log('要更新的interviewee:', newInterviewee);
+
+                    // 响应式更新（关键：区分ref/普通对象）
+                    if (visitInfo.value) {
+                        visitInfo.value.interviewee = newInterviewee;
+                    } else {
+                        visitInfo.interviewee = newInterviewee;
+                    }
+                } else {
+                    // 未找到匹配项时清空
+                    console.warn('未找到ID为', targetId, '的被访人');
+                    if (visitInfo.value) {
+                        visitInfo.value.interviewee = { name: '', department: '' };
+                    } else {
+                        visitInfo.interviewee = { name: '', department: '' };
+                    }
+                }
+
+                // 6. 验证更新结果
+                console.log('更新后的interviewee:', visitInfo.value?.interviewee || visitInfo.interviewee);
+            } catch (error) {
+                console.error('更新被访人信息失败:', error);
+                // 异常时清空
+                if (visitInfo.value) {
+                    visitInfo.value.interviewee = { name: '', department: '' };
+                } else {
+                    visitInfo.interviewee = { name: '', department: '' };
+                }
+            }
+        };
+
+        // 新增：拜访区域变更处理
+        const handleAreaChange = (val) => {
+            // 可添加区域变更后的额外逻辑
+            console.log('选中的拜访区域:', val);
+            console.log(visitInfo.value.areaNames)
         };
 
         // 7. 清空表单
@@ -652,7 +870,7 @@ export const RegisterPage = {
             visitInfo.value = {
                 searchKeyword: '',
                 interviewee: { name: '', department: '' },
-                areaNames: '',
+                areaNames: [],
                 planVisitTime: '',
                 planLeaveTime: ''
             };
@@ -667,54 +885,113 @@ export const RegisterPage = {
             const random = Math.floor(Math.random() * 1000);
             return `VIS-${timestamp}-${random}`;
         };
+        const formatDateTime = (datetimeStr) => {
+            console.log(datetimeStr);
+            if (!datetimeStr) return '';
+            return datetimeStr.replace(' ', 'T').split(':').slice(0, 2).join(':');
+        };
         const handleRegister = async () => {
-            // 1. 表单校验（原有逻辑）
-            if (!visitorInfo.value.name || !visitorInfo.value.idCard) {
-                ElMessage.warning('请完善访客姓名和身份证信息');
-                return;
-            }
-            if (!visitorInfo.value.applicationNo) {
-                ElMessage.warning('未查询到对应访客申请，无法登记');
+            // 1. 表单校验（更新必填项校验逻辑）
+            const requiredFields = [
+                { name: '访客姓名', value: visitorInfo.value.name },
+                { name: '手机号码', value: visitorInfo.value.phone },
+                { name: '访客单位', value: visitorInfo.value.company },
+                { name: '来访事由', value: supplementInfo.value.reason },
+                { name: '来访人数', value: supplementInfo.value.numVisitor },
+                { name: '被访人姓名', value: visitInfo.value.interviewee.name },
+                { name: '所属部门', value: visitInfo.value.interviewee.department },
+                { name: '拜访区域', value: visitInfo.value.areaNames },
+                { name: '拜访时间', value: visitInfo.value.planVisitTime },
+                { name: '离开时间', value: visitInfo.value.planLeaveTime }
+            ];
+
+            // 检查所有必填项
+            const emptyField = requiredFields.find(item => !item.value);
+            if (emptyField) {
+                ElMessage.warning(`请完善${emptyField.name}信息`);
                 return;
             }
 
-            // 2. 新增：变更检测 + 提交更新（核心逻辑）
-            const changedFields = getChangedFields();
-            let updateSuccess = true; // 标记更新是否成功
-            // 有变更字段则先提交更新
-            if (changedFields && Object.keys(changedFields).length > 0) {
-                // 构造更新参数（必带application_id，拼接变更字段）
-                const submitData = {
-                    id: originalData.value?.application_id, // 从原始快照取主键
-                    ...changedFields
-                };
-                console.log(submitData);
+            // 2. 区分有预约/无预约流程
+            let updateSuccess = true;
+            let createResult = null; // 存储创建接口返回结果
+            const hasAppointment = !!visitorInfo.value.applicationNo;
 
-                // 调用更新接口
-                const updateResult = await updateVisitorInfo(submitData);
-                if (!updateResult.success) {
-                    updateSuccess = false; // 更新失败则终止后续流程
-                    ElMessage.error('信息更新失败，登记终止');
-                    return; // 直接返回，不执行后续登记逻辑
-                } else {
-                    ElMessage.success('信息更新成功，继续完成登记');
-                    // 更新原始快照（同步最新数据）
-                    originalData.value = { ...originalData.value, ...changedFields };
+            // ===== 分支1：有预约（原有更新逻辑）=====
+            if (hasAppointment) {
+                // 变更检测 + 提交更新
+                const changedFields = getChangedFields();
+                if (changedFields && Object.keys(changedFields).length > 0) {
+                    const submitData = {
+                        id: originalData.value?.application_id, // 从原始快照取主键
+                        ...changedFields
+                    };
+                    console.log('更新预约数据:', submitData);
+
+                    const updateResult = await updateVisitorInfo(submitData);
+                    if (!updateResult.success) {
+                        updateSuccess = false;
+                        ElMessage.error('信息更新失败，登记终止');
+                        return;
+                    } else {
+                        ElMessage.success('信息更新成功，继续完成登记');
+                        originalData.value = { ...originalData.value, ...changedFields };
+                    }
+                }
+            }
+            // ===== 分支2：无预约（新增创建逻辑）=====
+            else {
+                try {
+                    // 构造创建表单数据（完全匹配接口要求的字段名和格式）
+                    const createData = {
+                        visitorName: visitorInfo.value.name,         // 访客姓名
+                        phone: visitorInfo.value.phone,               // 手机号码
+                        idCard: visitorInfo.value.idCard || '',       // 证件号码（非必填）
+                        visitorUnit: visitorInfo.value.company,       // 访客单位
+                        visitAreas: visitInfo.value.areaNames,                       // 核心修改：提取ID数组
+                        // 时间格式转换：适配接口的 "2025-12-09T18:40" 格式
+                        arriveTime: formatDateTime(visitInfo.value.planVisitTime),  // 拜访时间
+                        leaveTime: formatDateTime(visitInfo.value.planLeaveTime),   // 离开时间
+                        visitorCount: Number(supplementInfo.value.numVisitor), // 来访人数（转数字）
+                        visitReason: Number(supplementInfo.value.reason),       // 来访事由（转数字）
+                        plateNumbers: supplementInfo.value.licensePlate.filter(item => item), // 车牌号数组（过滤空值）
+                        remark: supplementInfo.value.remark || '',    // 备注（非必填）
+                        visitor: visitInfo.value.selectedIntervieweeId ? Number(visitInfo.value.selectedIntervieweeId) : 0,
+                        photo: visitorInfo.value.livePhoto || '',     // 现场照片base64
+                        source: 'VM'    // 来源：现场访客机登记
+                    };
+                    console.log('创建新预约数据（匹配接口）:', createData);
+
+                    // 调用创建接口
+                    createResult = await visitorAPI.create(createData);
+                    if (!createResult) {
+                        updateSuccess = false;
+                        ElMessage.error('创建访客记录失败，登记终止');
+                        return;
+                    } else {
+                        ElMessage.success('创建访客记录成功，继续完成登记');
+                        // 同步创建后的编号到表单（用于后续打印/记录）
+                        visitorInfo.value.applicationNo = createResult.application_no;
+                    }
+                } catch (error) {
+                    updateSuccess = false;
+                    ElMessage.error(`创建失败：${error.message || '网络异常'}`);
+                    return;
                 }
             }
 
-            // 3. 更新成功（或无变更），执行原有登记逻辑
+            // 3. 更新/创建成功后，执行统一的登记逻辑
             if (updateSuccess) {
                 showSuccessDialog.value = true;
                 printing.value = true;
                 printError.value = '';
 
                 try {
-                    // 记录进入状态
+                    // 记录进入状态（使用最新的applicationNo）
                     const recordResult = await recordVisitorEntry(
                         visitorInfo.value.applicationNo,
                         'enter',
-                        '前台登记进入'
+                        hasAppointment ? '前台登记进入' : '无预约前台创建并登记'
                     );
                     if (recordResult.success) {
                         ElMessage.success('登记成功并记录进入状态');
@@ -799,6 +1076,14 @@ export const RegisterPage = {
             capturePhoto,
             closeCamera,
             searchInterviewee,
+            handleIntervieweeChange,
+            intervieweeList,
+            intervieweeLoading,
+            reasonLoading,
+            reasonList,
+            areaList,
+            areaLoading,
+            handleAreaChange,
             resetForm,
             handleRegister,
             updateVisitorInfo,

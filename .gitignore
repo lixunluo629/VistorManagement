@@ -11,3 +11,4 @@ config.json
 dist/
 out/
 script/
+logs/

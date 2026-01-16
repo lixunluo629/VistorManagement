@@ -1,0 +1,789 @@
+[2025-12-25 10:29:37.484] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 10:29:37 GMT+0800 (GMT+08:00)
+[2025-12-25 10:29:39.669] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 10:29:39.950] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 10:29:39.957] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 10:29:39 GMT+0800 (GMT+08:00)
+[2025-12-25 10:29:39.951] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 10:29:39.986] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 10:29:40.082] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 10:29:40","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 10:29:40.114] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 10:29:40","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 10:29:40","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 10:29:40.120] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 10:29:40","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 10:29:40","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 10:29:40.165] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 10:29:40.217] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 10:29:40.222] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 10:29:40.222] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 10:29:40.226] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 10:29:41.973] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:41.974] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:42.967] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:42.967] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:44.984] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:44.984] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:45.530] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 10:29:45.531] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 10:29:45.659] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 10:29:45","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 10:29:45.693] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 10:29:45","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 10:29:45","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 10:29:45.696] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 10:29:45","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 10:29:45","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 10:29:45.737] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 10:29:45.738] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 10:29:45.979] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:45.980] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:47.548] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:47.549] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:48.001] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:48.001] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:48.993] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:48.994] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:50.564] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:50.565] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:51.138] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 10:29:51.139] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 10:29:51.145] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:51.145] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:51.232] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 10:29:51","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 10:29:51.261] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 10:29:51","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 10:29:51","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 10:29:51.264] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 10:29:51","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 10:29:51","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 10:29:51.299] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 10:29:51.300] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 10:29:51.996] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:51.997] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:53.146] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:53.146] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:53.573] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:53.573] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:54.151] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:54.151] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:55.000] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:55.001] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:56.147] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:56.147] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:56.541] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 10:29:56.540] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 10:29:56.589] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:56.589] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:56.661] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 10:29:56","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+{"type":"error","timestamp":"2025-12-25 10:29:56","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 10:29:56","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 10:29:56.688] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 10:29:56","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 10:29:56","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 10:29:56.724] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 10:29:56.724] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 10:29:57.155] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:57.156] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:57.326] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 10:29:57.498] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 10:29:57.506] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 10:29:57.512] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 10:29:57.522] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 10:29:57.592] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 10:29:57.865] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 10:29:57.938] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 10:29:57.943] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:57.942] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:57.998] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 10:29:57.999] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 10:29:58.023] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:58.023] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:58.549] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:58.549] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:59.164] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:29:59.164] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:59.593] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:29:59.593] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:30:00.159] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 10:30:00.160] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 10:30:00.213] [INFO] [Main_Process] 应用开始退出流程 - Thu Dec 25 2025 10:30:00 GMT+0800 (GMT+08:00)
+[2025-12-25 10:30:00.212] [LOG] [Main_Process] 用户请求关闭应用
+[2025-12-25 10:30:00.237] [INFO] [Main_Process] 应用退出，退出码：0 - Thu Dec 25 2025 10:30:00 GMT+0800 (GMT+08:00)
+[2025-12-25 11:36:29.596] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 11:36:29 GMT+0800 (GMT+08:00)
+[2025-12-25 11:36:29.597] [LOG] [Main_Process] 创建登录窗口
+[2025-12-25 11:36:29.916] [LOG] [Main_Process] 登录窗口加载完成
+[2025-12-25 11:40:34.559] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 11:40:32.514] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 11:40:32 GMT+0800 (GMT+08:00)
+[2025-12-25 11:40:34.914] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:40:34.914] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:40:34.920] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 11:40:34 GMT+0800 (GMT+08:00)
+[2025-12-25 11:40:34.942] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:40:35.096] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 11:40:35.167] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 11:40:35.172] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 11:40:35.477] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:40:35","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:40:35.509] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:40:35","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:40:35","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:40:35.514] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:40:35","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:40:35","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:40:35.553] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:40:35.553] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:40:36.929] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:36.928] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:37.923] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:37.923] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:39.945] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:39.945] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:40.904] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:40:40.904] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:40:40.927] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:40.927] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:41.045] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:40:41","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:40:41.084] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:40:41","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:40:41","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:40:41.091] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:40:41","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:40:41","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:40:41.139] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:40:41.138] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:40:42.927] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:42.927] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:42.959] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:42.961] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:43.940] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:43.940] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:45.938] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:45.937] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:45.969] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:45.969] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:46.415] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:40:46.416] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:40:46.504] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:40:46","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:40:46.535] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:40:46","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:40:46","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:40:46.537] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:40:46","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:40:46","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:40:46.574] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:40:46.575] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:40:46.955] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:46.954] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:48.422] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:48.423] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:48.941] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:48.941] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:48.972] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:48.972] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:49.967] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:49.967] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:51.436] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:51.436] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:51.886] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:40:51.886] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:40:51.950] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:51.950] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:51.974] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:40:51","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:40:51.975] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:51.976] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:52.006] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:40:52","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:40:52","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:40:52.009] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:40:52","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:40:52","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:40:52.046] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:40:52.046] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:40:52.979] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:52.980] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:53.905] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:53.906] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:54.439] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:54.439] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:54.959] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:54.960] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:54.989] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:54.989] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:55.987] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:55.988] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:56.906] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:56.907] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:57.330] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:40:57.330] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:40:57.420] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:40:57","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:40:57.451] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:57.452] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:57.453] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:40:57","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:40:57","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:40:57.457] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:40:57","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:40:57","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:40:57.493] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:40:57.493] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:40:57.971] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:57.972] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:58.001] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:58.002] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:59.004] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:59.005] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:59.348] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:59.349] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:40:59.910] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:40:59.911] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:41:00.459] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:41:00.459] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:41:00.974] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:41:00.975] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:41:01.005] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:41:01.005] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:41:02.016] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:41:02.017] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:41:02.269] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 11:41:02.353] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:41:02.353] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:41:02.472] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 11:41:02.480] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 11:41:02.487] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 11:41:02.780] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:41:02.779] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:41:02.785] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 11:41:02.859] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:41:02.913] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:41:02.913] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:41:02.914] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:41:02","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:41:14.046] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 11:41:14 GMT+0800 (GMT+08:00)
+[2025-12-25 11:41:14.126] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:41:30.417] [LOG] [Main_Process] 收到主窗口退出指令
+[2025-12-25 11:41:30.418] [LOG] [Main_Process] 开始终止Python Socket服务
+[2025-12-25 11:41:30.418] [LOG] [Main_Process] Python Socket服务已完全终止
+[2025-12-25 11:41:30.446] [INFO] [Main_Process] 应用退出，退出码：0 - Thu Dec 25 2025 11:41:30 GMT+0800 (GMT+08:00)
+[2025-12-25 11:44:53.069] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 11:44:53 GMT+0800 (GMT+08:00)
+[2025-12-25 11:44:55.128] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 11:44:55.500] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:44:55.500] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:44:55.507] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 11:44:55 GMT+0800 (GMT+08:00)
+[2025-12-25 11:44:55.534] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:44:55.616] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:44:55","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:44:55.647] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:44:55","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:44:55","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:44:55.653] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:44:55","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:44:55","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:44:55.688] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 11:44:55.754] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 11:44:55.756] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:44:55.759] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 11:44:55.757] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:44:56.791] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 11:44:57.022] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 11:44:57.033] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 11:44:57.039] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 11:44:57.048] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 11:44:57.123] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:44:57.294] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 11:44:57.342] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 11:44:57.348] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:44:57.347] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:44:57.421] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 11:44:57.417] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 11:44:57.509] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:44:57.510] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:44:58.070] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:44:58.070] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:44:58.523] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:44:58.523] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:00.356] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:00.357] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:00.513] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:00.514] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:01.092] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:45:01.092] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:45:01.098] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:01.098] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:01.183] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:45:01","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:45:01.216] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:45:01","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:45:01","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:45:01.218] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:45:01","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:45:01","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:45:01.255] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:45:01.255] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:45:01.526] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:01.527] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:03.105] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:03.105] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:03.374] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:03.375] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:03.531] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:03.532] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:04.107] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:04.108] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:04.451] [LOG] [Main_Process] 用户操作：关闭串口
+[2025-12-25 11:45:04.528] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:04.527] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:06.113] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:06.113] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:06.580] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:45:06.580] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:45:06.586] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:06.587] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:06.675] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:45:06","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:45:06.707] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:45:06","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:45:06","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:45:06.710] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:45:06","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:45:06","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:45:06.748] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:45:06.749] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:45:07.114] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:07.115] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:07.539] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:07.538] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:08.592] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:08.591] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:09.123] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:09.124] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:09.590] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:09.590] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:10.121] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:10.122] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:10.543] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:10.544] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:11.605] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:11.606] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:12.032] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:45:12.033] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:45:12.122] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:45:12","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:45:12.133] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:12.134] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:12.152] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:45:12","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:45:12","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:45:12.155] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:45:12","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:45:12","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:45:12.190] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:45:12.191] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:45:12.602] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:12.602] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:13.131] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:13.131] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:13.552] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:13.552] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:14.057] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:14.058] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:14.617] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:14.617] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:15.136] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:15.135] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:15.606] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:15.606] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:16.140] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:16.141] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:16.564] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:16.564] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:17.064] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:17.064] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:17.584] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:45:17.584] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:45:17.629] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:45:17.630] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:45:17.679] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:45:17","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:45:17.709] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:45:17","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:45:17","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:45:17.715] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:45:17","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:45:17","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:45:17.749] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:45:17.750] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:59:27.272] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 11:59:25.206] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 11:59:25 GMT+0800 (GMT+08:00)
+[2025-12-25 11:59:27.304] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 11:59:27 GMT+0800 (GMT+08:00)
+[2025-12-25 11:59:27.328] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:59:27.536] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 11:59:27.590] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 11:59:27.601] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 11:59:28.674] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 11:59:28.870] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 11:59:28.881] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 11:59:28.888] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 11:59:28.897] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 11:59:28.966] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:59:29.130] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 11:59:29.450] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:59:29.462] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 11:59:29.450] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:59:29.536] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 11:59:29.532] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 11:59:29.580] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:59:29","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:59:29.585] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:59:29","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:59:29","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:59:29.647] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:59:29","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:59:29","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:59:29.699] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:59:29.699] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:59:30.467] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:30.467] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:31.462] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:31.463] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:33.472] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:33.472] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:33.809] [LOG] [Main_Process] 用户操作：关闭串口
+[2025-12-25 11:59:34.468] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:34.469] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:34.966] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:59:34.966] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:59:35.058] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:59:35","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:59:35.089] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:59:35","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:59:35","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:59:35.092] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:59:35","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:59:35","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:59:35.135] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:59:35.135] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:59:36.477] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:36.478] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:36.979] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:36.980] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:37.480] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:37.481] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:42.218] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 11:59:40.179] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 11:59:40 GMT+0800 (GMT+08:00)
+[2025-12-25 11:59:42.252] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 11:59:42 GMT+0800 (GMT+08:00)
+[2025-12-25 11:59:42.281] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:59:42.473] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 11:59:42.521] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 11:59:42.529] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 11:59:45.684] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 11:59:45.765] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 11:59:45.777] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 11:59:45.784] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 11:59:45.793] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 11:59:45.868] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 11:59:46.041] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 11:59:46.343] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:59:46.343] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:59:46.355] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 11:59:46.423] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 11:59:46.431] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 11:59:46.466] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:59:46","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:59:46.478] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:59:46","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:59:46","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:59:46.532] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:59:46","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:59:46","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:59:46.609] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:59:46.608] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 11:59:47.370] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:47.371] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:48.353] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:48.354] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:50.378] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:50.378] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:51.367] [ERROR] [Main_Process] Socket连接失败：connect ECONNREFUSED 127.0.0.1:9999
+[2025-12-25 11:59:51.367] [WARN] [Main_Process] Socket连接异常关闭，3秒后重试...
+[2025-12-25 11:59:51.863] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 11:59:51.862] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 11:59:51.951] [LOG] [Main_Process] Python-log: {"type":"debug","timestamp":"2025-12-25 11:59:51","content":{"script_dir":"D:\\WebStormProject\\visitor_management\\script\\IDCard","zp_bmp_path":"D:\\WebStormProject\\visitor_management\\script\\IDCard\\zp.bmp"}}
+[2025-12-25 11:59:51.982] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 11:59:51","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff08\u7aef\u53e3\uff1a1001\uff09"}
+{"type":"fatal_error","timestamp":"2025-12-25 11:59:51","content":"\u8bfb\u5361\u5668\u521d\u59cb\u5316\u5931\u8d25\uff0c\u670d\u52a1\u542f\u52a8\u7ec8\u6b62"}
+[2025-12-25 11:59:51.985] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 11:59:51","content":"\u8bfb\u5361\u5668\u5df2\u5173\u95ed\uff0c\u4e34\u65f6\u6587\u4ef6\u6e05\u7406\u5b8c\u6210"}
+{"type":"status","timestamp":"2025-12-25 11:59:51","content":"\u8bfb\u5361\u5668\u670d\u52a1\u5df2\u505c\u6b62"}
+[2025-12-25 11:59:52.022] [WARN] [Main_Process] Python进程异常退出，5秒后重启...
+[2025-12-25 11:59:52.022] [LOG] [Main_Process] Python server exited, code:0, signal:null
+[2025-12-25 17:53:29.809] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 17:53:29 GMT+0800 (GMT+08:00)
+[2025-12-25 17:53:32.006] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 17:53:32.046] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 17:53:32 GMT+0800 (GMT+08:00)
+[2025-12-25 17:53:32.082] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 17:53:32.369] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 17:53:32.435] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 17:53:32.445] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 17:53:33.767] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 17:53:33.926] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 17:53:33.935] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 17:53:33.942] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 17:53:33.951] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 17:53:34.055] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 17:53:34.258] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 17:53:34.733] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 17:53:34.756] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 17:53:34.732] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 17:53:34.944] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 17:53:34.950] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 17:53:35.349] [LOG] [Main_Process] Python-log: {"type":"info","timestamp":"2025-12-25 17:53:35","content":"\u542f\u52a8\u7eafSocket\u6d4b\u8bd5\u6a21\u5f0f\uff0c\u8df3\u8fc7\u8bfb\u5361\u5668\u786c\u4ef6"}
+{"type":"status","timestamp":"2025-12-25 17:53:35","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u670d\u52a1\u5df2\u542f\u52a8\uff0c\u76d1\u542c 127.0.0.1:9999"}
+{"type":"debug","timestamp":"2025-12-25 17:53:35","content":"\u5f53\u524d\u4e3a\u7eafSocket\u6d4b\u8bd5\u6a21\u5f0f\uff0c\u8df3\u8fc7\u8bfb\u5361\u5668\u786c\u4ef6\u4f9d\u8d56"}
+[2025-12-25 17:53:35.748] [LOG] [Main_Process] 已连接到读卡器Socket服务
+[2025-12-25 17:53:35.748] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:35","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u5ba2\u6237\u7aef\u5df2\u8fde\u63a5\uff1a('127.0.0.1', 59904)"}
+[2025-12-25 17:53:35.749] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:35","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:35.749] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:36.525] [LOG] [Main_Process] 用户操作：关闭串口
+[2025-12-25 17:53:36.747] [LOG] [Main_Process] 已连接到读卡器Socket服务
+[2025-12-25 17:53:36.748] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:36.748] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:36","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u5ba2\u6237\u7aef\u5df2\u8fde\u63a5\uff1a('127.0.0.1', 59906)"}
+{"type":"status","timestamp":"2025-12-25 17:53:36","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:38.750] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:38","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c1\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:53:38","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:38.752] [LOG] [Main_Process] Python-log: {"type":"error","timestamp":"2025-12-25 17:53:38","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u5ba2\u6237\u7aef\u5904\u7406\u5f02\u5e38\uff1a[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"}
+[2025-12-25 17:53:38.753] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:38","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u5ba2\u6237\u7aef\u8fde\u63a5\u5df2\u5173\u95ed"}
+[2025-12-25 17:53:38.754] [ERROR] [Main_Process] Python-error：Exception in thread Thread-1 (send_test_data):
+Traceback (most recent call last):
+  File "D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py", line 110, in send_test_data
+[2025-12-25 17:53:38.754] [ERROR] [Main_Process] Python-error：conn.send(json.dumps({
+[2025-12-25 17:53:38.755] [ERROR] [Main_Process] Python-error：ConnectionAbortedError: [WinError 10053] ��������е�������ֹ��һ���ѽ��������ӡ�
+[2025-12-25 17:53:38.756] [ERROR] [Main_Process] Python-error：During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "threading.py", line 1016, in _bootstrap_inner
+  File "threading.py", line 953, in run
+[2025-12-25 17:53:38.757] [ERROR] [Main_Process] Python-error：File "D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py", line 128, in send_test_data
+    conn.send(json.dumps({
+ConnectionAbortedError: [WinError 10053] ��������е�������ֹ��һ���ѽ��������ӡ�
+[2025-12-25 17:53:39.749] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:39","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:39.748] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:39","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c1\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:53:39.749] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:39.749] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":1}
+[2025-12-25 17:53:42.749] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:42","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c2\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:53:42","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:42.749] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":2}
+[2025-12-25 17:53:42.750] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:45.749] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:45","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c3\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:53:45.750] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:45","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:45.750] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":3}
+[2025-12-25 17:53:45.750] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:48.750] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:48","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c4\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:53:48.750] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:48","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:48.751] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":4}
+[2025-12-25 17:53:48.751] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:51.752] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":5}
+[2025-12-25 17:53:51.751] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:51","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:51.751] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:51","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c5\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:53:51.752] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:54.753] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:54.751] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:54","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c6\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:53:54.752] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:53:54","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:54.753] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":6}
+[2025-12-25 17:53:57.752] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:53:57","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c7\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:53:57","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:53:57.753] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:53:57.752] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":7}
+[2025-12-25 17:54:00.753] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:00","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c8\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:00","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:00.754] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":8}
+[2025-12-25 17:54:00.754] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:03.754] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":9}
+[2025-12-25 17:54:03.754] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:03","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c9\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:03","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:03.755] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:06.755] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":10}
+[2025-12-25 17:54:06.755] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:06.756] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:06","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c10\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:06","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:09.755] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:09","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c11\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:09","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:09.756] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:09.756] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":11}
+[2025-12-25 17:54:12.756] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:12","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c12\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:12","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:12.756] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":12}
+[2025-12-25 17:54:12.757] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:15.757] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":13}
+[2025-12-25 17:54:15.757] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:15","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c13\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:15","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:15.757] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:18.757] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:18","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c14\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:54:18.758] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:54:18","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:18.758] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":14}
+[2025-12-25 17:54:18.758] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:21.757] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:21","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c15\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:21","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:21.758] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":15}
+[2025-12-25 17:54:21.758] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:24.758] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:24","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c16\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:54:24.759] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:54:24","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:24.759] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":16}
+[2025-12-25 17:54:24.759] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:27.759] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:27","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c17\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:54:27.761] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:54:27","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:27.761] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":17}
+[2025-12-25 17:54:27.763] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:30.760] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:30","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c18\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:30","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:30.761] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":18}
+[2025-12-25 17:54:30.762] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:33.761] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:33","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c19\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:54:33.762] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:54:33","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:33.762] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":19}
+[2025-12-25 17:54:33.762] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:36.763] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:54:36","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:36.762] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:36","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c20\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:54:36.763] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":20}
+[2025-12-25 17:54:36.763] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:39.763] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:39.763] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":21}
+[2025-12-25 17:54:39.763] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:39","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c21\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:39","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:42.763] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:42","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c22\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:42","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:42.764] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":22}
+[2025-12-25 17:54:42.764] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:45.763] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:45","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c23\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:45","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:45.764] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":23}
+[2025-12-25 17:54:45.764] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:48.767] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:48.766] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":24}
+[2025-12-25 17:54:48.764] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:48","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c24\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:54:48.765] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:54:48","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:51.766] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:54:51","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:51.765] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:51","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c25\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:54:51.767] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":25}
+[2025-12-25 17:54:51.767] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:54.768] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:54.766] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:54","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c26\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:54","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:54.767] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":26}
+[2025-12-25 17:54:57.769] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:54:57.768] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:54:57","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c27\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:54:57","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:54:57.769] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":27}
+[2025-12-25 17:55:00.768] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:00","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c28\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:00.769] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:00","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:00.769] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:00.769] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":28}
+[2025-12-25 17:55:03.769] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:03","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c29\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:03.771] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":29}
+[2025-12-25 17:55:03.771] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:03.770] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:03","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:06.770] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:06","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c30\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:55:06","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:06.771] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:06.770] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":30}
+[2025-12-25 17:55:09.771] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:09","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c31\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:09.772] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":31}
+[2025-12-25 17:55:09.772] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:09.771] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:09","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:12.772] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:12","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c32\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:12.773] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:12.772] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":32}
+[2025-12-25 17:55:12.774] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:12","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:15.772] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:15","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c33\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:55:15","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:15.773] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":33}
+[2025-12-25 17:55:15.773] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:18.774] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:18","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:18.773] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:18","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c34\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:18.774] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":34}
+[2025-12-25 17:55:18.774] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:21.103] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 17:55:21 GMT+0800 (GMT+08:00)
+[2025-12-25 17:55:23.541] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 17:55:23.576] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 17:55:23 GMT+0800 (GMT+08:00)
+[2025-12-25 17:55:23.608] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 17:55:23.834] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 17:55:23.901] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 17:55:23.907] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 17:55:26.148] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 17:55:26.257] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 17:55:26.267] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 17:55:26.275] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 17:55:26.286] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 17:55:26.408] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 17:55:26.643] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 17:55:27.072] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 17:55:27.071] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 17:55:27.092] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 17:55:27.273] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 17:55:27.276] [LOG] [Main_Process] Python-log: {"type":"info","timestamp":"2025-12-25 17:55:27","content":"\u542f\u52a8\u7eafSocket\u6d4b\u8bd5\u6a21\u5f0f\uff0c\u8df3\u8fc7\u8bfb\u5361\u5668\u786c\u4ef6"}
+{"type":"status","timestamp":"2025-12-25 17:55:27","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u670d\u52a1\u5df2\u542f\u52a8\uff0c\u76d1\u542c 127.0.0.1:9999"}
+{"type":"debug","timestamp":"2025-12-25 17:55:27","content":"\u5f53\u524d\u4e3a\u7eafSocket\u6d4b\u8bd5\u6a21\u5f0f\uff0c\u8df3\u8fc7\u8bfb\u5361\u5668\u786c\u4ef6\u4f9d\u8d56"}
+[2025-12-25 17:55:27.271] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 17:55:28.086] [LOG] [Main_Process] 已连接到读卡器Socket服务
+[2025-12-25 17:55:28.092] [WARN] [Main_Process] Socket连接正常关闭，3秒后重试...
+[2025-12-25 17:55:29.086] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:29","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u5ba2\u6237\u7aef\u5df2\u8fde\u63a5\uff1a('127.0.0.1', 59404)"}
+[2025-12-25 17:55:29.085] [LOG] [Main_Process] 已连接到读卡器Socket服务
+[2025-12-25 17:55:29.086] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:29.087] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:29","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:31.444] [LOG] [Main_Process] 用户操作：关闭串口
+[2025-12-25 17:55:32.087] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:32","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c1\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:32.088] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":1}
+[2025-12-25 17:55:32.088] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:32.087] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:32","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:35.088] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:35","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:35.088] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":2}
+[2025-12-25 17:55:35.087] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:35","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c2\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:35.088] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:38.089] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:38","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:38.088] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:38","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c3\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:38.089] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:38.089] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":3}
+[2025-12-25 17:55:41.089] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:41","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:41.089] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:41","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c4\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:41.090] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:41.090] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":4}
+[2025-12-25 17:55:44.090] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:55:44","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:44.089] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:44","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c5\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:55:44.090] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":5}
+[2025-12-25 17:55:44.090] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:47.091] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:47.090] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:47","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c6\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:55:47","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:47.090] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":6}
+[2025-12-25 17:55:50.090] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:50","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c7\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:55:50","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:50.091] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":7}
+[2025-12-25 17:55:50.091] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:53.091] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:53","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c8\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:55:53","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:53.092] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":8}
+[2025-12-25 17:55:53.092] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:56.093] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":9}
+[2025-12-25 17:55:56.093] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:56","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c9\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:55:56","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:56.094] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:55:59.094] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":10}
+[2025-12-25 17:55:59.093] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:55:59","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c10\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:55:59","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:55:59.094] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:56:02.094] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":11}
+[2025-12-25 17:56:02.094] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:56:02.095] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:56:02","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c11\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:56:02","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:56:04.537] [LOG] [Main_Process] 发送SIGINT信号终止Python进程
+[2025-12-25 17:56:04.919] [LOG] [Main_Process] 读卡器服务已停止
+[2025-12-25 17:56:04.919] [LOG] [Main_Process] 已强制清理所有Python进程
+[2025-12-25 17:56:04.536] [LOG] [Main_Process] Socket客户端已关闭
+[2025-12-25 17:56:04.536] [LOG] [Main_Process] 用户请求关闭应用
+[2025-12-25 17:56:04.920] [INFO] [Main_Process] 应用开始退出流程 - Thu Dec 25 2025 17:56:04 GMT+0800 (GMT+08:00)
+[2025-12-25 17:56:04.921] [WARN] [Main_Process] Socket连接正常关闭，3秒后重试...
+[2025-12-25 17:56:04.955] [INFO] [Main_Process] 应用退出，退出码：0 - Thu Dec 25 2025 17:56:04 GMT+0800 (GMT+08:00)
+[2025-12-25 17:59:06.775] [INFO] [Main_Process] 应用启动开始 - Thu Dec 25 2025 17:59:06 GMT+0800 (GMT+08:00)
+[2025-12-25 17:59:09.027] [LOG] [Main_Process] 开机自启已开启
+[2025-12-25 17:59:09.061] [INFO] [Main_Process] 应用启动完成，主窗口已创建 - Thu Dec 25 2025 17:59:09 GMT+0800 (GMT+08:00)
+[2025-12-25 17:59:09.087] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 17:59:09.323] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 17:59:09.400] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 17:59:09.406] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 17:59:10.240] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 17:59:10.516] [LOG] [Main_Process] 存储数据：user.username = "admin"
+[2025-12-25 17:59:10.524] [LOG] [Main_Process] 存储数据：user.password = "admin"
+[2025-12-25 17:59:10.531] [LOG] [Main_Process] 存储数据：user.rememberPwd = true
+[2025-12-25 17:59:10.540] [LOG] [Main_Process] 切换到主窗口
+[2025-12-25 17:59:10.661] [LOG] [Main_Process] 配置加载成功: {"protocol":"HTTP","ip":"xjyfk.szpdc.vip","port":80,"timeout":30}
+[2025-12-25 17:59:10.885] [LOG] [Main_Process] 前端请求获取存储数据：user.username
+[2025-12-25 17:59:11.453] [LOG] [Main_Process] 前端请求获取存储数据：user.password
+[2025-12-25 17:59:11.433] [LOG] [Main_Process] Start Python:D:\WebStormProject\visitor_management\script\python\python.exe D:\WebStormProject\visitor_management\script\IDCard\idcard_reader.py
+[2025-12-25 17:59:11.432] [LOG] [Main_Process] 已清理残留Python进程
+[2025-12-25 17:59:11.617] [LOG] [Main_Process] 前端请求获取存储数据：user.rememberPwd
+[2025-12-25 17:59:11.613] [LOG] [Main_Process] 前端请求获取服务器配置
+[2025-12-25 17:59:11.703] [LOG] [Main_Process] Python-log: {"type":"info","timestamp":"2025-12-25 17:59:11","content":"\u542f\u52a8\u7eafSocket\u6d4b\u8bd5\u6a21\u5f0f\uff0c\u8df3\u8fc7\u8bfb\u5361\u5668\u786c\u4ef6"}
+[2025-12-25 17:59:11.705] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:59:11","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u670d\u52a1\u5df2\u542f\u52a8\uff0c\u76d1\u542c 127.0.0.1:9999"}
+{"type":"debug","timestamp":"2025-12-25 17:59:11","content":"\u5f53\u524d\u4e3a\u7eafSocket\u6d4b\u8bd5\u6a21\u5f0f\uff0c\u8df3\u8fc7\u8bfb\u5361\u5668\u786c\u4ef6\u4f9d\u8d56"}
+[2025-12-25 17:59:12.449] [LOG] [Main_Process] 已连接到读卡器Socket服务
+[2025-12-25 17:59:12.453] [WARN] [Main_Process] Socket连接正常关闭，3秒后重试...
+[2025-12-25 17:59:13.449] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:59:13","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u5ba2\u6237\u7aef\u5df2\u8fde\u63a5\uff1a('127.0.0.1', 10099)"}
+{"type":"status","timestamp":"2025-12-25 17:59:13","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:59:13.449] [LOG] [Main_Process] 已连接到读卡器Socket服务
+[2025-12-25 17:59:13.450] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:59:15.876] [LOG] [Main_Process] 用户操作：关闭串口
+[2025-12-25 17:59:16.450] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:59:16","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c1\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:59:16","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:59:16.450] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":1}
+[2025-12-25 17:59:16.451] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:59:19.450] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:59:19","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c2\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:59:19","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:59:19.451] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:59:19.451] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":2}
+[2025-12-25 17:59:22.451] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:59:22","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c3\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+{"type":"status","timestamp":"2025-12-25 17:59:22","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:59:22.451] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":3}
+[2025-12-25 17:59:22.452] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:59:25.452] [LOG] [Main_Process] Python-log: {"type":"success","timestamp":"2025-12-25 17:59:25","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b2c4\u6b21\u6a21\u62df\u5237\u5361\u6570\u636e"}
+[2025-12-25 17:59:25.453] [LOG] [Main_Process] 收到读卡器数据：{"type":"status","content":"【Socket测试模式】等待刷卡..."}
+[2025-12-25 17:59:25.452] [LOG] [Main_Process] Python-log: {"type":"status","timestamp":"2025-12-25 17:59:25","content":"\u3010Socket\u6d4b\u8bd5\u6a21\u5f0f\u3011\u7b49\u5f85\u5237\u5361..."}
+[2025-12-25 17:59:25.453] [LOG] [Main_Process] 收到读卡器数据：{"type":"success","content":{"name":"测试姓名","gender":"男","nation":"汉","birthDate":"19900101","address":"测试省测试市测试区测试路1号","idNumber":"110101199001011234","issuingAuthority":"测试公安局","validFrom":"20200101","validTo":"20300101","photoBase64":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APrIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi//Z"},"test_count":4}
+[2025-12-25 17:59:25.570] [LOG] [Main_Process] Socket客户端已关闭
+[2025-12-25 17:59:25.578] [LOG] [Main_Process] 发送SIGTERM信号终止Python进程（PID：4832）
+[2025-12-25 17:59:25.570] [LOG] [Main_Process] 用户请求关闭应用
+[2025-12-25 17:59:26.102] [LOG] [Main_Process] 已强制清理所有Python进程（含子进程）
+[2025-12-25 17:59:26.103] [INFO] [Main_Process] 应用开始退出流程 - Thu Dec 25 2025 17:59:26 GMT+0800 (GMT+08:00)
+[2025-12-25 17:59:26.102] [LOG] [Main_Process] 读卡器服务已停止
+[2025-12-25 17:59:26.114] [WARN] [Main_Process] Socket连接正常关闭，3秒后重试...
+[2025-12-25 17:59:26.114] [LOG] [Main_Process] Python server exited, code:1, signal:null
+[2025-12-25 17:59:26.199] [INFO] [Main_Process] 应用退出，退出码：0 - Thu Dec 25 2025 17:59:26 GMT+0800 (GMT+08:00)

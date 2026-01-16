@@ -44,6 +44,7 @@ export const LoginPage = {
                   type="primary"
                   style="width: 100%;"
                   @click="handleLogin"
+                  :loading="loading"
               >
                 登录
               </el-button>

@@ -86,8 +86,8 @@ export const DataCenterPage = {
                       <el-select v-model="filterType" placeholder="筛选类型">
                         <el-option label="全部记录" value="all"></el-option>
                         <el-option label="已离开" value="left"></el-option>
-                        <el-option label="拜访中" value="active"></el-option>
-                        <el-option label="未到访" value="noShow"></el-option>
+                        <el-option label="拜访中" value="arrived"></el-option>
+                        <el-option label="未到访" value="no_visit"></el-option>
                       </el-select>
                     </el-col>
                     <el-col :span="8">
@@ -272,8 +272,8 @@ export const DataCenterPage = {
 
         const getTodayTimeRange = () => {
             const today = new Date();
-            const start = new Date(today.setHours(0, 0, 0, 0)).toISOString().replace('T', ' ').slice(0, 19);
-            const end = new Date(today.setHours(23, 59, 59, 999)).toISOString().replace('T', ' ').slice(0, 19);
+            const start = new Date(today.setHours(0, 0, 0, 0)).toISOString();
+            const end = new Date(today.setHours(24, 0, 0, 0)).toISOString();
             return { start_time: start, end_time: end };
         };
 

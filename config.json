@@ -1,5 +1,6 @@
 {
   "server": {
+    "protocol": "HTTP",
     "ip": "xjyfk.szpdc.vip",
     "port": 80,
     "timeout": 30

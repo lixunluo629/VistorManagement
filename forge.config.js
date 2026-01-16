@@ -6,10 +6,12 @@ module.exports = {
     asar: true,
     icon: 'renderer/favicon.ico',
     productName: "访客准入",
-    name: "visitor-management",
+    name: "VisitorAccess",
+    appCopyright: `Copyright ©2025 深圳市神州动力数码. All rights reserved.`,
+    version: "1.0.0",
     extraResource: [
       './script/'
-    ]
+    ],
   },
   rebuildConfig: {},
   makers: [

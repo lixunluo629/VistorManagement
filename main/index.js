@@ -1,177 +1,262 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const { PosPrinter } = require('electron-pos-printer');
 const Store = require('electron-store').default;
 const QRCode = require('qrcode');
-const { spawn } = require('child_process');
+const { spawn, execFile } = require('child_process');
 const fs = require('fs').promises;
 const path = require('path');
+const fsSync = require('fs'); // 同步文件操作
+const net = require('net'); // Socket客户端
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
-let mainWindow;
-let mainWin;
-let readerProcess = null;
+
+// ===================== 日志文件配置 =====================
+// 日志存储路径（用户数据目录）
+const currentDir = process.cwd();
+const logDir = path.join(currentDir, 'logs');
+const logFileName = `app-${getDateString()}.log`;
+const logFilePath = path.join(logDir, logFileName);
+const maxLogSize = 10 * 1024 * 1024; // 单个日志文件最大10MB
+const maxLogFiles = 7; // 最多保留7天的日志
+// 生成日期字符串 YYYYMMDD
+function getDateString() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}${month}${day}`;
+}
+
+// 生成时间戳 YYYY-MM-DD HH:mm:ss.SSS
+function getTimestamp() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const ms = String(date.getMilliseconds()).padStart(3, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${ms}`;
+}
+
+// 确保日志目录存在
+function ensureLogDir() {
+    if (!fsSync.existsSync(logDir)) {
+        fsSync.mkdirSync(logDir, { recursive: true });
+    }
+}
+
+// ===================== 统一日志函数 =====================
+// 单个函数处理所有日志输出
+function log(level, msg) {
+    const timestamp = getTimestamp();
+    const mainProcessMsg = `[Main_Process] ${msg}`;
+    const logEntry = `[${timestamp}] [${level.toUpperCase()}] ${mainProcessMsg}\n`;
+
+    // 1. 输出到控制台
+    switch (level) {
+        case 'error':
+            console.error(mainProcessMsg);
+            break;
+        case 'warn':
+            console.warn(mainProcessMsg);
+            break;
+        default:
+            console.log(mainProcessMsg);
+    }
+
+    // 2. 写入日志文件（异步）
+    try {
+        ensureLogDir();
+
+        // 检查日志文件大小，超过则轮转
+        if (fsSync.existsSync(logFilePath)) {
+            const stats = fsSync.statSync(logFilePath);
+            if (stats.size > maxLogSize) {
+                // 重命名当前日志文件
+                const date = new Date();
+                const timeStamp = `${getDateString()}-${String(date.getHours()).padStart(2, '0')}${String(date.getMinutes()).padStart(2, '0')}${String(date.getSeconds()).padStart(2, '0')}`;
+                const rotatedPath = path.join(logDir, `app-${timeStamp}.log`);
+                fsSync.renameSync(logFilePath, rotatedPath);
+
+                // 删除旧日志文件，只保留maxLogFiles个
+                const logFiles = fsSync.readdirSync(logDir)
+                    .filter(file => file.startsWith('app-') && file.endsWith('.log'))
+                    .sort()
+                    .reverse();
+
+                if (logFiles.length > maxLogFiles) {
+                    logFiles.slice(maxLogFiles).forEach(file => {
+                        fsSync.unlinkSync(path.join(logDir, file));
+                    });
+                }
+            }
+        }
+
+        // 追加写入日志文件
+        fsSync.appendFile(logFilePath, logEntry, (err) => {
+            if (err) {
+                console.error('日志写入失败:', err);
+            }
+        });
+    } catch (err) {
+        console.error('日志处理失败:', err);
+    }
+
+    // 3. 发送到渲染进程
+    mainWin?.webContents.send('python-log', { level, content: msg });
+}
+
+// ===================== 全局变量统一管理 =====================
+let mainWindow; // 登录窗口
+let mainWin; // 主窗口
+let readerProcess = null; // Python进程（备用）
+let socketClient = null; // Socket客户端（核心）
+let isAppQuiting = false; // 应用退出标记
 let serialPortInstance = null;
+let reconnectTimer = null; // Socket重连定时器
 const configPath = path.join(app.isPackaged ? process.resourcesPath : app.getAppPath(), 'config.json');
+let appConfig = { server: { protocol: 'HTTP', ip: '127.0.0.1', port: 3000 } }; // 默认配置
 
+// ===================== 基础窗口管理 =====================
 function createWindow(isLogin = true) {
-    loadConfig().then(r => {});
-    // 根据是否为登录窗口设置不同尺寸
-    const windowOptions = isLogin ? {
-        // 登录窗口：小尺寸，非全屏
-        width: 300,          // 窗口宽度
-        height: 400,         // 窗口高度
-        frame: false,        // 隐藏系统边框和标题栏
-        resizable: false,    // 禁止窗口缩放
-        movable: true,       // 允许窗口拖动
-        show: false
-    } : {
-        fullscreen: true, // 主窗口全屏
-        frame: false,      // 主窗口隐藏边框（可选）
-        show: false
-    };
+    loadConfig().catch(err => log('error', `加载配置失败: ${err.message}`));
 
-    mainWindow = new BrowserWindow({
-        ...windowOptions,
-        title: "访客准入系统",
+    const windowOptions = isLogin ? {
+        width: 300,
+        height: 400,
+        frame: false,
+        resizable: false,
+        movable: true,
+        show: false,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
         }
-    });
+    } : {
+        fullscreen: true,
+        frame: false,
+        show: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    };
 
-    // 加载应用页面
-    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html')).then(r => {
-    });
+    const win = new BrowserWindow(windowOptions);
+    win.loadFile(path.join(__dirname, '../renderer/index.html'));
 
     // 开发环境打开调试工具
-    mainWindow.webContents.openDevTools({mode: 'detach'});
+    // win.webContents.openDevTools({ mode: 'detach' });
 
     // 窗口关闭事件
-    mainWindow.on('closed', () => {
-        mainWindow = null;
+    win.on('closed', () => {
+        if (isLogin) mainWindow = null;
+        else {
+            mainWin = null;
+            // 主窗口关闭时停止读卡器服务
+            stopPythonServer();
+        }
     });
-    // 确保页面渲染完成后再显示
-    if (isLogin) {
-        mainWindow.webContents.on('did-finish-load', () => {
-            mainWindow.show();
-        });
-    }
-    return mainWindow;
+
+    // 渲染完成后显示
+    win.webContents.on('did-finish-load', () => {
+        win.show();
+        if (!isLogin) {
+            win.webContents.executeJavaScript(`window.location.hash = '#/main';`);
+            // 主窗口加载完成后，才启动读卡器服务
+            startPythonServer(); // 关键：主窗口阶段启动Python服务
+            setTimeout(() => connectSocketClient(), 1000); // 主窗口阶段连接Socket
+        }
+    });
+
+    if (isLogin) mainWindow = win;
+    else mainWin = win;
+
+    return win;
 }
 
-// 监听登录成功事件，切换到主窗口
-ipcMain.on('switch-to-main-window', () => {
-    if (mainWindow) mainWindow.close(); // 关闭登录窗口
-    mainWin = createWindow(false); // 创建全屏主窗口
-    mainWin.webContents.on('did-finish-load', () => {
-        mainWin.webContents.executeJavaScript(`window.location.hash = '#/main';`).then(r => {});
-    });
-    // 修正：使用新创建的 mainWin 实例调用 show()
-    setTimeout(() => {
-        mainWin.show(); // 这里改为 mainWin，而非 mainWindow
-    }, 1000);
-});
-
-// 关闭应用事件处理
-ipcMain.on('close-app', () => {
-    if (process.platform !== 'darwin') app.quit();
-    else mainWindow.hide();
-});
-
-// 应用生命周期管理
-app.whenReady().then(() => createWindow(true));
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
-});
-app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow(true);
-});
-
-function logToDevTools(type, message) {
-    if (mainWin && mainWin.webContents) {
-        // 通过 IPC 发送到渲染进程
-        mainWin.webContents.send('main-process-log', {
-            type: type, // 'log'、'error'、'warn' 等
-            message: message
+// ===================== 开机自启 =====================
+function setAutoStart(enable) {
+    try {
+        app.setLoginItemSettings({
+            openAtLogin: enable,
+            openAsHidden: false,
+            path: process.execPath,
+            args: ['--processStart', `"${process.execPath}"`]
         });
+        log('log', `开机自启已${enable ? '开启' : '关闭'}`);
+    } catch (err) {
+        log('error', `设置开机自启失败: ${err.message}`);
     }
 }
 
-// 读取配置文件的函数
+// ===================== 配置文件管理 =====================
 async function loadConfig() {
     try {
-        // 读取文件内容
-        const configContent = await fs.readFile(configPath, 'utf8');
-        // 解析 JSON
-        appConfig = JSON.parse(configContent);
-        console.log('config:', appConfig);
-
-        // 校验必填参数（如服务器IP），缺失则使用默认值
-        if (!appConfig.server?.ip) {
-            appConfig.server = { ...appConfig.server, ip: '127.0.0.1' }; // 默认本地IP
-            console.warn('配置中未指定服务器IP，使用默认值：127.0.0.1');
-        }
-    } catch (error) {
-        // 处理文件不存在或解析错误
-        if (error.code === 'ENOENT') {
-            console.warn('配置文件不存在，创建默认配置');
-            // 创建默认配置文件
-            appConfig = { server: { ip: '127.0.0.1', port: 3000 } };
-            await fs.writeFile(configPath, JSON.stringify(appConfig, null, 2), 'utf8');
+        if (fsSync.existsSync(configPath)) {
+            const configContent = await fs.readFile(configPath, 'utf8');
+            appConfig = JSON.parse(configContent);
         } else {
-            console.error('配置文件解析失败，使用默认配置：', error);
-            appConfig = { server: { ip: '127.0.0.1', port: 3000 } };
+            // 创建默认配置
+            await fs.writeFile(configPath, JSON.stringify(appConfig, null, 2), 'utf8');
         }
+        // 补全默认值
+        appConfig.server = {
+            protocol: 'HTTP',
+            ip: '127.0.0.1',
+            port: 3000,
+            ...appConfig.server
+        };
+        log('log', `配置加载成功: ${JSON.stringify(appConfig.server)}`);
+    } catch (error) {
+        log('error', `配置文件解析失败，使用默认配置：${error.message}`);
+        appConfig = { server: { protocol: 'HTTP', ip: '127.0.0.1', port: 3000 } };
     }
 }
 
-// 生成二维码（返回 base64 图片）
+// ===================== 二维码生成 =====================
 async function generateQrCode(visitorCode) {
     try {
-        // 生成适合 56mm 宽度的二维码（尺寸 180x180，足够清晰且不超宽）
         return await QRCode.toDataURL(visitorCode, {
-            width: 180, // 宽度（56mm 对应像素约 200 左右，180 留有余地）
-            margin: 1, // 减小边距，节省空间
-            errorCorrectionLevel: 'M' // 中等纠错级别，平衡清晰度和容错性
+            width: 180,
+            margin: 1,
+            errorCorrectionLevel: 'M'
         });
     } catch (error) {
+        log('error', `二维码生成失败：${error.message}`);
         throw new Error(`二维码生成失败：${error.message}`);
     }
 }
 
-async function getPrinters() {
+// ===================== 打印功能 =====================
+async function getPrinters(window) {
     try {
-        // 新 API：getPrintersAsync()（返回 Promise）
-        const printers = await mainWin.webContents.getPrintersAsync();
-        console.log('可用打印机列表:', printers.map(p => p.name));
+        const printers = await window.webContents.getPrintersAsync();
+        log('log', `可用打印机列表: ${printers.map(p => p.name).join(', ')}`);
         return printers;
     } catch (error) {
-        console.error('获取打印机列表失败:', error);
+        log('error', `获取打印机列表失败: ${error.message}`);
         throw new Error(`获取打印机失败：${error.message}`);
     }
 }
-// 打印访客凭证（含二维码）
+
 async function printVisitorCode(visitorCode, window) {
-    // 新增：先获取系统可用打印机列表，自动匹配热敏打印机（解决名称不匹配问题）
     let printerName = 'KPOS_58 Printer';
     try {
-        const printers = await window.webContents.getPrintersAsync();
-        console.log('系统可用打印机：', printers.map(p => p.name));
-        window.webContents.send('main-process-log', {message: `系统可用打印机:${printers.map(p => p.name)}`});
-        // 自动匹配包含「58」「POS」「热敏」的打印机（兼容不同命名）
+        const printers = await getPrinters(window);
         const thermalPrinter = printers.find(p =>
             p.name.includes('58') || p.name.includes('POS') || p.name.includes('热敏')
         );
         if (thermalPrinter) {
             printerName = thermalPrinter.name;
-            window.webContents.send('main-process-log', {message:`自动匹配到热敏打印机：${printerName}`});
+            log('log', `自动匹配到热敏打印机：${printerName}`);
         }
     } catch (err) {
-        console.warn('获取打印机列表失败，使用默认名称：', err);
-        window.webContents.send('main-process-log', {message: `获取打印机列表失败，使用默认名称：${err}`});
+        log('warn', `获取打印机列表失败，使用默认名称：${err.message}`);
     }
 
-    // 打印内容配置（适配 56mm 热敏打印机，优化二维码尺寸）
     const printData = [
         {
             type: 'text',
@@ -185,13 +270,13 @@ async function printVisitorCode(visitorCode, window) {
         {
             type: 'qrCode',
             value: visitorCode,
-            width: '40mm', // 缩小二维码尺寸，避免超出56mm纸宽
+            width: '40mm',
             height: '40mm',
             position: 'center'
         },
         {
             type: 'text',
-            value: visitorCode, // 新增：打印访客码文本，方便核对
+            value: visitorCode,
             style: {
                 fontSize: '12px',
                 textAlign: 'center',
@@ -209,102 +294,328 @@ async function printVisitorCode(visitorCode, window) {
         }
     ];
 
-    // 打印机配置（优化静默打印参数）
     const options = {
         preview: false,
-        width: '56mm', // 强制匹配56mm热敏纸
+        width: '56mm',
         margin: '0 2mm',
-        printerName: printerName, // 使用匹配后的打印机名称
-        silent: true, // 开启静默打印（核心修改）
-        timeOutPerLine: 1000, // 进一步延长超时时间，适配低速打印机
-        pageSize: { // 新增：自定义纸张尺寸（56mm热敏纸，关键！）
-            width: 56 * 96 / 25.4, // 转换为像素（96 DPI，56mm = 2.2047英寸）
-            height: 100 * 96 / 25.4 // 高度可自定义
+        printerName: printerName,
+        silent: true,
+        timeOutPerLine: 1000,
+        pageSize: {
+            width: 56 * 96 / 25.4,
+            height: 100 * 96 / 25.4
         }
     };
 
     return new Promise((resolve, reject) => {
         PosPrinter.print(printData, options, window)
             .then(() => {
-                console.log('打印成功');
+                log('log', '打印成功');
                 resolve('打印成功');
             })
             .catch((error) => {
-                console.error('打印失败：', error);
-                // 兜底：静默打印失败时，切换为非静默模式重试
+                log('error', `打印失败：${error.message}`);
                 options.silent = false;
                 PosPrinter.print(printData, options, window)
-                    .then(() => resolve('打印成功（手动模式）'))
-                    .catch((err) => reject(`打印失败：${err.message}`));
+                    .then(() => {
+                        log('log', '打印成功（手动模式）');
+                        resolve('打印成功（手动模式）');
+                    })
+                    .catch((err) => {
+                        log('error', `手动打印也失败：${err.message}`);
+                        reject(`打印失败：${err.message}`);
+                    });
             });
     });
 }
-// 监听渲染进程的打印请求
-ipcMain.handle('print-visitor-code', async (event, visitorCode) => {
-    const testWindow = event.sender.getOwnerBrowserWindow(); // 获取主窗口
-    try {
-        return await printVisitorCode(visitorCode, testWindow);
-    } catch (error) {
-        throw new Error(error); // 抛出错误，让渲染进程捕获
-    }
-});
 
-// 启动读卡器监听
-ipcMain.handle('start-reader', () => {
-    if (readerProcess) {
-        return { success: false, message: '读卡器已在运行' };
-    }
-    // 启动Python脚本（路径根据实际项目调整）
-    let scriptPath;
-    let pythonPath;
+// ===================== 读卡器核心（Socket版本） =====================
+/**
+ * 启动Python Socket服务端（独立进程）
+ */
+function startPythonServer() {
+    if (readerProcess && !readerProcess.killed) return; // 已启动则直接返回
+
+    // 1. 构建路径（适配打包/开发环境）
+    let scriptPath, pythonPath;
     if (app.isPackaged) {
-        // 打包后：路径格式：resources/script/IDCard/idcard_reader.py
         scriptPath = path.join(process.resourcesPath, 'script', 'IDCard', 'idcard_reader.py');
         pythonPath = path.join(process.resourcesPath, 'script', 'python', 'python.exe');
     } else {
-        // 开发环境：相对项目根目录的路径
-        scriptPath = 'script/IDCard/idcard_reader.py';
-        pythonPath = 'script/python/python.exe';
+        scriptPath = path.resolve(__dirname, '../script/IDCard/idcard_reader.py');
+        pythonPath = path.resolve(__dirname, '../script/python/python.exe');
     }
-    readerProcess = spawn(pythonPath, [scriptPath]);
-    // 实时监听脚本输出，转发给渲染进程
+
+    // 2. 验证路径
+    if (!fsSync.existsSync(pythonPath)) {
+        log('error', `Python路径不存在：${pythonPath}`);
+        // 尝试使用系统Python
+        pythonPath = 'python.exe';
+        log('log', '尝试使用系统Python环境');
+    }
+    if (!fsSync.existsSync(scriptPath)) {
+        log('error', `脚本路径不存在：${scriptPath}`);
+        return;
+    }
+
+    // 3. 强制杀死残留Python进程（避免端口占用）
+    try {
+        const { execSync } = require('child_process');
+        execSync('taskkill /F /IM python.exe /FI "WINDOWTITLE eq python.exe"', { stdio: 'ignore' });
+        log('log', '已清理残留Python进程');
+    } catch (err) {
+        log('warn', '未检测到残留Python进程');
+    }
+
+    // 4. 启动Python服务
+    log('log', `Start Python:${pythonPath} ${scriptPath}`);
+    const scriptDir = path.dirname(scriptPath);
+
+    // 清除之前的进程引用
+    if (readerProcess) {
+        try {
+            readerProcess.kill();
+        } catch (err) {}
+        readerProcess = null;
+    }
+    // , "--socket-test"
+    readerProcess = execFile(pythonPath, [scriptPath], {
+        cwd: scriptDir,
+        env: process.env,
+        windowsHide: true,
+        shell: true,
+        detached: false
+    });
+
+    // 5. 监听Python输出
     readerProcess.stdout.on('data', (chunk) => {
         const dataStr = chunk.toString().trim();
+        if (!dataStr) return;
+        log('log', `Python-log: ${dataStr}`);
         try {
-            const cardData = JSON.parse(dataStr);
-            // 发送给所有渲染进程（可指定窗口）
-            mainWin.webContents.send('card-data', cardData);
+            const jsonData = JSON.parse(dataStr);
+            mainWin?.webContents.send('python-log', jsonData);
         } catch (e) {
-            console.error('解析读卡器数据失败:', e);
+            mainWin?.webContents.send('python-log', { type: 'log', content: dataStr });
+        }
+
+        // Python服务启动成功后立即连接客户端
+        if (dataStr.includes('Socket服务已启动') || dataStr.includes('listening on port')) {
+            setTimeout(() => connectSocketClient(), 1000);
         }
     });
 
-    // 监听脚本错误
-    readerProcess.stderr.on('data', (err) => {
-        console.error('读卡器脚本错误:', err.toString());
+    // 6. 监听Python错误
+    readerProcess.stderr.on('data', (chunk) => {
+        const errStr = chunk.toString().trim();
+        log('error', `Python-error：${errStr}`);
+        mainWin?.webContents.send('python-log', { type: 'error', content: errStr });
     });
 
-    // 进程退出时重置
-    readerProcess.on('close', () => {
+    // 7. Python进程异常退出：自动重启（非应用退出时）
+    readerProcess.on('close', (code, signal) => {
+        const logMsg = `Python server exited, code:${code}, signal:${signal}`;
+        log('log', logMsg);
         readerProcess = null;
+
+        // 清理Socket客户端
+        if (socketClient) {
+            try {
+                socketClient.destroy();
+            } catch (err) {}
+            socketClient = null;
+        }
+
+        // 应用未退出时，5秒后重启
+        if (!isAppQuiting) {
+            log('warn', 'Python进程异常退出，5秒后重启...');
+            setTimeout(() => {
+                startPythonServer();
+            }, 5000);
+        }
     });
 
-    return { success: true, message: '读卡器已启动' };
-});
-
-// 停止读卡器监听
-ipcMain.handle('stop-reader', () => {
-    if (readerProcess) {
-        readerProcess.kill(); // 终止子进程
+    // 8. 进程启动失败处理
+    readerProcess.on('error', (err) => {
+        log('error', `Python进程启动失败：${err.message}`);
         readerProcess = null;
-        return { success: true, message: '读卡器已停止' };
+
+        if (!isAppQuiting) {
+            setTimeout(() => startPythonServer(), 5000);
+        }
+    });
+
+    // 启动Python后立即尝试连接Socket客户端
+    setTimeout(() => connectSocketClient(), 2000);
+}
+
+/**
+ * 连接Socket客户端（断开自动重试）
+ */
+function connectSocketClient() {
+    // 如果应用正在退出，不进行连接
+    if (isAppQuiting) return;
+
+    // 清除之前的重连定时器
+    if (reconnectTimer) {
+        clearTimeout(reconnectTimer);
+        reconnectTimer = null;
     }
-    return { success: false, message: '读卡器未运行' };
-});
 
-// 初始化串口连接（对齐 Python 成功参数）
+    // 如果已有客户端连接，先关闭
+    if (socketClient) {
+        try {
+            socketClient.removeAllListeners();
+            socketClient.destroy();
+        } catch (err) {}
+        socketClient = null;
+    }
+
+    // 1. 创建Socket客户端
+    socketClient = net.createConnection({ port: 9999, host: '127.0.0.1' }, () => {
+        log('log', '已连接到读卡器Socket服务');
+        mainWin?.webContents.send('python-log', { type: 'status', content: '读卡器连接成功，等待刷卡...' });
+    });
+
+    // 2. 优化Socket配置
+    socketClient.setNoDelay(true); // 禁用Nagle算法
+    socketClient.setTimeout(0);    // 取消超时
+    socketClient.setKeepAlive(true, 30000); // 启用TCP保活，30秒检测一次
+
+    // 3. 接收读卡器数据（处理分包）
+    let buffer = "";
+    socketClient.on('data', (chunk) => {
+        buffer += chunk.toString('utf-8');
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || "";
+
+        lines.forEach(line => {
+            line = line.trim();
+            if (!line) return;
+            try {
+                const cardData = JSON.parse(line);
+                log('log', `收到读卡器数据：${JSON.stringify(cardData)}`);
+                if(cardData.type === 'success'){
+                    // 发送到渲染进程
+                    mainWin?.webContents.send('card-data', cardData);
+                }
+            } catch (e) {
+                log('error', `解析数据失败：${e.message}，原始数据：${line}`);
+            }
+        });
+    });
+
+    // 4. Socket错误：自动重试
+    socketClient.on('error', (err) => {
+        log('error', `Socket连接失败：${err.message}`);
+        mainWin?.webContents.send('python-log', {
+            type: 'error',
+            content: `读卡器连接失败：${err.message}，将自动重试...`
+        });
+
+        socketClient = null;
+        // 应用未退出时，3秒后重试
+        if (!isAppQuiting) {
+            reconnectTimer = setTimeout(() => connectSocketClient(), 3000);
+        }
+    });
+
+    // 5. Socket断开：自动重试
+    socketClient.on('close', (hadError) => {
+        const msg = hadError ? 'Socket连接异常关闭' : 'Socket连接正常关闭';
+        log('warn', `${msg}，3秒后重试...`);
+
+        if (hadError) {
+            mainWin?.webContents.send('python-log', {
+                type: 'warn',
+                content: '读卡器连接已断开，将自动重连...'
+            });
+        }
+
+        socketClient = null;
+        // 应用未退出时，3秒后重试
+        if (!isAppQuiting) {
+            reconnectTimer = setTimeout(() => connectSocketClient(), 3000);
+        }
+    });
+
+    // 6. 超时处理
+    socketClient.on('timeout', () => {
+        log('warn', 'Socket连接超时');
+        socketClient.destroy();
+    });
+}
+
+/**
+ * 停止读卡器服务
+ */
+function stopPythonServer() {
+    // 1. 清除重连定时器
+    if (reconnectTimer) {
+        clearTimeout(reconnectTimer);
+        reconnectTimer = null;
+    }
+
+    // 2. 关闭Socket连接
+    if (socketClient) {
+        try {
+            socketClient.write('stop'); // 发送停止指令
+            socketClient.destroy();
+            log('log', 'Socket客户端已关闭');
+        } catch (err) {
+            log('error', `关闭Socket失败：${err.message}`);
+        }
+        socketClient = null;
+    }
+
+    // 3. 终止Python进程（增强版）
+    if (readerProcess) {
+        try {
+            // 步骤1：先尝试正常终止（发送SIGTERM）
+            process.kill(readerProcess.pid, 'SIGTERM');
+            log('log', `发送SIGTERM信号终止Python进程（PID：${readerProcess.pid}）`);
+
+            // 步骤2：等待1秒后检查是否仍存活，存活则强制杀死
+            setTimeout(() => {
+                try {
+                    // 检查进程是否存在
+                    process.kill(readerProcess.pid, 0); // 0信号仅检查进程是否存在
+                    log('warn', `Python进程（PID：${readerProcess.pid}）仍存活，强制杀死`);
+                    process.kill(readerProcess.pid, 'SIGKILL');
+                } catch (err) {
+                    // 进程已退出，无需处理
+                    log('log', `Python进程（PID：${readerProcess.pid}）已正常退出`);
+                }
+            }, 1000);
+
+        } catch (err) {
+            log('error', `终止Python进程失败：${err.message}`);
+        }
+
+        // 步骤3：强制清理所有Python进程（增强过滤条件）
+        try {
+            const { execSync } = require('child_process');
+            // 方案A：杀死所有python.exe进程（最彻底，适合测试/单机场景）
+            execSync('taskkill /F /IM python.exe /T', { stdio: 'ignore' });
+            // 方案B：仅杀死关联的python进程（更安全，适合多Python进程场景）
+            // execSync(`taskkill /F /PID ${readerProcess.pid} /T`, { stdio: 'ignore' });
+
+            log('log', '已强制清理所有Python进程（含子进程）');
+        } catch (err) {
+            log('warn', `清理Python进程时出错：${err.message}，可能已无残留进程`);
+        }
+
+        readerProcess = null;
+        log('log', '读卡器服务已停止');
+    }
+
+    return { success: true, message: '读卡器已停止' };
+}
+
+// ===================== 串口管理 =====================
 function initSerialPort(portName, baudRate, win) {
-    // 关闭已存在的连接
+    log('log', `初始化串口：${portName}，波特率：${baudRate}`);
+
     if (serialPortInstance) {
         serialPortInstance.close();
     }
@@ -320,84 +631,154 @@ function initSerialPort(portName, baudRate, win) {
             timeout: 1000
         });
 
-        // 修正1：先监听原始数据（最底层，确保能捕获任何数据）
+        // 原始数据监听
         serialPortInstance.on('data', (rawData) => {
-            // 强制打印到主进程控制台（无视渲染进程）
-            win.webContents.send('send-log', `原始数据(Buffer): ${rawData}`);
-            win.webContents.send('send-log', `原始数据(字符串): ${rawData.toString('utf-8')}`);
+            const hexData = rawData.toString('hex');
+            const strData = rawData.toString('utf-8').trim();
+            win?.webContents.send('send-log', `原始数据(Buffer): ${hexData}`);
+            win?.webContents.send('send-log', `原始数据(字符串): ${strData}`);
 
-            // 原始数据手动解析（兜底）
-            const rawCode = rawData.toString('utf-8').trim().replace(/\r|\n/g, '');
+            const rawCode = strData.replace(/\r|\n/g, '');
             if (rawCode) {
-                console.log('原始数据解析结果:', rawCode);
+                log('log', `串口原始数据：${rawCode}`);
                 win?.webContents.send('serial-data-received', rawCode);
             }
         });
 
-        // 解析器作为备用（可选）
+        // 解析器
         const parser = serialPortInstance.pipe(new ReadlineParser({ delimiter: '\r\n' }));
         parser.on('data', (data) => {
             const code = data.trim();
-            win.webContents.send('send-log', `过滤前:${data}`);
-            win.webContents.send('send-log', `过滤后:${code}`);
-
+            win?.webContents.send('send-log', `过滤后: ${code}`);
             if (code) {
-                win.webContents.send('serial-data-received', code);
+                win?.webContents.send('serial-data-received', code);
             }
         });
 
-        // 错误事件
+        // 错误处理
         serialPortInstance.on('error', (err) => {
-            win.webContents.send('serial-error', `串口错误: ${err.message}`);
+            log('error', `串口错误: ${err.message}`);
+            win?.webContents.send('serial-error', `串口错误: ${err.message}`);
         });
 
         // 关闭事件
         serialPortInstance.on('close', () => {
-            console.log('串口已关闭');
-            win.webContents.send('serial-closed', '串口已关闭');
+            log('log', '串口已关闭');
+            win?.webContents.send('serial-closed', '串口已关闭');
         });
 
         // 打开串口
         serialPortInstance.open((err) => {
             if (err) {
-                win.webContents.send('serial-error', `无法打开串口: ${err.message}`);
+                log('error', `无法打开串口: ${err.message}`);
+                win?.webContents.send('serial-error', `无法打开串口: ${err.message}`);
                 return;
             }
-            win.webContents.send('serial-connected', `已连接到 ${portName} (${baudRate}bps)`);
+            log('log', `已连接到串口 ${portName} (${baudRate}bps)`);
+            win?.webContents.send('serial-connected', `已连接到 ${portName} (${baudRate}bps)`);
         });
     } catch (err) {
-        console.error('串口初始化失败:', err);
-        win.webContents.send('serial-error', `初始化失败: ${err.message}`);
+        log('error', `串口初始化失败: ${err.message}`);
+        win?.webContents.send('serial-error', `初始化失败: ${err.message}`);
     }
 }
 
-// 关闭串口
 function closeSerialPort() {
     if (serialPortInstance && serialPortInstance.isOpen) {
+        const portPath = serialPortInstance.path;
         serialPortInstance.close();
         serialPortInstance = null;
+        log('log', '串口已关闭');
     }
 }
 
-// 启动扫描器监听
-// 监听渲染进程的串口操作请求
+// ===================== IPC通信注册 =====================
+// 1. 登录窗口切换
+ipcMain.on('switch-to-main-window', () => {
+    log('log', '切换到主窗口');
+
+    // 1. 先停止当前读卡器服务（避免端口占用）
+    stopPythonServer();
+    // 2. 关闭登录窗口
+    if (mainWindow) {
+        mainWindow.close();
+        mainWindow = null;
+    }
+    // 3. 创建主窗口（createWindow内部会自动启动读卡器服务）
+    mainWin = createWindow(false);
+});
+
+// 2. 关闭应用
+ipcMain.on('close-app', () => {
+    log('log', '用户请求关闭应用');
+
+    isAppQuiting = true;
+    // 关闭所有子进程
+    stopPythonServer();
+    closeSerialPort();
+
+    if (process.platform !== 'darwin') {
+        app.quit();
+    } else {
+        (mainWin || mainWindow).hide();
+    }
+});
+
+// 3. 打印访客码
+ipcMain.handle('print-visitor-code', async (event, visitorCode) => {
+    log('log', `收到打印请求，访客码：${visitorCode}`);
+
+    const window = event.sender.getOwnerBrowserWindow();
+    try {
+        return await printVisitorCode(visitorCode, window);
+    } catch (error) {
+        log('error', `打印请求失败：${error.message}`);
+        throw error;
+    }
+});
+
+// 4. 获取日志文件路径
+ipcMain.handle('get-log-path', () => {
+    log('log', '前端请求获取日志文件路径');
+    return {
+        logDir: logDir,
+        currentLogFile: logFilePath,
+        logFiles: fsSync.existsSync(logDir)
+            ? fsSync.readdirSync(logDir).filter(file => file.endsWith('.log')).sort().reverse()
+            : []
+    };
+});
+
+// 5. 打开日志目录
+ipcMain.on('open-log-dir', () => {
+    log('log', '用户操作：打开日志目录');
+    shell.openPath(logDir).catch(err => {
+        log('error', `打开日志目录失败：${err.message}`);
+    });
+});
+
+// 6. 串口操作
 ipcMain.on('init-serial', (event, { portName, baudRate }) => {
-    initSerialPort(portName, baudRate, mainWin);
+    log('log', `用户操作：初始化串口 ${portName}，波特率 ${baudRate}`);
+    initSerialPort(portName, baudRate, mainWin || mainWindow);
 });
 
 ipcMain.on('close-serial', () => {
+    log('log', '用户操作：关闭串口');
     closeSerialPort();
 });
 
-// 主进程响应渲染进程的配置请求（通过IPC）
+// 7. 获取服务器配置
 ipcMain.handle('get-server-config', () => {
-    return appConfig.server; // 返回服务器配置
+    log('log', '前端请求获取服务器配置');
+    return appConfig.server;
 });
 
-// 监听渲染进程的保存Excel请求
+// 8. 保存Excel文件
 ipcMain.handle('saveExcelFile', async (event, excelBase64, defaultFileName) => {
+    log('log', `用户操作：保存Excel文件，默认文件名：${defaultFileName}`);
+
     try {
-        // 弹出保存对话框
         const { filePath, canceled } = await dialog.showSaveDialog({
             title: '保存Excel文件',
             defaultPath: defaultFileName,
@@ -408,36 +789,36 @@ ipcMain.handle('saveExcelFile', async (event, excelBase64, defaultFileName) => {
         });
 
         if (canceled || !filePath) {
+            log('log', '用户取消保存Excel文件');
             return { success: false, message: '用户取消保存' };
         }
 
-        // 关键：验证base64字符串并转换为Buffer
         if (typeof excelBase64 !== 'string') {
+            log('error', '保存Excel失败：无效的文件数据（非base64字符串）');
             return { success: false, message: '无效的文件数据（非base64字符串）' };
         }
 
-        // 校验base64格式（简单校验，可选）
         const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/;
         if (!base64Regex.test(excelBase64)) {
+            log('error', '保存Excel失败：无效的base64字符串格式');
             return { success: false, message: '无效的base64字符串格式' };
         }
 
-        // 将base64转换为Node.js的Buffer
         const nodeBuffer = Buffer.from(excelBase64, 'base64');
-
-        // 异步写入文件
         await fs.writeFile(filePath, nodeBuffer);
 
+        log('log', `Excel文件保存成功：${filePath}`);
         return { success: true, message: '保存成功', filePath: filePath };
     } catch (error) {
-        console.error('保存文件失败:', error);
+        log('error', `保存Excel失败：${error.message}`);
         return { success: false, message: `保存失败：${error.message}` };
     }
 });
-// 初始化 electron-store
+
+// 9. Electron-Store操作
 const store = new Store({
-    name: 'app-store', // 存储文件名称
-    defaults: { // 默认数据（可选）
+    name: 'app-store',
+    defaults: {
         user: {
             username: '',
             password: '',
@@ -446,25 +827,92 @@ const store = new Store({
         }
     }
 });
-// 注册 IPC 接口：获取存储数据
+
 ipcMain.handle('store-get', (event, key) => {
+    log('log', `前端请求获取存储数据：${key}`);
     return store.get(key);
 });
 
-// 注册 IPC 接口：设置存储数据
 ipcMain.handle('store-set', (event, key, value) => {
-    // 新增：如果值为 null/undefined/空字符串，使用 delete() 清空
-    console.log(`${key}: ${value}`);
+    log('log', `存储数据：${key} = ${JSON.stringify(value)}`);
+
     if (value === '' || value === null || value === undefined) {
         store.delete(key);
+        log('log', `删除存储数据：${key}`);
     } else {
         store.set(key, value);
     }
     return 'success';
 });
 
-// 注册 IPC 接口：删除存储数据
 ipcMain.handle('store-delete', (event, key) => {
     store.delete(key);
+    log('log', `删除存储数据：${key}`);
     return 'success';
+});
+
+// ===================== 应用生命周期 =====================
+app.whenReady().then(() => {
+    // 初始化日志系统
+    ensureLogDir();
+    log('info', '应用启动开始 - ' + new Date().toString());
+
+    setAutoStart(true);
+    createWindow(true);
+
+    log('info', '应用启动完成，主窗口已创建 - ' + new Date().toString());
+});
+
+app.on('before-quit', () => {
+    log('info', '应用开始退出流程 - ' + new Date().toString());
+    isAppQuiting = true;
+    stopPythonServer(); // 停止读卡器
+});
+
+app.on('window-all-closed', () => {
+    log('info', '所有窗口已关闭，准备退出应用 - ' + new Date().toString());
+    isAppQuiting = true;
+    closeSerialPort();
+    stopPythonServer(); // 确保进程被终止
+
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    log('info', '应用被激活 - ' + new Date().toString());
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow(true);
+    }
+});
+
+// 全局异常捕获
+process.on('uncaughtException', (err) => {
+    const errorMsg = `全局未捕获异常：${err.message}\n${err.stack}\n发生时间：${new Date().toString()}`;
+    log('error', errorMsg);
+    console.error(err.stack);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    const errorMsg = `全局未处理Promise拒绝：${reason.message || reason}\nPromise: ${JSON.stringify(promise)}\n发生时间：${new Date().toString()}`;
+    log('error', errorMsg);
+    console.error('Promise:', promise, 'Reason:', reason);
+});
+
+// 确保退出时清理所有资源
+process.on('exit', (code) => {
+    log('info', `应用退出，退出码：${code} - ${new Date().toString()}`);
+    isAppQuiting = true;
+    stopPythonServer();
+    closeSerialPort();
+});
+
+// 应用崩溃处理
+app.on('render-process-gone', (event, webContents, details) => {
+    log('error', `渲染进程崩溃：${details.reason}，退出码：${details.exitCode} - ${new Date().toString()}`);
+});
+
+app.on('child-process-gone', (event, details) => {
+    log('error', `子进程崩溃：${details.type}，原因：${details.reason}，退出码：${details.exitCode} - ${new Date().toString()}`);
 });
